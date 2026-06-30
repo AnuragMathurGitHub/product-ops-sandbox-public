@@ -68,7 +68,13 @@ When working inside the repo, write the draft to:
 outputs/ai_feedback_classification.json
 ```
 
-If you are in a chat-only tool that cannot write files, return the JSON in the chat.
+Then also write a short human-readable summary next to it:
+
+```text
+outputs/ai_feedback_classification.md
+```
+
+If you are in a chat-only tool that cannot write files, return the JSON and a short summary in the chat.
 
 ## Rules
 

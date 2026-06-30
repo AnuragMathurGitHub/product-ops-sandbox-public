@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Ops Opportunity Mapping"
+  short_description: "Turn signals into product opportunities"
+  default_prompt: "Use $product-ops-opportunity-mapping on the notes in input-notes/ to produce opportunity statements with linked metrics, evidence, and review questions."
+
+policy:
+  allow_implicit_invocation: true

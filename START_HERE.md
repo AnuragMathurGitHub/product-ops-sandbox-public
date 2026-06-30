@@ -122,40 +122,85 @@ The outputs show what the workflow produces.
 | `metrics_snapshot.md` | What is happening in the product? | Yes |
 | `feedback_theme_summary.md` | What feedback themes repeat? | Yes |
 | `roadmap_priority_scores.md` | Which roadmap items look strongest? | Yes |
-| `ai_feedback_classification.json` | How can qualitative feedback become structured themes? | Structured for review |
-| `ai_opportunity_map.json` | Which product opportunities emerge from the signals? | Structured for review |
+| `ai_feedback_classification.json` | How can qualitative feedback become structured themes? | JSON draft + `.md` summary |
+| `ai_research_synthesis.json` | What did the research reveal? | JSON draft + `.md` summary |
+| `ai_opportunity_map.json` | Which product opportunities emerge from the signals? | JSON draft + `.md` summary |
 | `ai_weekly_product_insights.md` | What would a weekly Product Ops readout look like? | Yes |
 
-Why JSON?
+### You get both JSON and a readable Markdown summary
+
+You do not have to read raw JSON. Each AI workflow writes **two** files: a structured JSON draft and
+a plain-English Markdown summary next to it (for example, `ai_feedback_classification.json` and
+`ai_feedback_classification.md`).
 
 ```text
-JSON keeps AI output structured.
-Markdown makes summaries easy for people to read.
+JSON = the structured draft (fields like theme, severity, linked_metric) for review and reuse.
+Markdown = the human-readable summary you can scan or paste into a team update.
 ```
 
-For example, JSON is useful when an assistant or script needs fields like `theme`, `severity`, and `linked_metric`. Markdown is better for final summaries and team updates.
+Open the `.md` file if you just want to read the result. Open the `.json` file if an assistant,
+script, or reviewer needs consistent fields to compare across notes.
 
 ## Step 5: Try One AI-Assisted Workflow
 
-You do not need an API key for this.
+**Get the files first.** This workflow reads files from the repo, so you need a local copy. If you
+have not done this yet, go back to the README and follow **How To Get The Files** (Download ZIP or
+`git clone`). You do not need an API key for this step.
 
-The workflow is folder-based:
+### Why use this repo instead of just pasting into ChatGPT?
+
+You could paste one note into a chat and ask for a summary. The repo adds value when you do more
+than that:
+
+- **Batch many notes together.** Drop support tickets, sales notes, and interviews into
+  `input-notes/` and process them with the same workflow instead of one ad-hoc chat at a time.
+- **Reuse the same prompt and taxonomy.** Everyone classifies into the same product areas, themes,
+  and severities, so results are comparable week to week.
+- **Get structured output.** The prompt asks for JSON that matches a schema, so the result can be
+  reviewed, compared, and reused, not just read once and lost in a chat.
+- **Keep reviewable drafts.** Outputs land in `outputs/` so a human can check them before any
+  decision.
+
+### The workflow is folder-based
 
 ```text
-input-notes/
--> ai-workflows/prompts/
--> outputs/
+input-notes/            (your notes)
+-> ai-workflows/prompts/ (the instructions for the assistant)
+-> outputs/              (the draft result you review)
 ```
 
-Try this:
+### Which prompt do I use?
+
+Pick the prompt that matches what you have. Each prompt already knows to read from `input-notes/`.
+
+| You Have | Use This Prompt | You Get |
+| --- | --- | --- |
+| Support / sales / success notes | `ai-workflows/prompts/classify_feedback.md` | `outputs/ai_feedback_classification.json` (+ `.md` summary) |
+| An interview or research transcript | `ai-workflows/prompts/synthesize_research.md` | `outputs/ai_research_synthesis.json` (+ `.md` summary) |
+| A mix of signals to turn into ideas | `ai-workflows/prompts/detect_opportunities.md` | `outputs/ai_opportunity_map.json` (+ `.md` summary) |
+| Metrics plus themes for a readout | `ai-workflows/prompts/weekly_product_insights.md` | `outputs/ai_weekly_product_insights.md` |
+
+### Three ways to run a workflow
+
+| Way | What you do | Real AI? | API key? |
+| --- | --- | --- | --- |
+| Agent, guided | In Codex, Cursor, or Copilot, open the repo and ask in plain language. `AGENTS.md` gives the assistant the workflow map. In Claude Code, run a command like `/classify-feedback`, or use the `/product-ops-signal-triage` skill. | Yes | No |
+| Agent, manual | Tell your assistant which prompt and notes to read (see the example below). | Yes | No |
+| Mock demo | Run the Python script in Step 7. It copies a prepared example so you can see the output shape with no AI and no key. | No | No |
+
+The two agent ways are the real workflow: your own assistant does the synthesis, with no API key.
+Mock is a deterministic demo of what the output looks like.
+
+### Try the simplest one (feedback classification)
 
 1. Open the sample note file: `input-notes/support-ticket-batch.md`.
-2. Open the matching prompt in `ai-workflows/prompts/`.
+2. Open the matching prompt: `ai-workflows/prompts/classify_feedback.md`.
 3. Ask your assistant to read both files from the repo.
-4. Ask it to write the result into `outputs/` or show the result in chat.
+4. Ask it to write the result into `outputs/` (or show it in chat).
 5. Review the result before using it for decisions.
 
-To use your own notes later, add a new `.md` file inside `input-notes/`. Keep the content fictional, anonymized, or approved.
+To use your own notes later, add a new `.md` file inside `input-notes/`. Keep the content
+fictional, anonymized, or approved.
 
 Example request for Codex, Claude Code, Cursor, or Copilot:
 
@@ -166,7 +211,8 @@ Write the draft output to outputs/ai_feedback_classification.json.
 Do not invent facts.
 ```
 
-If you are using a chat-only assistant that cannot access files, copy the prompt and anonymized note content into the chat manually.
+If you are using a chat-only assistant that cannot access files, copy the prompt and the anonymized
+note content into the chat manually. That is the fallback, not the main path.
 
 ## Step 6: Run The Scripts
 
@@ -188,18 +234,30 @@ python scripts/summarize_metrics.py
 
 These scripts are deterministic. If the input files do not change, the outputs should not change.
 
-## Step 7: Understand Mock AI Workflows
+To confirm the scripts still behave after you change them, run the tests:
 
-The mock AI scripts do not call a live AI model.
+```bash
+python -m unittest discover -s tests
+```
 
-They copy prepared example outputs into `outputs/` so you can see the workflow without needing an API key.
+## Step 7: See A Mock Demo (Optional, No AI Needed)
+
+The mock scripts do not call an AI model. They copy prepared example outputs into `outputs/` so you
+can see the shape of each result with no AI and no API key.
+
+This is a demo, not the real workflow. The real workflow is Step 5: your own assistant reads the
+prompt and your notes and writes the output. Use mock when you just want to see what good output
+looks like, or when you do not have an assistant handy.
 
 | Script | Input Idea | Output | Why It Exists |
 | --- | --- | --- | --- |
-| `scripts/ai_classify_feedback.py` | Notes from `input-notes/` | `outputs/ai_feedback_classification.json` | Shows how qualitative notes can become structured feedback themes |
-| `scripts/ai_synthesize_research.py` | Interview notes | `outputs/ai_research_synthesis.json` | Shows how research can become themes, insights, and implications |
-| `scripts/ai_detect_opportunities.py` | Combined signals | `outputs/ai_opportunity_map.json` | Shows how signals can become opportunity statements |
-| `scripts/ai_generate_weekly_summary.py` | Metrics plus themes | `outputs/ai_weekly_product_insights.md` | Shows a weekly Product Ops readout |
+| `scripts/ai_classify_feedback.py` | Notes from `input-notes/` | `ai_feedback_classification.json` + `.md` | Shows how qualitative notes can become structured feedback themes |
+| `scripts/ai_synthesize_research.py` | Interview notes | `ai_research_synthesis.json` + `.md` | Shows how research can become themes, insights, and implications |
+| `scripts/ai_detect_opportunities.py` | Combined signals | `ai_opportunity_map.json` + `.md` | Shows how signals can become opportunity statements |
+| `scripts/ai_generate_weekly_summary.py` | Metrics plus themes | `ai_weekly_product_insights.md` | Shows a weekly Product Ops readout |
+
+Each script writes its result into `outputs/`. The first three write both a structured JSON draft
+and a matching `.md` summary so you can read the result without opening JSON.
 
 Run:
 
@@ -210,7 +268,10 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_generate_weekly_summary.py
 ```
 
-Live AI mode can be added with approved data, credentials, and model access. Mock mode is the safe default.
+Why "mock"? These scripts do not call a live AI model. They copy prepared example results into
+`outputs/` so the workflow runs the same way for everyone, with no API key and no risk of sending
+data anywhere. Live AI mode can be added later with approved data, credentials, and model access.
+Mock mode is the safe default.
 
 ## Step 8: Adapt It To Your Product
 
@@ -230,14 +291,24 @@ Recommended order:
 | 6 | One output review | `outputs/` |
 | 7 | Taxonomy or roadmap assumptions | `docs/` and `agent-skills/` |
 
-The safest first adaptation is:
+### Your First Change, Step By Step
 
-```text
-Replace one note file in input-notes/.
-Ask an assistant to classify it.
-Review the output.
-Then decide what to change next.
-```
+Do not edit everything. Make one safe change and watch it flow through:
+
+1. **Add one note file.** Create a new file in `input-notes/`, for example
+   `input-notes/my-support-notes.md`. Paste 5 to 10 short, fictional or anonymized notes, one per line
+   or as short bullets. Keep it the same shape as `input-notes/support-ticket-batch.md`.
+2. **Run the workflow on it.** Ask your assistant: *"Read `ai-workflows/prompts/classify_feedback.md`
+   and `input-notes/my-support-notes.md`, classify the notes, and write the draft to
+   `outputs/ai_feedback_classification.json`."*
+3. **Open the result.** Read `outputs/ai_feedback_classification.md` (the readable summary). Check
+   that the themes and severities match what your notes actually say.
+4. **Then adjust the edges.** Once that works, change the product story in
+   `docs/01-product-context.md`, the metrics in `docs/02-success-metrics.md`, or a CSV in
+   `sample-data/`. When editing a CSV, **keep the existing column headers the same at first** so the
+   scripts still run; change only the rows. Re-run the matching script and review the new output.
+
+The rule: change one input, run or re-ask, review the output, then decide the next change.
 
 ## Useful Assistant Requests
 
@@ -268,6 +339,7 @@ Help me adapt this sandbox for my product. Ask me the minimum questions needed b
 | If You Want To... | Open |
 | --- | --- |
 | Understand the full system | `docs/00-product-ops-system-map.md` |
+| Understand how a workflow runs end to end | `docs/03-how-to-run-the-workflows.md` |
 | Understand the fictional product | `docs/01-product-context.md` |
 | Understand metrics | `docs/02-success-metrics.md` |
 | Understand qualitative inputs | `input-notes/README.md` |

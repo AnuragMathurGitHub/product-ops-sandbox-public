@@ -102,16 +102,31 @@ Use the feedback classification prompt to classify these anonymized support note
 Help me adapt this sandbox for my own product. Tell me which files I should change first.
 ```
 
+## Four Ways To Run It
+
+You do not need an API key. Pick the lane that fits you.
+
+| Lane | What it is | Real AI? | API key? |
+| --- | --- | --- | --- |
+| Read-only | Open the finished files in `outputs/` | No | No |
+| Agent | Your AI assistant reads a prompt and your notes and writes the result | Yes | No |
+| Mock demo | `python scripts/ai_*.py` copies a prepared example so you can see the output shape | No | No |
+| API | A program calls a model in your own environment to automate at scale | Yes | Yes |
+
+The **Agent** lane is the main one: real synthesis, your own assistant, no key. **Mock** is a
+deterministic demo. The repo ships an `AGENTS.md` so coding assistants have one clear workflow map.
+For the full user flow and per-tool invocation, see [docs/03-how-to-run-the-workflows.md](docs/03-how-to-run-the-workflows.md).
+
 ## Use It With An AI Assistant
 
-You do not need an API key to use the AI workflow examples.
+The repo includes entry points so an assistant can run a workflow with almost no typing.
 
-| Tool Type | How To Use This Repo |
+| Tool | Turnkey way to run a workflow |
 | --- | --- |
-| ChatGPT or Claude chat | Use prompts from `ai-workflows/prompts/`; paste note content only if the assistant cannot access files |
-| Codex, Claude Code, Cursor, or Copilot | Open the repo and ask the assistant to read `input-notes/`, prompts, scripts, and outputs |
-| VS Code with Copilot | Ask Copilot to explain scripts, sample data, and output files |
-| API-based setup | Use this repo as the file, prompt, and schema pattern for approved internal integrations |
+| OpenAI Codex / Cursor / Copilot | Open the repo and ask "classify the feedback in input-notes"; `AGENTS.md` provides the workflow guidance |
+| Claude Code | Run a command like `/classify-feedback`, or use the `/product-ops-signal-triage` skill in `.claude/skills/` |
+| GitHub Copilot (VS Code) | Use a `/prompt` from `.github/prompts/`, or `@workspace` ask |
+| ChatGPT or Claude chat | Paste a prompt from `ai-workflows/prompts/` plus the note content (fallback when the tool cannot read files) |
 
 Do not paste sensitive customer data, private company notes, or personal information into public AI tools. Use fictional, anonymized, or approved examples.
 
@@ -135,7 +150,9 @@ python scripts/summarize_metrics.py
 
 Replace `<repo-url>` with the GitHub URL for this repo.
 
-The AI-assisted scripts run in mock mode. They do not require an API key.
+The `ai_*.py` scripts run in mock mode: they copy prepared examples so you can see the output shape
+with no AI and no API key. They are a deterministic demo, not the real AI workflow (that is the
+Agent lane above).
 
 ```bash
 python scripts/ai_classify_feedback.py
@@ -144,7 +161,18 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_generate_weekly_summary.py
 ```
 
-Teams can extend the same pattern with approved API keys, model endpoints, and data controls in their own environment. Mock mode keeps this public repo safe to run.
+Each writes a `.json` draft and a readable `.md` summary into `outputs/`. Teams can extend the same
+pattern with approved API keys, model endpoints, and data controls in their own environment.
+
+## Run The Tests
+
+The tests use the Python standard library only. They cover the scoring formula, event counting, the
+feedback summary, empty-metrics handling, the mock copy step, and that the sample outputs match their
+schemas.
+
+```bash
+python -m unittest discover -s tests
+```
 
 ## Adapt It To Your Own Product
 
@@ -303,20 +331,25 @@ The public repo is organized around how a reader learns and uses the system.
 product-ops-sandbox/
 |-- README.md
 |-- START_HERE.md
+|-- AGENTS.md                 (how any AI agent runs the workflows)
 |-- SECURITY.md
+|-- LICENSE
 |-- requirements.txt
 |-- docs/
 |   |-- 00-product-ops-system-map.md
 |   |-- 01-product-context.md
-|   `-- 02-success-metrics.md
-|-- input-notes/
-|   |-- README.md
-|   `-- support-ticket-batch.md
+|   |-- 02-success-metrics.md
+|   `-- 03-how-to-run-the-workflows.md
+|-- input-notes/             (support-ticket-batch, user-interview-transcript, weekly packet)
 |-- sample-data/
-|-- scripts/
-|-- outputs/
-|-- ai-workflows/
-|-- agent-skills/
+|-- scripts/                 (deterministic + mock-demo Python)
+|-- tests/
+|-- outputs/                 (.json drafts + .md summaries)
+|-- ai-workflows/            (prompts, schemas, sample inputs/outputs)
+|-- agent-skills/            (reusable skill packages)
+|-- .claude/                 (Claude Code skills + commands)
+|-- .cursor/                 (Cursor rules)
+|-- .github/                 (Copilot instructions + prompt files)
 `-- .gitignore
 ```
 
@@ -328,7 +361,7 @@ This repo is not:
 - a replacement for Mixpanel, Productboard, Condens, or any other commercial tool
 - connected to a real company
 - based on real customer data
-- an AI system that makes product decisions automatically
+- an AI system that makes product decisions on its own
 
 It models the workflows those tool categories often support:
 

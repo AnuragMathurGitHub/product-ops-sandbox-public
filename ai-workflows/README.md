@@ -10,24 +10,32 @@ input-notes/
 -> outputs/
 ```
 
-You do not need an API key for the first workflow. Use an approved assistant such as ChatGPT, Codex, Claude, Claude Code, Cursor, Copilot, or another tool your team allows.
+You do not need an API key. The real workflow runs through your own AI assistant (ChatGPT, Codex,
+Claude, Claude Code, Cursor, Copilot, or another approved tool): it reads a prompt and your notes and
+writes the result. The `scripts/ai_*.py` mock scripts only copy prepared examples so you can inspect
+the output shape; they do not call AI. See `AGENTS.md` for the shared workflow map agents should
+follow.
 
-## First Workflow
+## The Four Workflows
 
-Use feedback classification first.
+Each workflow is one prompt. Pick the prompt that matches the notes you have. Every prompt already
+knows to read from `input-notes/` and where to write its result.
 
-| File | Purpose |
-| --- | --- |
-| `../input-notes/support-ticket-batch.md` | Fictional qualitative input notes |
-| `prompts/classify_feedback.md` | Instructions for the assistant |
-| `schemas/feedback_classification.schema.json` | Expected JSON structure |
-| `../outputs/ai_feedback_classification.json` | Example structured output |
+| Workflow | Sample Input | Prompt | Schema | Output |
+| --- | --- | --- | --- | --- |
+| Classify feedback | `../input-notes/support-ticket-batch.md` | `prompts/classify_feedback.md` | `schemas/feedback_classification.schema.json` | `../outputs/ai_feedback_classification.json` + `.md` |
+| Synthesize research | `../input-notes/user-interview-transcript.md` | `prompts/synthesize_research.md` | `schemas/research_synthesis.schema.json` | `../outputs/ai_research_synthesis.json` + `.md` |
+| Detect opportunities | all notes in `../input-notes/` | `prompts/detect_opportunities.md` | `schemas/opportunity_map.schema.json` | `../outputs/ai_opportunity_map.json` + `.md` |
+| Weekly insights | `../input-notes/weekly-product-ops-packet.md` | `prompts/weekly_product_insights.md` | (Markdown, no schema) | `../outputs/ai_weekly_product_insights.md` |
 
-Ask your assistant:
+## Start With Feedback Classification
+
+It is the simplest workflow. Ask your assistant:
 
 ```text
 Read ai-workflows/prompts/classify_feedback.md and input-notes/support-ticket-batch.md.
-Classify the notes and write a draft result to outputs/ai_feedback_classification.json.
+Classify the notes, write a draft to outputs/ai_feedback_classification.json, and write a short
+readable summary to outputs/ai_feedback_classification.md.
 Use only the evidence in the notes.
 ```
 

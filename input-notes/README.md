@@ -44,12 +44,20 @@ Write the draft output to outputs/ai_feedback_classification.json.
 Do not invent facts.
 ```
 
+## Included Samples
+
+This folder ships with three fictional notes, each matched to a workflow:
+
+| Sample File | Use With Prompt | Produces |
+| --- | --- | --- |
+| `support-ticket-batch.md` | `ai-workflows/prompts/classify_feedback.md` | `outputs/ai_feedback_classification.json` + `.md` |
+| `user-interview-transcript.md` | `ai-workflows/prompts/synthesize_research.md` | `outputs/ai_research_synthesis.json` + `.md` |
+| `weekly-product-ops-packet.md` | `ai-workflows/prompts/weekly_product_insights.md` | `outputs/ai_weekly_product_insights.md` |
+
+The opportunity-mapping workflow (`ai-workflows/prompts/detect_opportunities.md`) reads several of
+these notes together.
+
 ## Recommended First File
 
-Start with the included sample:
-
-```text
-input-notes/support-ticket-batch.md
-```
-
-Keep it short. Five to ten notes are enough for a first test.
+Start with `support-ticket-batch.md` and the feedback classification workflow. Keep notes short;
+five to ten are enough for a first test.

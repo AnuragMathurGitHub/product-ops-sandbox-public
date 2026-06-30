@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Ops Research Synthesis"
+  short_description: "Synthesize research into themes and insights"
+  default_prompt: "Use $product-ops-research-synthesis on the interview or research notes in input-notes/ to produce themes, insights, and review questions."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Ops Weekly Review"
+  short_description: "Draft a weekly Product Ops readout"
+  default_prompt: "Use $product-ops-weekly-review on input-notes/weekly-product-ops-packet.md to draft a weekly readout with What Changed, a Product Readout table, and Decision Questions."
+
+policy:
+  allow_implicit_invocation: true

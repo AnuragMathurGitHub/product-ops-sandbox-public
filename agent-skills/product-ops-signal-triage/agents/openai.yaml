@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Ops Signal Triage"
+  short_description: "Classify unstructured product signals"
+  default_prompt: "Use $product-ops-signal-triage to classify the notes in input-notes/ into product area, theme, severity, linked metric, and possible opportunity."
+
+policy:
+  allow_implicit_invocation: true

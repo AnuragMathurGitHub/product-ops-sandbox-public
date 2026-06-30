@@ -28,4 +28,4 @@ It helps product teams spot repeated friction without replacing judgment.
 
 - Repeated high-severity themes should be reviewed against roadmap priorities.
 - Linked metrics help the team test whether a fix improved the journey.
-- This summary is a starting point for discussion, not an automatic decision.
+- This summary is a starting point for discussion, not a decision by itself.

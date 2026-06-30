@@ -7,7 +7,7 @@ SAMPLE_OUTPUTS = PROJECT_ROOT / "ai-workflows" / "sample-outputs"
 OUTPUTS = PROJECT_ROOT / "outputs"
 
 
-def copy_mock_output(example_name, output_name):
+def copy_mock_output(example_name, output_name, announce=True):
     source = SAMPLE_OUTPUTS / example_name
     destination = OUTPUTS / output_name
 
@@ -16,4 +16,14 @@ def copy_mock_output(example_name, output_name):
 
     OUTPUTS.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(source, destination)
-    print(f"Wrote {destination}")
+    if announce:
+        print(f"Wrote {destination}")
+
+
+def note_mock_mode(prompt_relpath):
+    """Explain that this run was a deterministic demo, and point to the real agent path."""
+    print(
+        "Mock mode: copied a prepared example. No AI model was called.\n"
+        "To run this for real (real AI, no API key), open this repo in your AI assistant\n"
+        f"and ask it to follow {prompt_relpath} on the notes in input-notes/."
+    )

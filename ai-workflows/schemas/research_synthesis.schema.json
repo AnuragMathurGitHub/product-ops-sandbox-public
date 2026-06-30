@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResearchSynthesis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["themes", "insights", "recommended_review_questions"],
+  "properties": {
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["theme", "evidence", "implication"],
+        "properties": {
+          "theme": { "type": "string" },
+          "evidence": { "type": "string" },
+          "implication": { "type": "string" }
+        }
+      }
+    },
+    "insights": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "recommended_review_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
