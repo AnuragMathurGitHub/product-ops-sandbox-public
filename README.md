@@ -2,7 +2,7 @@
 
 A practical Product Operations sandbox for turning scattered product signals into clearer product decisions.
 
-This repo uses a fictional product, fictional data, simple Python scripts, and AI-assisted workflows to show how a modern Product Ops loop can work:
+This repo uses a fictional product, fictional data, simple Python scripts, and AI assisted workflows to show how a modern Product Ops loop can work:
 
 ```text
 feedback + research + product data
@@ -24,7 +24,7 @@ The point is not to build a production platform. The point is to make the workfl
 | Understand Product Ops | Read the README, system map, and generated outputs |
 | Explain the workflow to a team | Walk through the fictional product, metrics, roadmap, OKRs, and AI workflow |
 | Run the sample workflow | Clone or download the repo and run the Python scripts |
-| Use an AI assistant | Ask ChatGPT, Codex, Claude, Cursor, or Copilot to explain, adapt, or run parts of the repo |
+| Use an AI assistant | Open the repo in your IDE or agent tool, then ask the assistant to explain, adapt, or run parts of the repo |
 | Adapt it to your own product | Replace the fictional data with approved, anonymized product signals |
 
 ## Where Your Inputs Go
@@ -35,11 +35,11 @@ The repo separates inputs by type.
 | --- | --- | --- |
 | Unstructured product notes | `input-notes/` | Support tickets, sales notes, customer success notes, interview transcripts, meeting summaries |
 | Structured data | `sample-data/` | CSV files for product events, feedback records, roadmap items, and OKRs |
-| Generated results | `outputs/` | Markdown and JSON summaries created by scripts or AI-assisted workflows |
+| Generated results | `outputs/` | Markdown and JSON summaries created by scripts or AI assisted workflows |
 | AI instructions | `ai-workflows/` | Prompts, schemas, and examples for qualitative synthesis |
 | Reusable agent workflows | `agent-skills/` | Skill packages that AI coding assistants can reuse |
 
-Start with one input at a time. For example, add one anonymized support-ticket batch to `input-notes/`, run or ask an assistant to run the matching workflow, then review the output before adding more.
+Start with one input at a time. For example, add one anonymized support ticket batch to `input-notes/`, run or ask an assistant to run the matching workflow, then review the output before adding more.
 
 ## Choose Your Path
 
@@ -58,7 +58,7 @@ You have three options.
 | Option | Best For | How |
 | --- | --- | --- |
 | Read on GitHub | Quick review | Open files directly in the browser |
-| Download ZIP | Non-technical users | Click `Code` -> `Download ZIP` on GitHub |
+| Download ZIP | Non technical users | Click `Code` -> `Download ZIP` on GitHub |
 | Clone with Git | Technical users | Run `git clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git` |
 
 If you do not know what cloning means, use **Download ZIP**. If you use a coding assistant, you can ask it to clone the repo for you.
@@ -69,7 +69,7 @@ If you use an AI coding assistant, you can also ask it:
 Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git, open the README, and guide me through it step by step.
 ```
 
-Copy-paste prompt for Codex, Cursor, Claude Code, or another coding assistant:
+Copy paste prompt for an IDE assistant or coding agent:
 
 ```text
 Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git.
@@ -77,6 +77,11 @@ Open README.md and START_HERE.md.
 Explain what this Product Ops Sandbox does, then run the sample workflow and show me the outputs I should review.
 Do not use or commit real customer data in this public repo.
 ```
+
+Use that prompt in tools that can work with files and terminal commands, such as Codex, Cursor,
+Claude Code, GitHub Copilot in Visual Studio Code, or another IDE assistant. If your tool cannot
+clone repositories, download the ZIP or clone it yourself, open the folder in your IDE, and then ask
+the assistant to continue from `START_HERE.md`.
 
 ## Use It Without Coding
 
@@ -117,26 +122,28 @@ You do not need an API key. Pick the lane that fits you.
 
 | Lane | What it is | Real AI? | API key? |
 | --- | --- | --- | --- |
-| Read-only | Open the finished files in `outputs/` | No | No |
+| Read only | Open the finished files in `outputs/` | No | No |
 | Agent | Your AI assistant reads a prompt and your notes and writes the result | Yes | No |
 | Mock demo | `python scripts/ai_*.py` copies a prepared example so you can see the output shape | No | No |
 | API extension | A private script or service calls a model in your own environment | Yes | Yes |
 
 The **Agent** lane is the main one: real synthesis, your own assistant, no key. **Mock** is a
 deterministic demo. The repo ships an `AGENTS.md` so coding assistants have one clear workflow map.
-For the full user flow and per-tool invocation, see [docs/03-how-to-run-the-workflows.md](docs/03-how-to-run-the-workflows.md).
+For the full user flow and per tool invocation, see [docs/03-how-to-run-the-workflows.md](docs/03-how-to-run-the-workflows.md).
 For what an API key would mean and where it would be used, see [docs/04-api-extension.md](docs/04-api-extension.md).
 
 ## Use It With An AI Assistant
 
 The repo includes entry points so an assistant can run a workflow with almost no typing.
 
-| Tool | Turnkey way to run a workflow |
+| Mode | How To Use This Repo |
 | --- | --- |
-| OpenAI Codex / Cursor / Copilot | Open the repo and ask "classify the feedback in input-notes"; `AGENTS.md` provides the workflow guidance |
+| IDE with assistant | Open the folder in Visual Studio Code, JetBrains, or another IDE, then ask the assistant to read `START_HERE.md` |
+| AI native IDE | Open the folder in Cursor or a similar tool and ask it to classify the notes in `input-notes/` |
+| Terminal agent | Use Codex, Claude Code, Gemini CLI, or another agent that can read files and run commands |
+| GitHub Copilot in VS Code | Use `@workspace`, the `.github/prompts/` files, or ask it to follow `AGENTS.md` |
 | Claude Code | Run a command like `/classify-feedback`, or use the `/product-ops-signal-triage` skill in `.claude/skills/` |
-| GitHub Copilot (VS Code) | Use a `/prompt` from `.github/prompts/`, or `@workspace` ask |
-| ChatGPT or Claude chat | Paste a prompt from `ai-workflows/prompts/` plus the note content (fallback when the tool cannot read files) |
+| Chat only assistant | Paste a prompt from `ai-workflows/prompts/` plus the note content when the tool cannot access files |
 
 Do not paste sensitive customer data, private company notes, or personal information into public AI tools. Use fictional, anonymized, or approved examples.
 
@@ -177,7 +184,7 @@ scheduled script or internal service that calls a model directly. See [docs/04-a
 ## Run The Tests
 
 The tests use the Python standard library only. They cover the scoring formula, event counting, the
-feedback summary, empty-metrics handling, the mock copy step, and that the sample outputs match their
+feedback summary, empty metrics handling, the mock copy step, and that the sample outputs match their
 schemas.
 
 ```bash
@@ -207,7 +214,7 @@ Most teams will need to adjust:
 | Metrics | Activation, engagement, retention, support, and business metrics |
 | Feedback taxonomy | Product areas, themes, severity, linked metrics |
 | Roadmap scoring | Reach, impact, confidence, effort, strategic fit |
-| AI prompts | Product-specific language and guardrails |
+| AI prompts | Product specific language and guardrails |
 | Agent skills | Taxonomy, output format, review rules |
 
 Later, teams can extend the same structure with approved API connections or internal data exports. The base repo starts with files because files are easier to inspect, safer to share, and simpler for learning.
@@ -250,7 +257,7 @@ For employers, value means:
 - usage supports the employee value proposition
 - the account has a clear renewal story
 
-The business problem is not simply "more usage." In some models, unused benefits may reduce short-term cost. The longer-term risk is different: if employees do not find value, the employer may question adoption, satisfaction, renewal, and whether the benefit is worth keeping.
+The business problem is not simply "more usage." In some models, unused benefits may reduce short term cost. The longer term risk is different: if employees do not find value, the employer may question adoption, satisfaction, renewal, and whether the benefit is worth keeping.
 
 So this sandbox focuses on one question:
 
@@ -283,8 +290,8 @@ That creates practical Product Ops questions:
 | User research | How qualitative notes become themes and insights |
 | Prioritization | How roadmap candidates can be compared without replacing judgment |
 | OKRs | How product work connects to measurable outcomes |
-| Release communication | How teams prepare for launch and post-release learning |
-| AI-assisted workflows | How AI can help synthesize qualitative notes with human review |
+| Release communication | How teams prepare for launch and learning after release |
+| AI assisted workflows | How AI can help synthesize qualitative notes with human review |
 | Agent skills | How repeatable AI workflows can be packaged for reuse |
 
 ## Two Operating Lanes
@@ -294,7 +301,7 @@ This repo separates the work into two lanes.
 | Lane | Use For | Why |
 | --- | --- | --- |
 | Deterministic Python | Metrics, counts, scoring, repeatable summaries | The answer should be calculated |
-| AI-assisted synthesis | Interviews, support tickets, sales notes, customer success notes | The input is qualitative language |
+| AI assisted synthesis | Interviews, support tickets, sales notes, customer success notes | The input is qualitative language |
 
 Simple rule:
 
@@ -313,8 +320,8 @@ The scripts generate readable outputs.
 | `feedback_theme_summary.md` | Repeated feedback themes and severity counts |
 | `roadmap_priority_scores.md` | Roadmap candidates scored with a transparent formula |
 | `metrics_snapshot.md` | Basic product usage metrics |
-| `ai_feedback_classification.json` | Structured AI-assisted feedback classification |
-| `ai_research_synthesis.json` | Structured AI-assisted research synthesis |
+| `ai_feedback_classification.json` | Structured AI assisted feedback classification |
+| `ai_research_synthesis.json` | Structured AI assisted research synthesis |
 | `ai_opportunity_map.json` | Product opportunities from qualitative signals |
 | `ai_weekly_product_insights.md` | Weekly Product Ops summary |
 
@@ -326,9 +333,9 @@ Example:
 
 ```json
 {
-  "theme": "Failed check-in",
+  "theme": "Failed check in",
   "severity": "High",
-  "linked_metric": "Check-in Failed Count"
+  "linked_metric": "Check In Failed Count"
 }
 ```
 
@@ -385,9 +392,14 @@ product-ops-sandbox-public/
 |   |-- product-ops-research-synthesis/
 |   |-- product-ops-opportunity-mapping/
 |   `-- product-ops-weekly-review/
-|-- .claude/                 (Claude Code skills + commands)
-|-- .cursor/                 (Cursor rules)
-|-- .github/                 (Copilot instructions + prompt files)
+|-- .claude/
+|   |-- commands/
+|   `-- skills/
+|-- .cursor/
+|   `-- rules/
+|-- .github/
+|   |-- copilot-instructions.md
+|   `-- prompts/
 `-- .gitignore
 ```
 
@@ -409,7 +421,7 @@ It models the workflows those tool categories often support:
 - roadmap prioritization
 - OKR alignment
 - release communication
-- AI-assisted synthesis
+- AI assisted synthesis
 
 ## License
 

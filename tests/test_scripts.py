@@ -28,33 +28,33 @@ class StructuredScriptTests(unittest.TestCase):
 
     def test_count_events_filters_success(self):
         events = [
-            {"event_name": "Check-in Failed", "success": "false"},
-            {"event_name": "Check-in Failed", "success": "true"},
-            {"event_name": "Check-in Completed", "success": "true"},
+            {"event_name": "Check In Failed", "success": "false"},
+            {"event_name": "Check In Failed", "success": "true"},
+            {"event_name": "Check In Completed", "success": "true"},
         ]
 
-        self.assertEqual(count_events(events, "Check-in Failed"), 2)
-        self.assertEqual(count_events(events, "Check-in Failed", False), 1)
-        self.assertEqual(count_events(events, "Check-in Completed", True), 1)
+        self.assertEqual(count_events(events, "Check In Failed"), 2)
+        self.assertEqual(count_events(events, "Check In Failed", False), 1)
+        self.assertEqual(count_events(events, "Check In Completed", True), 1)
 
     def test_feedback_summary_groups_themes(self):
         records = [
             {
-                "theme": "Failed check-in",
+                "theme": "Failed check in",
                 "severity": "High",
-                "linked_metric": "Check-in Failed Count",
+                "linked_metric": "Check In Failed Count",
             },
             {
-                "theme": "Failed check-in",
+                "theme": "Failed check in",
                 "severity": "Medium",
-                "linked_metric": "Check-in Failed Count",
+                "linked_metric": "Check In Failed Count",
             },
         ]
 
         summary = build_feedback_summary(records)
 
-        self.assertIn("Failed check-in", summary)
-        self.assertIn("Check-in Failed Count", summary)
+        self.assertIn("Failed check in", summary)
+        self.assertIn("Check In Failed Count", summary)
 
     def test_metrics_summary_handles_empty_input(self):
         summary = build_metrics_summary([])

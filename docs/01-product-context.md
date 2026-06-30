@@ -2,7 +2,7 @@
 
 The sandbox uses a fictional product called **FitPass Demo**.
 
-FitPass Demo is a B2B2C corporate wellness app. Employers buy the benefit. Employees use it. Gyms and wellness providers deliver the real-world experience.
+FitPass Demo is a B2B2C corporate wellness app. Employers buy the benefit. Employees use it. Gyms and wellness providers deliver the real world experience.
 
 ## Users And Stakeholders
 
@@ -10,7 +10,7 @@ FitPass Demo is a B2B2C corporate wellness app. Employers buy the benefit. Emplo
 | --- | --- | --- |
 | Employees | Daily users | Finding, booking, and using relevant wellness options |
 | Employers | Buyers | Adoption, satisfaction, and renewal confidence |
-| Partners | Gyms and wellness providers | Reliable booking, check-in, and payment flows |
+| Partners | Gyms and wellness providers | Reliable booking, check in, and payment flows |
 | Product | Product decisions | Where friction blocks value |
 | Support | Issue handling | Repeated problems and user confusion |
 | Customer Success | Account health | Whether employers can see value |
@@ -35,7 +35,7 @@ eligible employee
 -> activation
 -> search
 -> booking
--> check-in
+-> check in
 -> repeat usage
 -> employer value story
 ```

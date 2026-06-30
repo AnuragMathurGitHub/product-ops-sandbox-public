@@ -1,15 +1,15 @@
 # Opportunity Map (readable summary)
 
-This is the human-readable companion to `ai_opportunity_map.json`. It is a fictional mock AI output
+This is the human readable companion to `ai_opportunity_map.json`. It is a fictional mock AI output
 for the Product Ops Sandbox.
 
 ## Opportunities
 
-### Improve check-in recovery
+### Improve check in recovery
 - Customer problem: Users lose trust when a partner cannot verify a visit.
-- Linked metric: Check-in Failed Count
+- Linked metric: Check In Failed Count
 - Evidence: Support notes mention QR scanner failures and manual entry.
-- Possible direction: Add clearer failed-check-in recovery and partner troubleshooting guidance.
+- Possible direction: Add clearer failed check in recovery and partner troubleshooting guidance.
 
 ### Make booking status unambiguous
 - Customer problem: Users are unsure whether a class booking is confirmed.
@@ -20,8 +20,8 @@ for the Product Ops Sandbox.
 ### Help employees find a relevant first visit
 - Customer problem: The benefit feels useful only after users find a nearby option that fits their routine.
 - Linked metric: First Successful Visit Rate
-- Evidence: Notes mention local relevance, extra fees, and post-launch drop-off.
-- Possible direction: Improve location-aware recommendations and first-week guidance.
+- Evidence: Notes mention local relevance, extra fees, and drop after launch.
+- Possible direction: Improve recommendations based on location and first week guidance.
 
 ## Review Questions
 

@@ -24,7 +24,7 @@ Return:
   - `opportunity`: a short opportunity title
   - `customer_problem`: the user or buyer problem in plain language
   - `linked_metric`: the metric most related to the opportunity
-  - `evidence`: a short, source-grounded summary
+  - `evidence`: a short, source grounded summary
   - `possible_solution_direction`: a direction to explore, not a committed solution
 - `review_questions`: questions a human should answer before any roadmap commitment
 
@@ -42,13 +42,13 @@ When working inside the repo, write the draft to:
 outputs/ai_opportunity_map.json
 ```
 
-Then also write a short human-readable summary next to it:
+Then also write a short human readable summary next to it:
 
 ```text
 outputs/ai_opportunity_map.md
 ```
 
-If you are in a chat-only tool that cannot write files, return the JSON and a short summary in the chat.
+If you are in a chat only tool that cannot write files, return the JSON and a short summary in the chat.
 
 ## Rules
 

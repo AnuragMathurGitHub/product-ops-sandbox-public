@@ -28,7 +28,7 @@ Product teams often have useful signals in different places:
 | OKRs | Company and product planning | What outcome should improve? |
 | Release notes | GTM and internal communication | How do teams learn what changed? |
 
-The value is not one perfect answer. The value is a repeatable way to connect evidence, judgment, and follow-up measurement.
+The value is not one perfect answer. The value is a repeatable way to connect evidence, judgment, and follow up measurement.
 
 ## Operating Principle
 
@@ -38,4 +38,4 @@ AI drafts.
 Humans decide.
 ```
 
-Deterministic scripts are useful when the input is structured and the logic should be repeatable. AI-assisted workflows are useful when the input is qualitative and needs synthesis. Human review is required in both lanes.
+Deterministic scripts are useful when the input is structured and the logic should be repeatable. AI assisted workflows are useful when the input is qualitative and needs synthesis. Human review is required in both lanes.

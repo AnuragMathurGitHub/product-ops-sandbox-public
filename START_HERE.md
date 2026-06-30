@@ -1,10 +1,10 @@
 # Start Here
 
-This guide walks you through the Product Ops Sandbox in the order a first-time reader should use it.
+This guide walks you through the Product Ops Sandbox in the order a first time reader should use it.
 
 You do not need to know Python to start. You can read the examples, use an AI assistant, or run the scripts later if you want.
 
-By the end, you should understand how product feedback, user research, product data, prioritization, OKRs, release communication, and AI-assisted workflows connect.
+By the end, you should understand how product feedback, user research, product data, prioritization, OKRs, release communication, and AI assisted workflows connect.
 
 ## What You Will Learn
 
@@ -29,18 +29,23 @@ Choose the path that matches how you want to use the repo.
 | Path | Best For | What You Need |
 | --- | --- | --- |
 | Read only | PMs, operators, learners, curious readers | GitHub browser |
-| AI-assisted | Product Ops, PMs, non-engineers | ChatGPT, Codex, Claude, Cursor, Copilot, or another assistant |
+| AI assisted | Product Ops, PMs, non engineers | An IDE assistant, coding agent, or chat assistant |
 | Technical | Analysts, engineers, technical PMs | Python and a terminal |
 
 If you are not sure, start with **Read only**.
 
 If you do not have the files yet, go back to the README and follow **How To Get The Files**.
 
-Fastest AI-assistant start:
+Fastest AI assistant start:
 
 ```text
 Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git, open START_HERE.md, and walk me through the repo one step at a time.
 ```
+
+Use this in a tool that can work with repositories, such as Codex, Claude Code, Cursor, GitHub
+Copilot in Visual Studio Code, or another IDE assistant. If your assistant cannot clone the repo,
+download the ZIP or clone it yourself, open the folder in your IDE, then ask the assistant to
+continue.
 
 ## Step 1: Understand The Product
 
@@ -98,7 +103,7 @@ Use this rule:
 
 ```text
 Notes and transcripts go in input-notes/.
-Spreadsheet-like data goes in sample-data/.
+Spreadsheet style data goes in sample-data/.
 Generated results go in outputs/.
 ```
 
@@ -124,7 +129,7 @@ Open `outputs/`.
 
 The outputs show what the workflow produces.
 
-| Output | What It Helps Answer | Human-Readable? |
+| Output | What It Helps Answer | Easy To Read? |
 | --- | --- | --- |
 | `metrics_snapshot.md` | What is happening in the product? | Yes |
 | `feedback_theme_summary.md` | What feedback themes repeat? | Yes |
@@ -137,18 +142,18 @@ The outputs show what the workflow produces.
 ### You get both JSON and a readable Markdown summary
 
 You do not have to read raw JSON. Each AI workflow writes **two** files: a structured JSON draft and
-a plain-English Markdown summary next to it (for example, `ai_feedback_classification.json` and
+a plain English Markdown summary next to it (for example, `ai_feedback_classification.json` and
 `ai_feedback_classification.md`).
 
 ```text
 JSON = the structured draft (fields like theme, severity, linked_metric) for review and reuse.
-Markdown = the human-readable summary you can scan or paste into a team update.
+Markdown = the human readable summary you can scan or paste into a team update.
 ```
 
 Open the `.md` file if you just want to read the result. Open the `.json` file if an assistant,
 script, or reviewer needs consistent fields to compare across notes.
 
-## Step 5: Try One AI-Assisted Workflow
+## Step 5: Try One AI Assisted Workflow
 
 **Get the files first.** This workflow reads files from the repo, so you need a local copy. If you
 have not done this yet, go back to the README and follow **How To Get The Files** (Download ZIP or
@@ -160,7 +165,7 @@ You could paste one note into a chat and ask for a summary. The repo adds value 
 than that:
 
 - **Batch many notes together.** Drop support tickets, sales notes, and interviews into
-  `input-notes/` and process them with the same workflow instead of one ad-hoc chat at a time.
+  `input-notes/` and process them with the same workflow instead of one separate chat at a time.
 - **Reuse the same prompt and taxonomy.** Everyone classifies into the same product areas, themes,
   and severities, so results are comparable week to week.
 - **Get structured output.** The prompt asks for JSON that matches a schema, so the result can be
@@ -168,7 +173,7 @@ than that:
 - **Keep reviewable drafts.** Outputs land in `outputs/` so a human can check them before any
   decision.
 
-### The workflow is folder-based
+### The workflow is folder based
 
 ```text
 input-notes/            (your notes)
@@ -191,7 +196,7 @@ Pick the prompt that matches what you have. Each prompt already knows to read fr
 
 | Way | What you do | Real AI? | API key? |
 | --- | --- | --- | --- |
-| Agent, guided | In Codex, Cursor, or Copilot, open the repo and ask in plain language. `AGENTS.md` gives the assistant the workflow map. In Claude Code, run a command like `/classify-feedback`, or use the `/product-ops-signal-triage` skill. | Yes | No |
+| Agent, guided | Open the repo in an IDE assistant, AI native IDE, or terminal agent, then ask in plain language. `AGENTS.md` gives the assistant the workflow map. | Yes | No |
 | Agent, manual | Tell your assistant which prompt and notes to read (see the example below). | Yes | No |
 | Mock demo | Run the Python script in Step 7. It copies a prepared example so you can see the output shape with no AI and no key. | No | No |
 
@@ -214,7 +219,7 @@ To use your own notes later, add a new `.md` file inside `input-notes/`. In this
 the content fictional, anonymized, or approved. If you are using sensitive real notes in a private
 environment, name local files with `private-` or `local-` so `.gitignore` helps prevent accidental commits.
 
-Example request for Codex, Claude Code, Cursor, or Copilot:
+Example request for an IDE assistant or coding agent:
 
 ```text
 Read ai-workflows/prompts/classify_feedback.md and the notes in input-notes/.
@@ -223,7 +228,7 @@ Write the draft output to outputs/ai_feedback_classification.json.
 Do not invent facts.
 ```
 
-If you are using a chat-only assistant that cannot access files, copy the prompt and the anonymized
+If you are using a chat only assistant that cannot access files, copy the prompt and the anonymized
 note content into the chat manually. That is the fallback, not the main path.
 
 ## Step 6: Run The Scripts
@@ -318,9 +323,9 @@ Do not edit everything. Make one safe change and watch it flow through:
 4. **Then adjust the edges.** Once that works, change the product story in
    `docs/01-product-context.md`, the metrics in `docs/02-success-metrics.md`, or a CSV in
    `sample-data/`. When editing a CSV, **keep the existing column headers the same at first** so the
-   scripts still run; change only the rows. Re-run the matching script and review the new output.
+   scripts still run; change only the rows. Run the matching script again and review the new output.
 
-The rule: change one input, run or re-ask, review the output, then decide the next change.
+The rule: change one input, run or ask again, review the output, then decide the next change.
 
 ## Useful Assistant Requests
 
@@ -356,7 +361,7 @@ Help me adapt this sandbox for my product. Ask me the minimum questions needed b
 | Understand the fictional product | `docs/01-product-context.md` |
 | Understand metrics | `docs/02-success-metrics.md` |
 | Understand qualitative inputs | `input-notes/README.md` |
-| Understand AI-assisted workflows | `ai-workflows/README.md` |
+| Understand AI assisted workflows | `ai-workflows/README.md` |
 | Reuse workflows with an agent | `agent-skills/README.md` |
 | Check data and AI safety | `SECURITY.md` |
 
@@ -366,7 +371,7 @@ Keep this in mind:
 
 ```text
 Structured data goes through scripts.
-Qualitative notes go through AI-assisted synthesis.
+Qualitative notes go through AI assisted synthesis.
 Humans review the output.
 Teams decide what to do.
 ```

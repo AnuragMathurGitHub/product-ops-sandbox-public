@@ -1,6 +1,6 @@
 ---
 name: product-ops-research-synthesis
-description: Synthesize user interview notes, research transcripts, discovery calls, and qualitative product observations into themes, evidence, implications, insights, and review questions. Use when Product Ops needs to turn qualitative research into decision-ready evidence while keeping user context intact.
+description: Synthesize user interview notes, research transcripts, discovery calls, and qualitative product observations into themes, evidence, implications, insights, and review questions. Use when Product Ops needs to turn qualitative research into decision ready evidence while keeping user context intact.
 ---
 
 # Product Ops Research Synthesis

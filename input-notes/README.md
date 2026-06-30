@@ -2,7 +2,7 @@
 
 Use this folder for unstructured product notes.
 
-These are qualitative signals written in human language. They are different from CSV-style structured data.
+These are qualitative signals written in human language. They are different from CSV style structured data.
 
 ## What Goes Here
 

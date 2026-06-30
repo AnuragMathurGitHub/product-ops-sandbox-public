@@ -6,14 +6,14 @@ E-004,U-004,Membership Activated,true
 E-005,U-005,Membership Activated,false
 E-006,U-001,Search Performed,true
 E-007,U-001,Class Booked,true
-E-008,U-001,Check-in Completed,true
+E-008,U-001,Check In Completed,true
 E-009,U-002,Search Performed,true
 E-010,U-002,Class Booked,false
 E-011,U-002,Support Contacted,true
 E-012,U-003,Support Contacted,true
 E-013,U-004,Search Performed,true
 E-014,U-004,Class Booked,true
-E-015,U-004,Check-in Failed,false
+E-015,U-004,Check In Failed,false
 E-016,U-004,Support Contacted,true
 E-017,U-005,Search Performed,true
-E-018,U-005,Check-in Failed,false
+E-018,U-005,Check In Failed,false

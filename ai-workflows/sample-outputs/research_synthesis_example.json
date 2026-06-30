@@ -7,13 +7,13 @@
     },
     {
       "theme": "Operational failures reduce trust",
-      "evidence": "Check-in and booking uncertainty create moments where users are unsure whether the benefit worked.",
+      "evidence": "Check in and booking uncertainty create moments where users are unsure whether the benefit worked.",
       "implication": "Reliability issues can make the employer benefit feel risky or inconvenient."
     }
   ],
   "insights": [
     "The first successful visit is a stronger product health signal than activation alone.",
-    "Booking and check-in clarity should be reviewed together because both affect confidence."
+    "Booking and check in clarity should be reviewed together because both affect confidence."
   ],
   "recommended_review_questions": [
     "Which users fail to reach a first successful visit after activation?",

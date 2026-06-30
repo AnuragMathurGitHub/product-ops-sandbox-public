@@ -1,6 +1,6 @@
 # AI Workflows
 
-This folder contains reusable AI-assisted workflows for Product Operations analysis.
+This folder contains reusable AI assisted workflows for Product Operations analysis.
 
 The workflows use repo files as the source of truth:
 
@@ -10,9 +10,9 @@ input-notes/
 -> outputs/
 ```
 
-You do not need an API key. The real workflow runs through your own AI assistant (ChatGPT, Codex,
-Claude, Claude Code, Cursor, Copilot, or another approved tool): it reads a prompt and your notes and
-writes the result. The `scripts/ai_*.py` mock scripts only copy prepared examples so you can inspect
+You do not need an API key. The real workflow runs through your own AI assistant in an IDE, terminal
+agent, AI native IDE, or approved chat tool. It reads a prompt and your notes and writes the result.
+The `scripts/ai_*.py` mock scripts only copy prepared examples so you can inspect
 the output shape; they do not call AI. See `AGENTS.md` for the shared workflow map agents should
 follow.
 
@@ -49,6 +49,6 @@ The assistant should draft. The product team should decide.
 
 - Use fictional, anonymized, or approved notes only.
 - Do not commit private customer data or personal information to the public repo.
-- Review every AI-generated claim against the source notes.
+- Review every AI generated claim against the source notes.
 - Treat confidence as a review signal, not as proof.
 - Keep the final product decision with accountable humans.

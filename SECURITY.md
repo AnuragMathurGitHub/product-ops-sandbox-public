@@ -44,7 +44,7 @@ For public examples, use one of these:
 
 Use a private repo, private branch, or local copy. Keep sensitive files out of Git.
 
-The `.gitignore` file includes local-only patterns such as:
+The `.gitignore` file includes local only patterns such as:
 
 ```text
 local-inputs/
@@ -74,8 +74,8 @@ outputs/private-feedback-classification.json
 
 These files are ignored by Git in this repo. Still, check `git status` before every commit.
 
-If you add an API-backed private script, keep it out of the public repo unless it contains no
-credentials, no sensitive data, and no company-specific implementation details. See
+If you add an API backed private script, keep it out of the public repo unless it contains no
+credentials, no sensitive data, and no company specific implementation details. See
 `docs/04-api-extension.md` for the intended extension pattern.
 
 ## AI Usage

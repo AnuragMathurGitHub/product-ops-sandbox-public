@@ -1,11 +1,11 @@
 {
   "opportunities": [
     {
-      "opportunity": "Improve check-in recovery",
+      "opportunity": "Improve check in recovery",
       "customer_problem": "Users lose trust when a partner cannot verify a visit.",
-      "linked_metric": "Check-in Failed Count",
+      "linked_metric": "Check In Failed Count",
       "evidence": "Support notes mention QR scanner failures and manual entry.",
-      "possible_solution_direction": "Add clearer failed-check-in recovery and partner troubleshooting guidance."
+      "possible_solution_direction": "Add clearer failed check in recovery and partner troubleshooting guidance."
     },
     {
       "opportunity": "Make booking status unambiguous",
@@ -18,8 +18,8 @@
       "opportunity": "Help employees find a relevant first visit",
       "customer_problem": "The benefit feels useful only after users find a nearby option that fits their routine.",
       "linked_metric": "First Successful Visit Rate",
-      "evidence": "Notes mention local relevance, extra fees, and post-launch drop-off.",
-      "possible_solution_direction": "Improve location-aware recommendations and first-week guidance."
+      "evidence": "Notes mention local relevance, extra fees, and drop after launch.",
+      "possible_solution_direction": "Improve recommendations based on location and first week guidance."
     }
   ],
   "review_questions": [

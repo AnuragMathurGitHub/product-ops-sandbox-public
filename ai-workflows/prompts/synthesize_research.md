@@ -22,9 +22,9 @@ Return:
 
 - `themes`: a list of objects, each with:
   - `theme`: a short pattern observed across the notes
-  - `evidence`: a short, source-grounded summary of what supports the theme
+  - `evidence`: a short, source grounded summary of what supports the theme
   - `implication`: what the theme means for the product
-- `insights`: a list of short, decision-useful statements
+- `insights`: a list of short statements that are useful for decisions
 - `recommended_review_questions`: questions a human should review before acting
 
 ## Output
@@ -41,13 +41,13 @@ When working inside the repo, write the draft to:
 outputs/ai_research_synthesis.json
 ```
 
-Then also write a short human-readable summary next to it:
+Then also write a short human readable summary next to it:
 
 ```text
 outputs/ai_research_synthesis.md
 ```
 
-If you are in a chat-only tool that cannot write files, return the JSON and a short summary in the chat.
+If you are in a chat only tool that cannot write files, return the JSON and a short summary in the chat.
 
 ## Rules
 

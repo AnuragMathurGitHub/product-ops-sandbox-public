@@ -1,6 +1,6 @@
 item_id,title,product_area,status,linked_metric,reach,impact,confidence,effort,strategic_fit
-R-001,Improve check-in fallback,Check-in,Discovery,Check-in Failed Count,8,9,0.8,4,9
+R-001,Improve check in fallback,Check In,Discovery,Check In Failed Count,8,9,0.8,4,9
 R-002,Clarify booking confirmation,Booking,Ready for shaping,Class Booking Completion Rate,7,8,0.8,3,8
-R-003,Improve location-aware search ranking,Search,Discovery,Search Result Click Rate,6,7,0.7,5,8
+R-003,Improve location aware search ranking,Search,Discovery,Search Result Click Rate,6,7,0.7,5,8
 R-004,Launch activation reminder kit,Activation,Ready for delivery,Membership Activation Rate,8,6,0.7,2,7
 R-005,Explain cancellation policy before booking,Booking,Backlog,Booking Cancellation Rate,5,5,0.8,2,6

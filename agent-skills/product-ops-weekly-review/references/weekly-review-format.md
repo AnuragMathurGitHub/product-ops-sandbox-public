@@ -12,7 +12,7 @@ Use this format for a concise weekly Product Ops readout. It matches the output 
 - ...
 
 ## Product Readout
-| Area | Signal | Suggested Follow-Up |
+| Area | Signal | Suggested Follow Up |
 | --- | --- | --- |
 | ... | ... | ... |
 
@@ -30,4 +30,4 @@ Write for product, engineering, support, customer success, sales, marketing, and
 - Practical and specific
 - Short enough to scan
 - Clear about uncertainty
-- Focused on decisions and follow-up
+- Focused on decisions and follow up

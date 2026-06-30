@@ -64,8 +64,8 @@ def build_summary(items):
             "",
             "## Product Ops Readout",
             "",
-            "- High-scoring items combine reach, expected impact, confidence, and reasonable effort.",
-            "- Lower-scoring items may still matter when they reduce trust, renewal, or operational risk.",
+            "- High scoring items combine reach, expected impact, confidence, and reasonable effort.",
+            "- Lower scoring items may still matter when they reduce trust, renewal, or operational risk.",
             "- The useful conversation is often about the assumptions behind the score.",
             "",
         ]

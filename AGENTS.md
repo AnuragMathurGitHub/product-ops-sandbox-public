@@ -2,7 +2,7 @@
 
 Guidance for AI coding agents (OpenAI Codex, Cursor, GitHub Copilot, Claude Code, Gemini CLI, and
 others) working in the Product Ops Sandbox. This file is the single source of truth for how to run
-the workflows. Tool-specific entry points (`.claude/`, `.cursor/`, `.github/`) all point back here.
+the workflows. Tool specific entry points (`.claude/`, `.cursor/`, `.github/`) all point back here.
 
 ## What this repo is
 

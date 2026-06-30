@@ -23,7 +23,7 @@ Follow the canonical prompt and schema so every tool produces the same shape:
 ## Workflow
 
 1. Combine the available signals: notes, feedback themes, and metrics.
-2. Identify repeated or high-impact customer problems.
+2. Identify repeated or high impact customer problems.
 3. Write each opportunity in problem language, not feature language.
 4. Link each opportunity to a metric and short evidence.
 5. Offer a possible solution direction, not a committed solution.
@@ -33,7 +33,7 @@ Follow the canonical prompt and schema so every tool produces the same shape:
 
 - Do not turn every complaint into a feature.
 - Keep the customer problem separate from the proposed direction.
-- Prefer evidence-backed opportunities over loud anecdotes.
+- Prefer opportunities backed by evidence over loud anecdotes.
 - Each opportunity must trace to evidence in the input.
 
 ## References

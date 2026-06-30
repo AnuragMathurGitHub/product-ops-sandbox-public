@@ -18,7 +18,7 @@ The prompt and its schema are the single source of truth. Every tool entry point
 
 | Lane | What it is | Real AI? | API key? | Use it when |
 | --- | --- | --- | --- | --- |
-| Read-only | Open the finished files in `outputs/` | No | No | You want to see results and understand the shape |
+| Read only | Open the finished files in `outputs/` | No | No | You want to see results and understand the shape |
 | Agent | Your assistant reads the prompt + notes and writes the output | Yes | No | You have an AI assistant and want real synthesis on your own notes |
 | Mock demo | `python scripts/ai_*.py` copies a prepared example | No | No | You want a deterministic example run, are offline, or have no assistant |
 | API extension | A private script or service calls a model in your own environment | Yes | Yes | A team wants to automate at scale with approved data |
@@ -34,10 +34,10 @@ for teams that later want scheduled or backend automation. See `docs/04-api-exte
 
 ## The Agent lane, made turnkey
 
-The repo ships an `AGENTS.md` workflow map plus tool-specific entry points so an assistant has clear
+The repo ships an `AGENTS.md` workflow map plus tool specific entry points so an assistant has clear
 instructions. You usually do not need to paste long prompts manually.
 
-Copy-paste start:
+Copy paste start:
 
 ```text
 Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git.
@@ -49,19 +49,20 @@ Do not invent facts.
 
 | Tool | Turnkey way to run a workflow | Mechanism |
 | --- | --- | --- |
-| OpenAI Codex | "Classify the feedback in input-notes" | `AGENTS.md` workflow guidance |
-| Cursor | Same one-liner, or a command/rule workflow | `AGENTS.md` + `.cursor/rules/` |
-| GitHub Copilot (VS Code) | a `/prompt` from `.github/prompts/`, or `@workspace` ask | `.github/` + `AGENTS.md` |
+| IDE assistant | Open the folder in Visual Studio Code, JetBrains, or another IDE and ask the assistant to read `START_HERE.md` | IDE workspace context |
+| AI native IDE | Open the folder in Cursor or a similar tool, then ask for the workflow you want | `AGENTS.md` plus workspace files |
+| Terminal agent | Ask Codex, Claude Code, Gemini CLI, or another terminal agent to clone or open the repo | `AGENTS.md` workflow guidance |
+| GitHub Copilot in VS Code | Use a `/prompt` from `.github/prompts/`, or ask with `@workspace` | `.github/` plus `AGENTS.md` |
 | Claude Code | `/classify-feedback`, or the `/product-ops-signal-triage` skill | `.claude/commands/` + `.claude/skills/` |
 | ChatGPT or Claude chat | paste a prompt + notes (fallback) | no file access |
 
 Every workflow writes a structured `.json` draft and a readable `.md` summary, except the weekly
 readout, which is Markdown only.
 
-## End-to-end journeys
+## End to End Journeys
 
 - **Product manager or operator (no code):** read the README and `START_HERE.md`, open `outputs/`
-  to see finished examples (Read-only), then open the repo in your assistant and say "walk me through
+  to see finished examples (Read only), then open the repo in your assistant and say "walk me through
   this and classify the sample notes" (Agent). Read the `.md` summary, add your own note file to
   `input-notes/`, and run it again.
 - **Technical reviewer:** clone the repo, run `python scripts/*.py` (mock demo) to see

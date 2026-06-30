@@ -34,10 +34,10 @@ Keep the skills here and ask any AI coding assistant:
 Use the skill at agent-skills/product-ops-signal-triage to classify the notes in input-notes/.
 ```
 
-### Option 2: Claude Code (auto-loaded)
+### Option 2: Claude Code
 
-This repo also ships the same skills under `.claude/skills/`, so Claude Code loads them by
-description. You can run them directly:
+This repo also ships the same skills under `.claude/skills/`, so Claude Code can use them when your
+request matches the skill description. You can also run them directly:
 
 ```text
 /product-ops-signal-triage
@@ -55,7 +55,7 @@ canonical prompt and schema. Keep the human review layer.
 ```text
 ai-workflows/ = the canonical prompts, schemas, and examples
 agent-skills/ = reusable skill packages that point to those prompts
-.claude/, .cursor/, .github/ = thin per-tool entry points (see AGENTS.md)
+.claude/, .cursor/, .github/ = thin tool specific entry points (see AGENTS.md)
 scripts/ = deterministic Python plus mock demos
 ```
 

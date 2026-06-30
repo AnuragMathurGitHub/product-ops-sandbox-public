@@ -25,19 +25,19 @@ marketing, and operations.
 Include these sections:
 
 - `What Changed`: a few bullets on what stood out this week
-- `Product Readout`: a small table with columns Area, Signal, and Suggested Follow-Up
+- `Product Readout`: a small table with columns Area, Signal, and Suggested Follow Up
 - `Decision Questions`: a few questions for the team to decide on
 
 ## Output
 
-This workflow produces a human-readable Markdown file (no JSON, because the readout is meant for
+This workflow produces a human readable Markdown file (no JSON, because the readout is meant for
 people, not for another script). Write it to:
 
 ```text
 outputs/ai_weekly_product_insights.md
 ```
 
-If you are in a chat-only tool that cannot write files, return the Markdown in the chat.
+If you are in a chat only tool that cannot write files, return the Markdown in the chat.
 
 ## Rules
 

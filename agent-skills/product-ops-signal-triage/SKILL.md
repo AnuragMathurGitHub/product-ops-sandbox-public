@@ -1,6 +1,6 @@
 ---
 name: product-ops-signal-triage
-description: Classify unstructured product signals such as support tickets, sales notes, customer success notes, app reviews, and open-ended feedback into product area, theme, severity, linked metric, evidence summary, and possible opportunity. Use when turning qualitative customer or internal feedback into a first-pass Product Ops triage for human review.
+description: Classify unstructured product signals such as support tickets, sales notes, customer success notes, app reviews, and open ended feedback into product area, theme, severity, linked metric, evidence summary, and possible opportunity. Use when turning qualitative customer or internal feedback into a first pass Product Ops triage for human review.
 ---
 
 # Product Ops Signal Triage
@@ -24,9 +24,9 @@ canonical prompt and schema so every tool produces the same shape:
 
 1. Read the notes from `input-notes/` and assign each item a stable `source_id`.
 2. Classify each item by product area, theme, severity, linked metric, and confidence.
-3. Preserve evidence with a short, source-grounded summary.
+3. Preserve evidence with a short, source grounded summary.
 4. Suggest a possible opportunity only when the input supports it.
-5. Produce the summary block (top themes, highest-severity items, review questions).
+5. Produce the summary block (top themes, highest severity items, review questions).
 
 ## Classification Rules
 

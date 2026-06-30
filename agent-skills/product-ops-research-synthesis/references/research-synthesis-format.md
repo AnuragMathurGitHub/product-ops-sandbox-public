@@ -8,11 +8,11 @@ Use this structure for Product Ops research synthesis. It matches
 ```text
 themes:
 - theme: a short pattern observed across the notes
-  evidence: a short, source-grounded summary of what supports it
+  evidence: a short, source grounded summary of what supports it
   implication: what it means for the product
 
 insights:
-- short, decision-useful statements
+- short statements that are useful for decisions
 
 recommended_review_questions:
 - questions a human should review before acting

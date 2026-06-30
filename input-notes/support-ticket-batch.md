@@ -1,6 +1,6 @@
 # Support Ticket Batch
 
-This is a fictional, anonymized note batch for the first AI-assisted workflow.
+This is a fictional, anonymized note batch for the first AI assisted workflow.
 
 ## Context
 
@@ -17,7 +17,7 @@ This is a fictional, anonymized note batch for the first AI-assisted workflow.
 2. A user booked a morning class and did not receive a clear confirmation. They arrived anyway, but the class was full.
 3. Several users searched for yoga near their office, but the top results were too far away or outside normal commute routes.
 4. An HR admin asked why only a small share of eligible employees had activated the benefit after launch.
-5. A user said the benefit became useful only after they found a nearby gym that accepted check-ins without extra fees.
+5. A user said the benefit became useful only after they found a nearby gym that accepted check ins without extra fees.
 6. A user cancelled a booking because the cancellation policy was unclear and they did not want to be charged.
 7. A customer success manager reported that employees understood the benefit better after a launch reminder, but usage still dropped after the first week.
 

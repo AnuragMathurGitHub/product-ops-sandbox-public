@@ -1,6 +1,6 @@
 # Research Synthesis (readable summary)
 
-This is the human-readable companion to `ai_research_synthesis.json`. It is a fictional mock AI
+This is the human readable companion to `ai_research_synthesis.json`. It is a fictional mock AI
 output for the Product Ops Sandbox.
 
 ## Themes
@@ -10,13 +10,13 @@ output for the Product Ops Sandbox.
 - Implication: Search relevance and provider quality shape whether new users build confidence.
 
 ### Operational failures reduce trust
-- Evidence: Check-in and booking uncertainty create moments where users are unsure whether the benefit worked.
+- Evidence: Check in and booking uncertainty create moments where users are unsure whether the benefit worked.
 - Implication: Reliability issues can make the employer benefit feel risky or inconvenient.
 
 ## Insights
 
 - The first successful visit is a stronger product health signal than activation alone.
-- Booking and check-in clarity should be reviewed together because both affect confidence.
+- Booking and check in clarity should be reviewed together because both affect confidence.
 
 ## Review Questions
 

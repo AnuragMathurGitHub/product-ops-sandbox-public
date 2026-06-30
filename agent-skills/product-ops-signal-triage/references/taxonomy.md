@@ -8,7 +8,7 @@ Use this taxonomy so feedback is classified consistently. It matches the allowed
 - Activation
 - Search
 - Booking
-- Check-in
+- Check In
 - Employer reporting
 - Partner data
 - Notifications
@@ -22,7 +22,7 @@ Use this taxonomy so feedback is classified consistently. It matches the allowed
 | Critical | User is blocked at scale, or revenue/trust risk is immediate |
 | High | User is blocked in an important journey, or buyer confidence is affected |
 | Medium | User can continue but friction may reduce conversion, engagement, or satisfaction |
-| Low | Minor confusion, polish, or low-impact improvement |
+| Low | Minor confusion, polish, or low impact improvement |
 
 ## Confidence
 
@@ -30,7 +30,7 @@ Use this taxonomy so feedback is classified consistently. It matches the allowed
 | --- | --- |
 | High | Multiple signals agree, or the source is clear and specific |
 | Medium | The signal is plausible but needs more evidence |
-| Low | The signal is ambiguous, one-off, or missing context |
+| Low | The signal is ambiguous, one time, or missing context |
 
 ## Common Linked Metrics
 
@@ -41,7 +41,7 @@ These are examples seen in the sample data. Use the metric closest to the signal
 - Search Result Click Rate
 - Class Booking Completion Rate
 - Booking Cancellation Rate
-- Check-in Failed Count
+- Check In Failed Count
 - Weekly Active Users
 - Support Contact Rate
 - Unknown

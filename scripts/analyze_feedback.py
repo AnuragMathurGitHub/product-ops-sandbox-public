@@ -76,7 +76,7 @@ def build_summary(records):
             "",
             "## Product Ops Readout",
             "",
-            "- Repeated high-severity themes should be reviewed against roadmap priorities.",
+            "- Repeated high severity themes should be reviewed against roadmap priorities.",
             "- Linked metrics help the team test whether a fix improved the journey.",
             "- This summary is a starting point for discussion, not a decision by itself.",
             "",
