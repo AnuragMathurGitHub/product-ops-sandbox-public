@@ -56,6 +56,10 @@ sample-data/local-*
 sample-data/private-*
 outputs/local-*
 outputs/private-*
+scripts/local-*
+scripts/private-*
+requirements-local*.txt
+requirements-private*.txt
 .env
 .env.*
 ```
@@ -69,6 +73,10 @@ outputs/private-feedback-classification.json
 ```
 
 These files are ignored by Git in this repo. Still, check `git status` before every commit.
+
+If you add an API-backed private script, keep it out of the public repo unless it contains no
+credentials, no sensitive data, and no company-specific implementation details. See
+`docs/04-api-extension.md` for the intended extension pattern.
 
 ## AI Usage
 

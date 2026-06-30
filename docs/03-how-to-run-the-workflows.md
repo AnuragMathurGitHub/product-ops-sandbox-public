@@ -21,13 +21,16 @@ The prompt and its schema are the single source of truth. Every tool entry point
 | Read-only | Open the finished files in `outputs/` | No | No | You want to see results and understand the shape |
 | Agent | Your assistant reads the prompt + notes and writes the output | Yes | No | You have an AI assistant and want real synthesis on your own notes |
 | Mock demo | `python scripts/ai_*.py` copies a prepared example | No | No | You want a deterministic example run, are offline, or have no assistant |
-| API | A program calls a model in your own environment | Yes | Yes | A team wants to automate at scale with approved data |
+| API extension | A private script or service calls a model in your own environment | Yes | Yes | A team wants to automate at scale with approved data |
 
 ```text
 Mock = a deterministic demo of what the output looks like (no AI).
 Agent = actually do it with your assistant (real AI, no key).   <- the main lane
-API  = automate it at scale (real AI, key, your environment).
+API  = automate it at scale in a private environment (real AI, key).
 ```
+
+If the API row feels confusing, skip it. This public repo works without an API key. The API path is
+for teams that later want scheduled or backend automation. See `docs/04-api-extension.md`.
 
 ## The Agent lane, made turnkey
 

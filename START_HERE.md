@@ -198,6 +198,10 @@ Pick the prompt that matches what you have. Each prompt already knows to read fr
 The two agent ways are the real workflow: your own assistant does the synthesis, with no API key.
 Mock is a deterministic demo of what the output looks like.
 
+There is also an API extension path for teams that want private automation later. You do not need it
+for this walkthrough. Read `docs/04-api-extension.md` only when you want a private script or service
+to call a model directly.
+
 ### Try the simplest one (feedback classification)
 
 1. Open the sample note file: `input-notes/support-ticket-batch.md`.
@@ -348,6 +352,7 @@ Help me adapt this sandbox for my product. Ask me the minimum questions needed b
 | --- | --- |
 | Understand the full system | `docs/00-product-ops-system-map.md` |
 | Understand how a workflow runs end to end | `docs/03-how-to-run-the-workflows.md` |
+| Understand the optional API key path | `docs/04-api-extension.md` |
 | Understand the fictional product | `docs/01-product-context.md` |
 | Understand metrics | `docs/02-success-metrics.md` |
 | Understand qualitative inputs | `input-notes/README.md` |

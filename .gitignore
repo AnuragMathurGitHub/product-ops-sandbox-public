@@ -15,3 +15,7 @@ sample-data/local-*
 sample-data/private-*
 outputs/local-*
 outputs/private-*
+scripts/local-*
+scripts/private-*
+requirements-local*.txt
+requirements-private*.txt

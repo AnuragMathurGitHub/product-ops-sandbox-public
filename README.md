@@ -120,11 +120,12 @@ You do not need an API key. Pick the lane that fits you.
 | Read-only | Open the finished files in `outputs/` | No | No |
 | Agent | Your AI assistant reads a prompt and your notes and writes the result | Yes | No |
 | Mock demo | `python scripts/ai_*.py` copies a prepared example so you can see the output shape | No | No |
-| API | A program calls a model in your own environment to automate at scale | Yes | Yes |
+| API extension | A private script or service calls a model in your own environment | Yes | Yes |
 
 The **Agent** lane is the main one: real synthesis, your own assistant, no key. **Mock** is a
 deterministic demo. The repo ships an `AGENTS.md` so coding assistants have one clear workflow map.
 For the full user flow and per-tool invocation, see [docs/03-how-to-run-the-workflows.md](docs/03-how-to-run-the-workflows.md).
+For what an API key would mean and where it would be used, see [docs/04-api-extension.md](docs/04-api-extension.md).
 
 ## Use It With An AI Assistant
 
@@ -168,8 +169,10 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_generate_weekly_summary.py
 ```
 
-Each writes a `.json` draft and a readable `.md` summary into `outputs/`. Teams can extend the same
-pattern with approved API keys, model endpoints, and data controls in their own environment.
+Each writes a `.json` draft and a readable `.md` summary into `outputs/`.
+
+The public repo does not require an API key. API keys are only for private automation, such as a
+scheduled script or internal service that calls a model directly. See [docs/04-api-extension.md](docs/04-api-extension.md).
 
 ## Run The Tests
 
@@ -347,7 +350,8 @@ product-ops-sandbox-public/
 |   |-- 00-product-ops-system-map.md
 |   |-- 01-product-context.md
 |   |-- 02-success-metrics.md
-|   `-- 03-how-to-run-the-workflows.md
+|   |-- 03-how-to-run-the-workflows.md
+|   `-- 04-api-extension.md
 |-- input-notes/
 |   |-- README.md
 |   |-- support-ticket-batch.md
