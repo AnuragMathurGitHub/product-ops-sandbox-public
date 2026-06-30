@@ -1,8 +1,8 @@
 # Product Ops Sandbox
 
-A practical Product Operations sandbox that shows how product teams can turn scattered signals into clearer product decisions.
+A practical Product Operations sandbox for turning scattered product signals into clearer product decisions.
 
-This repo uses a fictional product, fictional data, simple Python workflows, and AI-assisted examples to model a modern Product Ops operating loop:
+This repo uses a fictional product, fictional data, simple Python scripts, and AI-assisted workflows to show how a modern Product Ops loop can work:
 
 ```text
 feedback + research + product data
@@ -15,35 +15,147 @@ feedback + research + product data
 -> measurement
 ```
 
-The goal is not to build a production tool. The goal is to make the workflow easy to understand, run, and adapt.
+The point is not to build a production platform. The point is to make the workflow easy to understand, run, and adapt.
 
-## What This Is
+> Preview note: this private preview currently contains the README only. The files and folders below describe the planned public repo structure and will be added step by step.
 
-Product Ops teams often work across many signal sources:
+## What You Can Do With This Repo
 
-- product analytics
-- customer feedback
-- user research
-- support issues
-- sales and customer success notes
-- roadmap requests
-- OKRs
-- release communication
-
-Those signals usually live in different places. The value comes from connecting them into a repeatable decision system.
-
-This sandbox shows one lightweight version of that system.
-
-## Who This Is For
-
-| Audience | What You Can Use This For |
+| Goal | What To Do |
 | --- | --- |
-| Product Operations managers | A simple operating model for connecting signals to planning |
-| Product managers | A practical example of metrics, feedback, research, roadmap, and OKR alignment |
-| Startup operators | A lightweight template before buying or integrating heavier tools |
-| Students and career switchers | A concrete way to understand Product Ops workflows |
-| Hiring managers and recruiters | A portfolio artifact that shows structured product thinking |
-| AI workflow builders | Examples of where AI helps with synthesis, not final decisions |
+| Understand Product Ops | Read the README, system map, and generated outputs |
+| Prepare for an interview | Walk through the fictional product, metrics, roadmap, OKRs, and AI workflow |
+| Run the sample workflow | Clone or download the repo and run the Python scripts |
+| Use an AI assistant | Ask ChatGPT, Codex, Claude, Cursor, or Copilot to explain, adapt, or run parts of the repo |
+| Adapt it to your own product | Replace the fictional data with approved, anonymized product signals |
+
+## Choose Your Path
+
+| If You Are... | Start With | You Do Not Need |
+| --- | --- | --- |
+| A product manager or operator | `START_HERE.md` and `outputs/` | Python knowledge |
+| A hiring manager or recruiter | This README and the sample outputs | Local setup |
+| A learner | `docs/00-product-ops-system-map.md` | Prior Product Ops experience |
+| A technical reviewer | `scripts/`, `tests/`, and `sample-data/` | AI API access |
+| An AI workflow builder | `ai-workflows/` and `agent-skills/` | Real customer data |
+
+## How To Get The Files
+
+You have three options.
+
+| Option | Best For | How |
+| --- | --- | --- |
+| Read on GitHub | Quick review | Open files directly in the browser |
+| Download ZIP | Non-technical users | Click `Code` -> `Download ZIP` on GitHub |
+| Clone with Git | Technical users | Run `git clone <repo-url>` |
+
+If you do not know what cloning means, use **Download ZIP**. If you use a coding assistant, you can ask it to clone the repo for you.
+
+If you use an AI coding assistant, you can also ask it:
+
+```text
+Clone this repo, open the README, and guide me through it step by step.
+```
+
+## Use It Without Coding
+
+You can use this repo without writing code.
+
+1. Open the repo on GitHub.
+2. Read this README.
+3. Open `START_HERE.md` when it is available.
+4. Open `outputs/` to see the finished examples.
+5. Open `ai-workflows/prompts/`.
+6. Copy a prompt into ChatGPT, Claude, Codex, or another approved assistant.
+7. Add fictional, anonymized, or approved notes.
+8. Ask the assistant to classify, summarize, or map opportunities.
+
+Useful prompts to ask your assistant:
+
+```text
+Explain this repo to me like I am a Product Operations Manager.
+```
+
+```text
+Guide me through this repo one step at a time. Stop after each step and ask if I understand.
+```
+
+```text
+Use the feedback classification prompt to classify these anonymized support notes.
+```
+
+```text
+Help me adapt this sandbox for my own product. Tell me which files I should change first.
+```
+
+## Use It With An AI Assistant
+
+You do not need an API key to use the AI workflow examples.
+
+| Tool Type | How To Use This Repo |
+| --- | --- |
+| ChatGPT or Claude chat | Copy a prompt from `ai-workflows/prompts/` and paste anonymized notes |
+| Codex, Claude Code, Cursor, or Copilot | Open the repo and ask the assistant to explain, edit, or run the workflow |
+| VS Code with Copilot | Ask Copilot to explain scripts, sample data, and output files |
+| API-based setup | Use optional live mode only with approved data and credentials |
+
+Do not paste sensitive customer data, private company notes, or personal information into public AI tools. Use fictional, anonymized, or approved examples.
+
+Good first request:
+
+```text
+Read the README and explain the Product Ops workflow in simple terms. Then show me the next three files I should open.
+```
+
+## Run It Locally
+
+If you are comfortable with a terminal:
+
+```bash
+git clone <repo-url>
+cd product-ops-sandbox
+python scripts/analyze_feedback.py
+python scripts/score_roadmap.py
+python scripts/summarize_metrics.py
+```
+
+Replace `<repo-url>` with the GitHub URL for this repo.
+
+The AI-assisted scripts run in mock mode by default. They do not require an API key.
+
+```bash
+python scripts/ai_classify_feedback.py
+python scripts/ai_synthesize_research.py
+python scripts/ai_detect_opportunities.py
+python scripts/ai_generate_weekly_summary.py
+```
+
+Optional live AI mode can be added later with an approved API key and model endpoint. Mock mode is the default so the repo stays safe to run.
+
+## Adapt It To Your Own Product
+
+Use fictional, synthetic, anonymized, or approved data only.
+
+Start small:
+
+1. Copy the repo.
+2. Replace one sample file in `sample-data/`.
+3. Keep the same column names at first.
+4. Run the matching script or ask your AI assistant to help.
+5. Review the generated output.
+6. Update the product context, metrics, and taxonomy.
+7. Repeat with the next signal source.
+
+Most teams will need to adjust:
+
+| Area | What To Change |
+| --- | --- |
+| Product context | Users, buyers, internal teams, product problem |
+| Metrics | Activation, engagement, retention, support, and business metrics |
+| Feedback taxonomy | Product areas, themes, severity, linked metrics |
+| Roadmap scoring | Reach, impact, confidence, effort, strategic fit |
+| AI prompts | Product-specific language and guardrails |
+| Agent skills | Taxonomy, output format, review rules |
 
 ## Fictional Product Example
 
@@ -61,26 +173,26 @@ The product is fictional. The data is fictional. There is no connection to any r
 
 ## Product Problem
 
-The core product problem is simple:
+The core product problem:
 
 ```text
 Employees may sign up, but not enough of them activate,
 find a useful option, book, check in, and build a repeat habit.
 ```
 
-That creates questions for the product team:
+That creates Product Ops questions:
 
-- Where do users drop off?
-- What do customers and users complain about?
-- What does research tell us about the behavior?
-- Which opportunities should be prioritized?
-- Which metrics should improve?
-- How should teams communicate changes?
-- How do we know whether a release worked?
+| Question | Where The Repo Helps |
+| --- | --- |
+| Where do users drop off? | Product analytics and metrics |
+| What are users and customers saying? | Feedback system and AI classification |
+| What explains the behavior? | User research synthesis |
+| What should the roadmap consider? | Opportunity mapping and prioritization |
+| Which outcomes should improve? | Success metrics and OKRs |
+| How should teams launch changes? | Release communication workflow |
+| How do we learn after release? | Measurement loop |
 
 ## What This Repo Demonstrates
-
-This sandbox connects the main pieces of Product Ops work:
 
 | Area | What It Shows |
 | --- | --- |
@@ -97,35 +209,14 @@ This sandbox connects the main pieces of Product Ops work:
 
 ## Two Operating Lanes
 
-The repo separates work into two lanes.
+This repo separates the work into two lanes.
 
-### 1. Deterministic Structured Workflows
+| Lane | Use For | Why |
+| --- | --- | --- |
+| Deterministic Python | Metrics, counts, scoring, repeatable summaries | The answer should be calculated |
+| AI-assisted synthesis | Interviews, support tickets, sales notes, customer success notes | The input is messy language |
 
-Use Python when the answer should be calculated.
-
-Examples:
-
-- count product events
-- calculate activation rate
-- group feedback by theme
-- score roadmap items
-- generate a metrics snapshot
-
-This lane is repeatable. If the input does not change, the output should not change.
-
-### 2. AI-Assisted Qualitative Workflows
-
-Use AI assistance when the input is messy language.
-
-Examples:
-
-- support ticket batches
-- sales call notes
-- customer success meeting notes
-- user interview transcripts
-- open-ended survey responses
-
-AI can help create a first draft of themes, insights, classifications, and opportunity statements. A human still reviews the output before it influences roadmap decisions.
+Simple rule:
 
 ```text
 Code calculates.
@@ -133,25 +224,35 @@ AI drafts.
 Humans decide.
 ```
 
-## How To Read This Repo
+## What You Should See
 
-If you only have 5 minutes:
+The scripts generate readable outputs.
 
-1. Read this README.
-2. Review the Product Ops operating loop.
-3. Open the sample outputs.
-4. Skim the AI workflow examples.
-5. Look at the agent skills if you want reusable workflows.
+| Output | Purpose |
+| --- | --- |
+| `feedback_theme_summary.md` | Repeated feedback themes and severity counts |
+| `roadmap_priority_scores.md` | Roadmap candidates scored with a transparent formula |
+| `metrics_snapshot.md` | Basic product usage metrics |
+| `ai_feedback_classification.json` | Structured AI-assisted feedback classification |
+| `ai_research_synthesis.json` | AI-assisted research synthesis |
+| `ai_opportunity_map.json` | Product opportunities from messy signals |
+| `ai_weekly_product_insights.md` | Weekly Product Ops summary |
 
-If you have 30 minutes:
+## Why JSON Appears In The AI Examples
 
-1. Read the system map.
-2. Review the fictional product context.
-3. Inspect the sample data.
-4. Run the scripts.
-5. Compare the generated outputs.
-6. Review the AI prompts, schemas, and sample outputs.
-7. Review the agent skills and adapt one workflow.
+Markdown is good for human summaries. JSON is useful when output needs a predictable structure.
+
+Example:
+
+```json
+{
+  "theme": "Failed check-in",
+  "severity": "High",
+  "linked_metric": "Check-in Failed Count"
+}
+```
+
+JSON makes AI output easier to validate, compare, review, and reuse in another workflow.
 
 ## Repository Map
 
@@ -165,17 +266,6 @@ product-ops-sandbox/
 |-- SECURITY.md
 |-- LICENSE
 |-- docs/
-|   |-- 00-product-ops-system-map.md
-|   |-- 01-product-context.md
-|   |-- 02-success-metrics.md
-|   |-- 03-product-analytics-tracking-plan.md
-|   |-- 04-customer-feedback-system.md
-|   |-- 05-user-research-repository.md
-|   |-- 06-roadmap-prioritization.md
-|   |-- 07-okr-planning.md
-|   |-- 08-release-communication.md
-|   |-- 09-ai-assisted-product-ops.md
-|   `-- 10-agent-skills.md
 |-- sample-data/
 |-- scripts/
 |-- outputs/
@@ -185,57 +275,6 @@ product-ops-sandbox/
 |-- requirements.txt
 `-- requirements-ai.txt
 ```
-
-## How To Run It
-
-The core scripts use Python and standard library modules.
-
-```bash
-python scripts/analyze_feedback.py
-python scripts/score_roadmap.py
-python scripts/summarize_metrics.py
-```
-
-The AI-assisted scripts run in mock mode by default. They do not require an API key.
-
-```bash
-python scripts/ai_classify_feedback.py
-python scripts/ai_synthesize_research.py
-python scripts/ai_detect_opportunities.py
-python scripts/ai_generate_weekly_summary.py
-```
-
-Optional live AI mode can be added with an approved API key and model endpoint. Mock mode is the default so the repo stays safe and easy to run.
-
-## What You Should See
-
-The scripts generate readable outputs:
-
-| Output | Purpose |
-| --- | --- |
-| `feedback_theme_summary.md` | Shows repeated feedback themes and severity counts |
-| `roadmap_priority_scores.md` | Shows prioritized roadmap candidates using a transparent formula |
-| `metrics_snapshot.md` | Shows basic product usage metrics |
-| `ai_feedback_classification.json` | Shows structured AI-assisted feedback classification |
-| `ai_research_synthesis.json` | Shows AI-assisted research synthesis |
-| `ai_opportunity_map.json` | Shows how messy signals become opportunity statements |
-| `ai_weekly_product_insights.md` | Shows a weekly Product Ops summary |
-
-## Why JSON Appears In The AI Examples
-
-Some AI outputs are saved as JSON because structured output is easier to review and reuse.
-
-For example:
-
-```json
-{
-  "theme": "Failed check-in",
-  "severity": "High",
-  "linked_metric": "Check-in Failed Count"
-}
-```
-
-Markdown is better for human summaries. JSON is better when another script, workflow, or agent needs a predictable structure.
 
 ## What This Is Not
 
@@ -271,11 +310,10 @@ Do not add:
 - passwords
 - confidential business information
 
-Use fictional, synthetic, or fully anonymized examples only.
+Use fictional, synthetic, fully anonymized, or approved examples only.
 
 ## Current Build Status
 
 This public version is being assembled step by step.
 
 The first goal is to make the GitHub landing page clear. The next files will add the guided walkthrough, docs, sample data, scripts, outputs, AI workflows, and reusable agent skills.
-
