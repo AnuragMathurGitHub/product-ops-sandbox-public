@@ -189,14 +189,39 @@ The product is fictional. The data is fictional. There is no connection to any r
 
 ## Product Problem
 
-The core product problem:
+FitPass Demo is a B2B2C product. Employers are the buyers, but employees are the daily users.
+
+That creates a Product Ops challenge:
 
 ```text
-Employees may sign up, but not enough of them activate,
-find a useful option, book, check in, and build a repeat habit.
+The product must create visible value for both groups.
 ```
 
-That creates Product Ops questions:
+For employees, value means:
+
+- finding relevant gyms or classes
+- booking with confidence
+- checking in successfully
+- building a habit that feels worth continuing
+
+For employers, value means:
+
+- employees know the benefit exists
+- enough employees activate and use it
+- usage supports the employee value proposition
+- the account has a clear renewal story
+
+The business problem is not simply "more usage." In some models, unused benefits may reduce short-term cost. The longer-term risk is different: if employees do not find value, the employer may question adoption, satisfaction, renewal, and whether the benefit is worth keeping.
+
+So this sandbox focuses on one question:
+
+```text
+How can Product Ops connect feedback, research, and product data
+to understand where employees fail to reach value
+and which product improvements should be prioritized?
+```
+
+That creates practical Product Ops questions:
 
 | Question | Where The Repo Helps |
 | --- | --- |
