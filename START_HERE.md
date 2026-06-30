@@ -6,8 +6,6 @@ You do not need to know Python to start. You can read the examples, use the AI p
 
 By the end, you should understand how product feedback, user research, product data, prioritization, OKRs, release communication, and AI-assisted workflows connect.
 
-> Preview note: this private preview is being assembled step by step. Some folders mentioned below are planned and will be added next.
-
 ## What You Will Learn
 
 You will learn how a Product Ops workflow can move from raw signals to product decisions:
@@ -92,7 +90,7 @@ For now, think of structured data as spreadsheet-like data and messy notes as hu
 
 ## Step 4: Look At The Outputs
 
-Open `outputs/` when it is available.
+Open `outputs/`.
 
 The outputs show what the workflow produces.
 
@@ -116,7 +114,7 @@ Use your preferred assistant: ChatGPT, Codex, Claude, Claude Code, Cursor, GitHu
 Try this:
 
 1. Open `ai-workflows/prompts/classify_feedback.md`.
-2. Open one sample note file from `input-notes/` when available.
+2. Open one sample note file from `input-notes/`.
 3. Copy both into your assistant.
 4. Ask it to classify the notes.
 5. Compare the result with the sample output.

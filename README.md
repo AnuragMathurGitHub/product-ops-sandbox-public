@@ -17,8 +17,6 @@ feedback + research + product data
 
 The point is not to build a production platform. The point is to make the workflow easy to understand, run, and adapt.
 
-> Preview note: this private preview currently contains the README only. The files and folders below describe the planned public repo structure and will be added step by step.
-
 ## What You Can Do With This Repo
 
 | Goal | What To Do |
@@ -31,9 +29,9 @@ The point is not to build a production platform. The point is to make the workfl
 
 ## Where Your Inputs Go
 
-The public version will separate inputs by type.
+The repo separates inputs by type.
 
-| Input Type | Planned Folder | Use It For |
+| Input Type | Folder | Use It For |
 | --- | --- | --- |
 | Messy notes and transcripts | `input-notes/` | Support tickets, sales notes, customer success notes, interview transcripts, meeting summaries |
 | Structured data | `sample-data/` | CSV files for product events, feedback records, roadmap items, and OKRs |
@@ -77,7 +75,7 @@ You can use this repo without writing code.
 
 1. Open the repo on GitHub.
 2. Read this README.
-3. Open `START_HERE.md` when it is available.
+3. Open `START_HERE.md`.
 4. Open `outputs/` to see the finished examples.
 5. Open `ai-workflows/prompts/`.
 6. Copy a prompt into ChatGPT, Claude, Codex, or another approved assistant.
@@ -144,7 +142,7 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_generate_weekly_summary.py
 ```
 
-Optional live AI mode can be added later with an approved API key and model endpoint. Mock mode is the default so the repo stays safe to run.
+Optional live AI mode can be used with an approved API key and model endpoint. Mock mode is the default so the repo stays safe to run.
 
 ## Adapt It To Your Own Product
 
@@ -368,9 +366,3 @@ Possible extensions:
 - customize the agent skills for a specific product or company
 
 If you adapt the sandbox and need help deciding what to change first, open an issue or contact the repo creator.
-
-## Current Build Status
-
-This public version is being assembled step by step.
-
-The first goal is to make the GitHub landing page clear. The next files will add the guided walkthrough, docs, sample data, scripts, outputs, AI workflows, and reusable agent skills.
