@@ -34,6 +34,16 @@ API  = automate it at scale (real AI, key, your environment).
 The repo ships an `AGENTS.md` workflow map plus tool-specific entry points so an assistant has clear
 instructions. You usually do not need to paste long prompts manually.
 
+Copy-paste start:
+
+```text
+Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git.
+Open README.md and START_HERE.md.
+Explain the workflow, then classify the sample feedback in input-notes/support-ticket-batch.md.
+Write the result to outputs/ai_feedback_classification.json and outputs/ai_feedback_classification.md.
+Do not invent facts.
+```
+
 | Tool | Turnkey way to run a workflow | Mechanism |
 | --- | --- | --- |
 | OpenAI Codex | "Classify the feedback in input-notes" | `AGENTS.md` workflow guidance |

@@ -36,6 +36,12 @@ If you are not sure, start with **Read only**.
 
 If you do not have the files yet, go back to the README and follow **How To Get The Files**.
 
+Fastest AI-assistant start:
+
+```text
+Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git, open START_HERE.md, and walk me through the repo one step at a time.
+```
+
 ## Step 1: Understand The Product
 
 Start with the fictional product.
@@ -109,7 +115,8 @@ Examples:
 - partner feedback
 - app review excerpts
 
-Do not use sensitive or private data. Use fictional, anonymized, or approved notes only.
+For the public repo, use fictional, anonymized, or approved notes only. For private company work,
+use real notes only with the right permission and do not commit sensitive files back to a public repo.
 
 ## Step 4: Look At The Outputs
 
@@ -199,8 +206,9 @@ Mock is a deterministic demo of what the output looks like.
 4. Ask it to write the result into `outputs/` (or show it in chat).
 5. Review the result before using it for decisions.
 
-To use your own notes later, add a new `.md` file inside `input-notes/`. Keep the content
-fictional, anonymized, or approved.
+To use your own notes later, add a new `.md` file inside `input-notes/`. In this public repo, keep
+the content fictional, anonymized, or approved. If you are using sensitive real notes in a private
+environment, name local files with `private-` or `local-` so `.gitignore` helps prevent accidental commits.
 
 Example request for Codex, Claude Code, Cursor, or Copilot:
 

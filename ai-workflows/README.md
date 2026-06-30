@@ -48,7 +48,7 @@ The assistant should draft. The product team should decide.
 ## Guardrails
 
 - Use fictional, anonymized, or approved notes only.
-- Do not add private customer data or personal information.
+- Do not commit private customer data or personal information to the public repo.
 - Review every AI-generated claim against the source notes.
 - Treat confidence as a review signal, not as proof.
 - Keep the final product decision with accountable humans.

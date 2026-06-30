@@ -31,4 +31,5 @@ Participant: If the app helped me remember what I did each week, I might use it 
 
 ## Reminder
 
-Do not replace this with a real interview unless it is approved, anonymized, and safe to use in this repo.
+Do not commit a real interview transcript to the public repo. For private company work, use real
+research notes only when approved, controlled, and safe for the AI tool or workflow you are using.

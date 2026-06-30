@@ -17,15 +17,19 @@ Add fictional, anonymized, or approved notes such as:
 | Partner feedback | `partner-feedback.md` |
 | App review excerpts | `app-review-excerpts.md` |
 
-## What Does Not Go Here
+## What Does Not Go In The Public Repo
 
-Do not add:
+Do not commit or publish:
 
-- real customer data
+- raw customer data
 - personal information
 - private company notes
 - raw confidential transcripts
 - API keys or credentials
+
+For private company work, real notes can be used only when approved and controlled. Use a private
+repo or ignored local files. In this repo, files named `input-notes/private-*` or
+`input-notes/local-*` are ignored by Git.
 
 ## How To Use This Folder
 

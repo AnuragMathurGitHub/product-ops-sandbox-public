@@ -23,4 +23,5 @@ This is a fictional, anonymized note batch for the first AI-assisted workflow.
 
 ## Reminder
 
-Do not replace this with real customer data unless the data is approved, anonymized, and safe to use in this repo.
+Do not commit real customer data to the public repo. For private company work, use real notes only
+when approved, controlled, and safe for the AI tool or workflow you are using.

@@ -59,14 +59,23 @@ You have three options.
 | --- | --- | --- |
 | Read on GitHub | Quick review | Open files directly in the browser |
 | Download ZIP | Non-technical users | Click `Code` -> `Download ZIP` on GitHub |
-| Clone with Git | Technical users | Run `git clone <repo-url>` |
+| Clone with Git | Technical users | Run `git clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git` |
 
 If you do not know what cloning means, use **Download ZIP**. If you use a coding assistant, you can ask it to clone the repo for you.
 
 If you use an AI coding assistant, you can also ask it:
 
 ```text
-Clone this repo, open the README, and guide me through it step by step.
+Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git, open the README, and guide me through it step by step.
+```
+
+Copy-paste prompt for Codex, Cursor, Claude Code, or another coding assistant:
+
+```text
+Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git.
+Open README.md and START_HERE.md.
+Explain what this Product Ops Sandbox does, then run the sample workflow and show me the outputs I should review.
+Do not use or commit real customer data in this public repo.
 ```
 
 ## Use It Without Coding
@@ -141,14 +150,12 @@ Read the README and START_HERE.md. Then explain which files I should open first 
 If you are comfortable with a terminal:
 
 ```bash
-git clone <repo-url>
-cd <repo-folder>
+git clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git
+cd product-ops-sandbox-public
 python scripts/analyze_feedback.py
 python scripts/score_roadmap.py
 python scripts/summarize_metrics.py
 ```
-
-Replace `<repo-url>` with the GitHub URL for this repo.
 
 The `ai_*.py` scripts run in mock mode: they copy prepared examples so you can see the output shape
 with no AI and no API key. They are a deterministic demo, not the real AI workflow (that is the
@@ -176,7 +183,8 @@ python -m unittest discover -s tests
 
 ## Adapt It To Your Own Product
 
-Use fictional, synthetic, anonymized, or approved data only.
+Use fictional, synthetic, anonymized, or approved data in public work. In a private company
+environment, use real data only if you have permission and the data handling controls are clear.
 
 Start small:
 
@@ -328,7 +336,7 @@ JSON makes AI output easier to validate, compare, review, and reuse in another w
 The public repo is organized around how a reader learns and uses the system.
 
 ```text
-product-ops-sandbox/
+product-ops-sandbox-public/
 |-- README.md
 |-- START_HERE.md
 |-- AGENTS.md                 (how any AI agent runs the workflows)
@@ -340,13 +348,39 @@ product-ops-sandbox/
 |   |-- 01-product-context.md
 |   |-- 02-success-metrics.md
 |   `-- 03-how-to-run-the-workflows.md
-|-- input-notes/             (support-ticket-batch, user-interview-transcript, weekly packet)
+|-- input-notes/
+|   |-- README.md
+|   |-- support-ticket-batch.md
+|   |-- user-interview-transcript.md
+|   `-- weekly-product-ops-packet.md
 |-- sample-data/
-|-- scripts/                 (deterministic + mock-demo Python)
+|   |-- customer_feedback.csv
+|   |-- product_events.csv
+|   `-- roadmap_items.csv
+|-- scripts/
+|   |-- analyze_feedback.py
+|   |-- score_roadmap.py
+|   |-- summarize_metrics.py
+|   `-- ai_*.py
 |-- tests/
-|-- outputs/                 (.json drafts + .md summaries)
-|-- ai-workflows/            (prompts, schemas, sample inputs/outputs)
-|-- agent-skills/            (reusable skill packages)
+|   `-- test_scripts.py
+|-- outputs/
+|   |-- README.md
+|   |-- feedback_theme_summary.md
+|   |-- roadmap_priority_scores.md
+|   |-- metrics_snapshot.md
+|   `-- ai_* (.json drafts + .md summaries)
+|-- ai-workflows/
+|   |-- README.md
+|   |-- prompts/
+|   |-- schemas/
+|   `-- sample-outputs/
+|-- agent-skills/
+|   |-- README.md
+|   |-- product-ops-signal-triage/
+|   |-- product-ops-research-synthesis/
+|   |-- product-ops-opportunity-mapping/
+|   `-- product-ops-weekly-review/
 |-- .claude/                 (Claude Code skills + commands)
 |-- .cursor/                 (Cursor rules)
 |-- .github/                 (Copilot instructions + prompt files)
@@ -373,21 +407,26 @@ It models the workflows those tool categories often support:
 - release communication
 - AI-assisted synthesis
 
+## License
+
+This project uses the MIT License. That means people can copy, adapt, and reuse the sandbox as long
+as they keep the license notice. You still own your own product data, notes, and private adaptations.
+Do not publish sensitive data in this repo or any public fork.
+
 ## Security And Data Handling
 
-This repo is designed for public learning.
+This repo is designed for public learning. The sample files are fictional.
 
-Do not add:
+The rule is simple:
 
-- real customer data
-- real interview transcripts
-- private company notes
-- API keys
-- tokens
-- passwords
-- confidential business information
+```text
+Public repo = fictional, synthetic, anonymized, or approved examples.
+Private company copy = real data only if you have permission and controls.
+```
 
-Use fictional, synthetic, fully anonymized, or approved examples only.
+Do not commit or publish sensitive data, credentials, or confidential business information. If you
+adapt the sandbox for real customer notes, keep that work in a private repo or local ignored files,
+and review `SECURITY.md` before sharing anything.
 
 ## Extending The Sandbox
 
