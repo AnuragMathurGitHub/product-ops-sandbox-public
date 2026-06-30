@@ -1,0 +1,9 @@
+feedback_id,source,product_area,theme,severity,linked_metric,summary
+F-001,Support,Check-in,Failed check-in,High,Check-in Failed Count,QR scanner failed at partner gym and the user was unsure whether the visit counted.
+F-002,Support,Booking,Unclear booking confirmation,High,Class Booking Completion Rate,User booked a class but did not receive a clear confirmation before arriving.
+F-003,Support,Search,Low search relevance,Medium,Search Result Click Rate,Search results for yoga near the office were too far away.
+F-004,Customer Success,Activation,Low benefit activation,Medium,Membership Activation Rate,Employer asked why eligible employees were not activating after launch.
+F-005,Support,Partner data,Provider value clarity,Medium,First Successful Visit Rate,User only found value after discovering a nearby gym with no extra fees.
+F-006,Support,Booking,Cancellation policy uncertainty,Medium,Booking Cancellation Rate,User cancelled because cancellation rules were unclear.
+F-007,Customer Success,Habit,Post-launch engagement drop,Medium,Weekly Active Users,Usage dropped after the first week despite a launch reminder.
+F-008,Support,Check-in,Failed check-in,High,Check-in Failed Count,Partner could not verify a check-in and asked the user to pay separately.

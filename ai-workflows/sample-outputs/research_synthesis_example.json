@@ -1,0 +1,23 @@
+{
+  "themes": [
+    {
+      "theme": "First value moment depends on local relevance",
+      "evidence": "Users describe the benefit as useful only after finding a nearby partner that fits their routine.",
+      "implication": "Search relevance and provider quality shape whether new users build confidence."
+    },
+    {
+      "theme": "Operational failures reduce trust",
+      "evidence": "Check-in and booking uncertainty create moments where users are unsure whether the benefit worked.",
+      "implication": "Reliability issues can make the employer benefit feel risky or inconvenient."
+    }
+  ],
+  "insights": [
+    "The first successful visit is a stronger product health signal than activation alone.",
+    "Booking and check-in clarity should be reviewed together because both affect confidence."
+  ],
+  "recommended_review_questions": [
+    "Which users fail to reach a first successful visit after activation?",
+    "Which partners create the highest share of support contacts?",
+    "What launch messages help employees take the next useful action?"
+  ]
+}

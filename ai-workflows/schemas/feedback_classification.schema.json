@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FeedbackClassification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["items", "summary"],
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "product_area",
+          "theme",
+          "severity",
+          "linked_metric",
+          "evidence_summary",
+          "possible_opportunity",
+          "confidence"
+        ],
+        "properties": {
+          "source_id": { "type": "string" },
+          "product_area": { "type": "string" },
+          "theme": { "type": "string" },
+          "severity": { "type": "string" },
+          "linked_metric": { "type": "string" },
+          "evidence_summary": { "type": "string" },
+          "possible_opportunity": { "type": "string" },
+          "confidence": { "type": "string" }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "top_themes",
+        "highest_severity_items",
+        "recommended_review_questions"
+      ],
+      "properties": {
+        "top_themes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "highest_severity_items": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommended_review_questions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

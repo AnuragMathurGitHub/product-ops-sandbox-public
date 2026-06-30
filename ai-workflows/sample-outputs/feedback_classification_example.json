@@ -1,0 +1,91 @@
+{
+  "items": [
+    {
+      "source_id": "NOTE-001",
+      "product_area": "Check-in",
+      "theme": "Failed check-in",
+      "severity": "High",
+      "linked_metric": "Check-in Failed Count",
+      "evidence_summary": "The employee could not check in because the partner gym QR scanner failed twice.",
+      "possible_opportunity": "Improve check-in reliability and make failed check-in recovery clearer for users and partners.",
+      "confidence": "High"
+    },
+    {
+      "source_id": "NOTE-002",
+      "product_area": "Booking",
+      "theme": "Unclear booking confirmation",
+      "severity": "High",
+      "linked_metric": "Class Booking Completion Rate",
+      "evidence_summary": "The user did not receive a clear booking confirmation and arrived after the class was already full.",
+      "possible_opportunity": "Make booking confirmation states clearer across the app and follow-up messages.",
+      "confidence": "High"
+    },
+    {
+      "source_id": "NOTE-003",
+      "product_area": "Search",
+      "theme": "Low search relevance",
+      "severity": "Medium",
+      "linked_metric": "Search Result Click Rate",
+      "evidence_summary": "Users searching for yoga near the office saw top results that were too far away or outside commute routes.",
+      "possible_opportunity": "Improve location relevance and commute-aware ranking for class and gym search.",
+      "confidence": "High"
+    },
+    {
+      "source_id": "NOTE-004",
+      "product_area": "Activation",
+      "theme": "Low benefit activation",
+      "severity": "Medium",
+      "linked_metric": "Membership Activation Rate",
+      "evidence_summary": "An HR admin asked why only a small share of eligible employees activated the benefit after launch.",
+      "possible_opportunity": "Improve launch communication, activation reminders, and admin visibility into activation blockers.",
+      "confidence": "Medium"
+    },
+    {
+      "source_id": "NOTE-005",
+      "product_area": "Partner data",
+      "theme": "Provider value clarity",
+      "severity": "Medium",
+      "linked_metric": "First Successful Visit Rate",
+      "evidence_summary": "The benefit became useful only after the user found a nearby gym with no extra fees.",
+      "possible_opportunity": "Surface nearby eligible locations and fee expectations more clearly before the first visit.",
+      "confidence": "Medium"
+    },
+    {
+      "source_id": "NOTE-006",
+      "product_area": "Booking",
+      "theme": "Cancellation policy uncertainty",
+      "severity": "Medium",
+      "linked_metric": "Booking Cancellation Rate",
+      "evidence_summary": "The user cancelled because the cancellation policy was unclear and they did not want to be charged.",
+      "possible_opportunity": "Show cancellation rules at booking time and before cancellation decisions.",
+      "confidence": "High"
+    },
+    {
+      "source_id": "NOTE-007",
+      "product_area": "Habit",
+      "theme": "Post-launch engagement drop",
+      "severity": "Medium",
+      "linked_metric": "Weekly Active Users",
+      "evidence_summary": "Employees understood the benefit better after a launch reminder, but usage still dropped after the first week.",
+      "possible_opportunity": "Create post-launch nudges that help employees find a relevant first activity and build repeat usage.",
+      "confidence": "Medium"
+    }
+  ],
+  "summary": {
+    "top_themes": [
+      "Check-in reliability",
+      "Booking clarity",
+      "Search relevance",
+      "Activation and post-launch engagement"
+    ],
+    "highest_severity_items": [
+      "NOTE-001",
+      "NOTE-002"
+    ],
+    "recommended_review_questions": [
+      "Which partners or devices account for the highest share of failed check-ins?",
+      "Where in the booking flow do users lose confidence that a class is confirmed?",
+      "Are low activation and first-week usage drops concentrated by employer, location, or launch communication pattern?"
+    ]
+  }
+}

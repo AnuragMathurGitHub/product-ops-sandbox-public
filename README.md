@@ -22,7 +22,7 @@ The point is not to build a production platform. The point is to make the workfl
 | Goal | What To Do |
 | --- | --- |
 | Understand Product Ops | Read the README, system map, and generated outputs |
-| Prepare for an interview | Walk through the fictional product, metrics, roadmap, OKRs, and AI workflow |
+| Explain the workflow to a team | Walk through the fictional product, metrics, roadmap, OKRs, and AI workflow |
 | Run the sample workflow | Clone or download the repo and run the Python scripts |
 | Use an AI assistant | Ask ChatGPT, Codex, Claude, Cursor, or Copilot to explain, adapt, or run parts of the repo |
 | Adapt it to your own product | Replace the fictional data with approved, anonymized product signals |
@@ -33,7 +33,7 @@ The repo separates inputs by type.
 
 | Input Type | Folder | Use It For |
 | --- | --- | --- |
-| Messy notes and transcripts | `input-notes/` | Support tickets, sales notes, customer success notes, interview transcripts, meeting summaries |
+| Unstructured product notes | `input-notes/` | Support tickets, sales notes, customer success notes, interview transcripts, meeting summaries |
 | Structured data | `sample-data/` | CSV files for product events, feedback records, roadmap items, and OKRs |
 | Generated results | `outputs/` | Markdown and JSON summaries created by scripts or AI-assisted workflows |
 | AI instructions | `ai-workflows/` | Prompts, schemas, and examples for qualitative synthesis |
@@ -46,7 +46,7 @@ Start with one input at a time. For example, add one anonymized support-ticket b
 | If You Are... | Start With | You Do Not Need |
 | --- | --- | --- |
 | A product manager or operator | `START_HERE.md` and `outputs/` | Python knowledge |
-| A hiring manager or recruiter | This README and the sample outputs | Local setup |
+| A reader reviewing the workflow | This README and the sample outputs | Local setup |
 | A learner | `docs/00-product-ops-system-map.md` | Prior Product Ops experience |
 | A technical reviewer | `scripts/`, `tests/`, and `sample-data/` | AI API access |
 | An AI workflow builder | `ai-workflows/` and `agent-skills/` | Real customer data |
@@ -76,11 +76,13 @@ You can use this repo without writing code.
 1. Open the repo on GitHub.
 2. Read this README.
 3. Open `START_HERE.md`.
-4. Open `outputs/` to see the finished examples.
-5. Open `ai-workflows/prompts/`.
-6. Copy a prompt into ChatGPT, Claude, Codex, or another approved assistant.
-7. Add fictional, anonymized, or approved notes.
-8. Ask the assistant to classify, summarize, or map opportunities.
+4. Open `outputs/` to see finished examples.
+5. Open `input-notes/` to see where qualitative notes belong.
+6. Open `ai-workflows/prompts/` to see the instructions an assistant can follow.
+7. Add fictional, anonymized, or approved notes to your own copy of `input-notes/`.
+8. Ask your assistant to read the prompt and notes from the repo, then classify, summarize, or map opportunities.
+
+If your assistant cannot access files directly, copy the relevant prompt and anonymized note content into the chat manually.
 
 Useful prompts to ask your assistant:
 
@@ -106,17 +108,17 @@ You do not need an API key to use the AI workflow examples.
 
 | Tool Type | How To Use This Repo |
 | --- | --- |
-| ChatGPT or Claude chat | Copy a prompt from `ai-workflows/prompts/` and paste anonymized notes |
-| Codex, Claude Code, Cursor, or Copilot | Open the repo and ask the assistant to explain, edit, or run the workflow |
+| ChatGPT or Claude chat | Use prompts from `ai-workflows/prompts/`; paste note content only if the assistant cannot access files |
+| Codex, Claude Code, Cursor, or Copilot | Open the repo and ask the assistant to read `input-notes/`, prompts, scripts, and outputs |
 | VS Code with Copilot | Ask Copilot to explain scripts, sample data, and output files |
-| API-based setup | Use optional live mode only with approved data and credentials |
+| API-based setup | Use this repo as the file, prompt, and schema pattern for approved internal integrations |
 
 Do not paste sensitive customer data, private company notes, or personal information into public AI tools. Use fictional, anonymized, or approved examples.
 
 Good first request:
 
 ```text
-Read the README and explain the Product Ops workflow in simple terms. Then show me the next three files I should open.
+Read the README and START_HERE.md. Then explain which files I should open first and why.
 ```
 
 ## Run It Locally
@@ -125,7 +127,7 @@ If you are comfortable with a terminal:
 
 ```bash
 git clone <repo-url>
-cd product-ops-sandbox
+cd <repo-folder>
 python scripts/analyze_feedback.py
 python scripts/score_roadmap.py
 python scripts/summarize_metrics.py
@@ -133,7 +135,7 @@ python scripts/summarize_metrics.py
 
 Replace `<repo-url>` with the GitHub URL for this repo.
 
-The AI-assisted scripts run in mock mode by default. They do not require an API key.
+The AI-assisted scripts run in mock mode. They do not require an API key.
 
 ```bash
 python scripts/ai_classify_feedback.py
@@ -142,7 +144,7 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_generate_weekly_summary.py
 ```
 
-Optional live AI mode can be used with an approved API key and model endpoint. Mock mode is the default so the repo stays safe to run.
+Teams can extend the same pattern with approved API keys, model endpoints, and data controls in their own environment. Mock mode keeps this public repo safe to run.
 
 ## Adapt It To Your Own Product
 
@@ -243,7 +245,7 @@ That creates practical Product Ops questions:
 | Prioritization | How roadmap candidates can be compared without replacing judgment |
 | OKRs | How product work connects to measurable outcomes |
 | Release communication | How teams prepare for launch and post-release learning |
-| AI-assisted workflows | How AI can help synthesize messy text with human review |
+| AI-assisted workflows | How AI can help synthesize qualitative notes with human review |
 | Agent skills | How repeatable AI workflows can be packaged for reuse |
 
 ## Two Operating Lanes
@@ -253,7 +255,7 @@ This repo separates the work into two lanes.
 | Lane | Use For | Why |
 | --- | --- | --- |
 | Deterministic Python | Metrics, counts, scoring, repeatable summaries | The answer should be calculated |
-| AI-assisted synthesis | Interviews, support tickets, sales notes, customer success notes | The input is messy language |
+| AI-assisted synthesis | Interviews, support tickets, sales notes, customer success notes | The input is qualitative language |
 
 Simple rule:
 
@@ -273,8 +275,8 @@ The scripts generate readable outputs.
 | `roadmap_priority_scores.md` | Roadmap candidates scored with a transparent formula |
 | `metrics_snapshot.md` | Basic product usage metrics |
 | `ai_feedback_classification.json` | Structured AI-assisted feedback classification |
-| `ai_research_synthesis.json` | AI-assisted research synthesis |
-| `ai_opportunity_map.json` | Product opportunities from messy signals |
+| `ai_research_synthesis.json` | Structured AI-assisted research synthesis |
+| `ai_opportunity_map.json` | Product opportunities from qualitative signals |
 | `ai_weekly_product_insights.md` | Weekly Product Ops summary |
 
 ## Why JSON Appears In The AI Examples
@@ -291,7 +293,7 @@ Example:
 }
 ```
 
-JSON makes AI output easier to validate, compare, review, and reuse in another workflow.
+JSON makes AI output easier to validate, compare, review, and reuse in another workflow. When a summary is meant for humans, the repo also uses Markdown files.
 
 ## Repository Map
 
@@ -301,19 +303,21 @@ The public repo is organized around how a reader learns and uses the system.
 product-ops-sandbox/
 |-- README.md
 |-- START_HERE.md
-|-- WALKTHROUGH.md
 |-- SECURITY.md
-|-- LICENSE
+|-- requirements.txt
 |-- docs/
+|   |-- 00-product-ops-system-map.md
+|   |-- 01-product-context.md
+|   `-- 02-success-metrics.md
 |-- input-notes/
+|   |-- README.md
+|   `-- support-ticket-batch.md
 |-- sample-data/
 |-- scripts/
 |-- outputs/
 |-- ai-workflows/
 |-- agent-skills/
-|-- tests/
-|-- requirements.txt
-`-- requirements-ai.txt
+`-- .gitignore
 ```
 
 ## What This Is Not

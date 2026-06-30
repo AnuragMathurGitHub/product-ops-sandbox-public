@@ -1,0 +1,30 @@
+{
+  "opportunities": [
+    {
+      "opportunity": "Improve check-in recovery",
+      "customer_problem": "Users lose trust when a partner cannot verify a visit.",
+      "linked_metric": "Check-in Failed Count",
+      "evidence": "Support notes mention QR scanner failures and manual entry.",
+      "possible_solution_direction": "Add clearer failed-check-in recovery and partner troubleshooting guidance."
+    },
+    {
+      "opportunity": "Make booking status unambiguous",
+      "customer_problem": "Users are unsure whether a class booking is confirmed.",
+      "linked_metric": "Class Booking Completion Rate",
+      "evidence": "A user arrived for a class without clear confirmation and found it full.",
+      "possible_solution_direction": "Improve confirmation states, reminders, and cancellation messaging."
+    },
+    {
+      "opportunity": "Help employees find a relevant first visit",
+      "customer_problem": "The benefit feels useful only after users find a nearby option that fits their routine.",
+      "linked_metric": "First Successful Visit Rate",
+      "evidence": "Notes mention local relevance, extra fees, and post-launch drop-off.",
+      "possible_solution_direction": "Improve location-aware recommendations and first-week guidance."
+    }
+  ],
+  "review_questions": [
+    "Which opportunity is most connected to renewal confidence?",
+    "Which fix can be measured within one release cycle?",
+    "Which signal needs more evidence before roadmap commitment?"
+  ]
+}

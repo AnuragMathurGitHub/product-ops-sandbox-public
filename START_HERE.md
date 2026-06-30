@@ -2,7 +2,7 @@
 
 This guide walks you through the Product Ops Sandbox in the order a first-time reader should use it.
 
-You do not need to know Python to start. You can read the examples, use the AI prompts, or ask an AI assistant to guide you through the repo.
+You do not need to know Python to start. You can read the examples, use an AI assistant, or run the scripts later if you want.
 
 By the end, you should understand how product feedback, user research, product data, prioritization, OKRs, release communication, and AI-assisted workflows connect.
 
@@ -28,11 +28,13 @@ Choose the path that matches how you want to use the repo.
 
 | Path | Best For | What You Need |
 | --- | --- | --- |
-| Read only | Hiring managers, recruiters, PMs, operators | GitHub browser |
-| AI-assisted | PMs, Product Ops, learners, non-engineers | ChatGPT, Codex, Claude, Cursor, Copilot, or another assistant |
+| Read only | PMs, operators, learners, curious readers | GitHub browser |
+| AI-assisted | Product Ops, PMs, non-engineers | ChatGPT, Codex, Claude, Cursor, Copilot, or another assistant |
 | Technical | Analysts, engineers, technical PMs | Python and a terminal |
 
 If you are not sure, start with **Read only**.
+
+If you do not have the files yet, go back to the README and follow **How To Get The Files**.
 
 ## Step 1: Understand The Product
 
@@ -76,17 +78,38 @@ customer feedback
 
 This is the core idea of the repo.
 
-## Step 3: Look At The Inputs
+## Step 3: Know Where Inputs Go
 
 The repo separates inputs by type.
 
-| Input Type | Folder | Example |
+| Input Type | Where It Goes | Example Files |
 | --- | --- | --- |
-| Structured data | `sample-data/` | Product events, feedback records, roadmap items, OKRs |
-| Messy notes | `input-notes/` | Support tickets, sales notes, customer success notes, interview transcripts |
-| AI instructions | `ai-workflows/` | Prompts, schemas, sample AI outputs |
+| Unstructured product notes | `input-notes/` | Support notes, sales notes, customer success notes, interview transcripts |
+| Structured data | `sample-data/` | CSV files for events, feedback records, roadmap items, OKRs |
+| AI workflow instructions | `ai-workflows/` | Prompts, schemas, and sample AI outputs |
 
-For now, think of structured data as spreadsheet-like data and messy notes as human language.
+Use this rule:
+
+```text
+Notes and transcripts go in input-notes/.
+Spreadsheet-like data goes in sample-data/.
+Generated results go in outputs/.
+```
+
+### What Counts As An Input Note?
+
+An input note is any qualitative product signal written in human language.
+
+Examples:
+
+- support ticket batch
+- sales call notes
+- customer success meeting notes
+- user interview transcript
+- partner feedback
+- app review excerpts
+
+Do not use sensitive or private data. Use fictional, anonymized, or approved notes only.
 
 ## Step 4: Look At The Outputs
 
@@ -94,46 +117,68 @@ Open `outputs/`.
 
 The outputs show what the workflow produces.
 
-| Output | What It Helps Answer |
-| --- | --- |
-| `metrics_snapshot.md` | What is happening in the product? |
-| `feedback_theme_summary.md` | What feedback themes repeat? |
-| `roadmap_priority_scores.md` | Which roadmap items look strongest? |
-| `ai_feedback_classification.json` | How can messy feedback become structured themes? |
-| `ai_opportunity_map.json` | Which product opportunities emerge from the signals? |
-| `ai_weekly_product_insights.md` | What would a weekly Product Ops readout look like? |
+| Output | What It Helps Answer | Human-Readable? |
+| --- | --- | --- |
+| `metrics_snapshot.md` | What is happening in the product? | Yes |
+| `feedback_theme_summary.md` | What feedback themes repeat? | Yes |
+| `roadmap_priority_scores.md` | Which roadmap items look strongest? | Yes |
+| `ai_feedback_classification.json` | How can qualitative feedback become structured themes? | Structured for review |
+| `ai_opportunity_map.json` | Which product opportunities emerge from the signals? | Structured for review |
+| `ai_weekly_product_insights.md` | What would a weekly Product Ops readout look like? | Yes |
 
-You can understand the project by reading the outputs before running anything.
+Why JSON?
+
+```text
+JSON keeps AI output structured.
+Markdown makes summaries easy for people to read.
+```
+
+For example, JSON is useful when an assistant or script needs fields like `theme`, `severity`, and `linked_metric`. Markdown is better for final summaries and team updates.
 
 ## Step 5: Try One AI-Assisted Workflow
 
 You do not need an API key for this.
 
-Use your preferred assistant: ChatGPT, Codex, Claude, Claude Code, Cursor, GitHub Copilot, or another approved tool.
+The workflow is folder-based:
+
+```text
+input-notes/
+-> ai-workflows/prompts/
+-> outputs/
+```
 
 Try this:
 
-1. Open `ai-workflows/prompts/classify_feedback.md`.
-2. Open one sample note file from `input-notes/`.
-3. Copy both into your assistant.
-4. Ask it to classify the notes.
-5. Compare the result with the sample output.
+1. Open the sample note file: `input-notes/support-ticket-batch.md`.
+2. Open the matching prompt in `ai-workflows/prompts/`.
+3. Ask your assistant to read both files from the repo.
+4. Ask it to write the result into `outputs/` or show the result in chat.
+5. Review the result before using it for decisions.
 
-Example request:
+To use your own notes later, add a new `.md` file inside `input-notes/`. Keep the content fictional, anonymized, or approved.
+
+Example request for Codex, Claude Code, Cursor, or Copilot:
 
 ```text
-Use this prompt to classify the following anonymized support notes.
-Return themes, severity, linked metrics, and possible product opportunities.
+Read ai-workflows/prompts/classify_feedback.md and the notes in input-notes/.
+Classify the notes into product area, theme, severity, linked metric, evidence summary, and possible opportunity.
+Write the draft output to outputs/ai_feedback_classification.json.
 Do not invent facts.
 ```
 
-Important: use fictional, anonymized, or approved notes only.
+If you are using a chat-only assistant that cannot access files, copy the prompt and anonymized note content into the chat manually.
 
 ## Step 6: Run The Scripts
 
-This step is optional.
+This step is optional, but it shows the deterministic workflow.
 
-If you are comfortable with a terminal, run:
+| Script | Input | Output | Why Run It |
+| --- | --- | --- | --- |
+| `scripts/analyze_feedback.py` | `sample-data/customer_feedback.csv` | `outputs/feedback_theme_summary.md` | See repeated feedback themes and severity counts |
+| `scripts/score_roadmap.py` | `sample-data/roadmap_items.csv` | `outputs/roadmap_priority_scores.md` | Compare roadmap candidates with a transparent formula |
+| `scripts/summarize_metrics.py` | `sample-data/product_events.csv` | `outputs/metrics_snapshot.md` | Create a basic product metrics snapshot |
+
+Run:
 
 ```bash
 python scripts/analyze_feedback.py
@@ -141,7 +186,22 @@ python scripts/score_roadmap.py
 python scripts/summarize_metrics.py
 ```
 
-Then run the mock AI workflows:
+These scripts are deterministic. If the input files do not change, the outputs should not change.
+
+## Step 7: Understand Mock AI Workflows
+
+The mock AI scripts do not call a live AI model.
+
+They copy prepared example outputs into `outputs/` so you can see the workflow without needing an API key.
+
+| Script | Input Idea | Output | Why It Exists |
+| --- | --- | --- | --- |
+| `scripts/ai_classify_feedback.py` | Notes from `input-notes/` | `outputs/ai_feedback_classification.json` | Shows how qualitative notes can become structured feedback themes |
+| `scripts/ai_synthesize_research.py` | Interview notes | `outputs/ai_research_synthesis.json` | Shows how research can become themes, insights, and implications |
+| `scripts/ai_detect_opportunities.py` | Combined signals | `outputs/ai_opportunity_map.json` | Shows how signals can become opportunity statements |
+| `scripts/ai_generate_weekly_summary.py` | Metrics plus themes | `outputs/ai_weekly_product_insights.md` | Shows a weekly Product Ops readout |
+
+Run:
 
 ```bash
 python scripts/ai_classify_feedback.py
@@ -150,23 +210,34 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_generate_weekly_summary.py
 ```
 
-The mock AI scripts use sample outputs. They do not need an API key.
+Live AI mode can be added with approved data, credentials, and model access. Mock mode is the safe default.
 
-## Step 7: Adapt It To Your Product
+## Step 8: Adapt It To Your Product
 
 Start small.
 
-Do not try to replace everything at once.
+Do not replace everything at once.
 
 Recommended order:
 
-1. Update the product context.
-2. Update the success metrics.
-3. Replace one structured CSV file.
-4. Add one anonymized note file.
-5. Run or ask an assistant to run one workflow.
-6. Review the output.
-7. Adjust the taxonomy, prompts, and roadmap assumptions.
+| Step | What To Change | Where |
+| --- | --- | --- |
+| 1 | Product context | `docs/01-product-context.md` |
+| 2 | Success metrics | `docs/02-success-metrics.md` |
+| 3 | One structured CSV | `sample-data/` |
+| 4 | One anonymized note file | `input-notes/` |
+| 5 | One AI prompt | `ai-workflows/prompts/` |
+| 6 | One output review | `outputs/` |
+| 7 | Taxonomy or roadmap assumptions | `docs/` and `agent-skills/` |
+
+The safest first adaptation is:
+
+```text
+Replace one note file in input-notes/.
+Ask an assistant to classify it.
+Review the output.
+Then decide what to change next.
+```
 
 ## Useful Assistant Requests
 
@@ -181,15 +252,15 @@ Walk me through this repo one step at a time. Stop after each step and ask if I 
 ```
 
 ```text
+Look at input-notes/ and tell me which workflow should process each note file.
+```
+
+```text
+Run the deterministic scripts, explain what each output means, and tell me what product decisions they support.
+```
+
+```text
 Help me adapt this sandbox for my product. Ask me the minimum questions needed before changing files.
-```
-
-```text
-Use the AI workflow prompts to classify these anonymized customer notes.
-```
-
-```text
-Run the scripts, explain the outputs, and tell me what product decisions they support.
 ```
 
 ## What To Read Next
@@ -199,6 +270,7 @@ Run the scripts, explain the outputs, and tell me what product decisions they su
 | Understand the full system | `docs/00-product-ops-system-map.md` |
 | Understand the fictional product | `docs/01-product-context.md` |
 | Understand metrics | `docs/02-success-metrics.md` |
+| Understand qualitative inputs | `input-notes/README.md` |
 | Understand AI-assisted workflows | `ai-workflows/README.md` |
 | Reuse workflows with an agent | `agent-skills/README.md` |
 | Check data and AI safety | `SECURITY.md` |
@@ -209,7 +281,7 @@ Keep this in mind:
 
 ```text
 Structured data goes through scripts.
-Messy notes go through AI-assisted synthesis.
+Qualitative notes go through AI-assisted synthesis.
 Humans review the output.
 Teams decide what to do.
 ```
