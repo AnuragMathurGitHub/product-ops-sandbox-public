@@ -29,6 +29,20 @@ The point is not to build a production platform. The point is to make the workfl
 | Use an AI assistant | Ask ChatGPT, Codex, Claude, Cursor, or Copilot to explain, adapt, or run parts of the repo |
 | Adapt it to your own product | Replace the fictional data with approved, anonymized product signals |
 
+## Where Your Inputs Go
+
+The public version will separate inputs by type.
+
+| Input Type | Planned Folder | Use It For |
+| --- | --- | --- |
+| Messy notes and transcripts | `input-notes/` | Support tickets, sales notes, customer success notes, interview transcripts, meeting summaries |
+| Structured data | `sample-data/` | CSV files for product events, feedback records, roadmap items, and OKRs |
+| Generated results | `outputs/` | Markdown and JSON summaries created by scripts or AI-assisted workflows |
+| AI instructions | `ai-workflows/` | Prompts, schemas, and examples for qualitative synthesis |
+| Reusable agent workflows | `agent-skills/` | Skill packages that AI coding assistants can reuse |
+
+Start with one input at a time. For example, add one anonymized support-ticket batch to `input-notes/`, run or ask an assistant to run the matching workflow, then review the output before adding more.
+
 ## Choose Your Path
 
 | If You Are... | Start With | You Do Not Need |
@@ -157,6 +171,8 @@ Most teams will need to adjust:
 | AI prompts | Product-specific language and guardrails |
 | Agent skills | Taxonomy, output format, review rules |
 
+Later, teams can extend the same structure with approved API connections or internal data exports. The base repo starts with files because files are easier to inspect, safer to share, and simpler for learning.
+
 ## Fictional Product Example
 
 The sandbox uses a fictional product called **FitPass Demo**.
@@ -266,6 +282,7 @@ product-ops-sandbox/
 |-- SECURITY.md
 |-- LICENSE
 |-- docs/
+|-- input-notes/
 |-- sample-data/
 |-- scripts/
 |-- outputs/
@@ -311,6 +328,21 @@ Do not add:
 - confidential business information
 
 Use fictional, synthetic, fully anonymized, or approved examples only.
+
+## Extending The Sandbox
+
+This repo starts with files so the workflow is easy to understand.
+
+Possible extensions:
+
+- connect approved product analytics exports
+- import anonymized support tickets
+- add customer success meeting summaries
+- connect to internal data through approved APIs
+- add dashboards or scheduled weekly summaries
+- customize the agent skills for a specific product or company
+
+If you adapt the sandbox and need help deciding what to change first, open an issue or contact the repo creator.
 
 ## Current Build Status
 
