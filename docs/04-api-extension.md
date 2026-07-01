@@ -24,8 +24,9 @@ a private script or service
 -> human reviews the result
 ```
 
-The key is not used by the public sample scripts. The public `scripts/ai_*.py` files are mock demos:
-they copy prepared outputs and do not call any AI provider.
+The key is not used by the mock demo scripts (for example `scripts/ai_classify_feedback.py`), which
+copy prepared outputs and do not call any AI provider. The one script that does use your key is the
+optional `scripts/ai_real.py` pipeline described below.
 
 ## When You Would Use The API Path
 
@@ -81,12 +82,81 @@ Do not put API keys in:
 - note files
 - committed `.env` files
 
-## Where Private API Code Would Go
+## Run The Included API Pipeline
 
-This public repo does not include a live API script because it should stay safe, provider neutral,
-and easy to run.
+This repo ships one optional live script, `scripts/ai_real.py`. It reads the same prompts, schemas,
+and notes the other lanes use, calls a real model with your own key, and writes drafts into
+`outputs/`. It is off the critical path: the repo still runs with no key through the agent lane and
+the mock demo.
 
-If you add live API code for your own team, use one of these patterns:
+### Choose A Provider
+
+The script is provider neutral, like the agent lane. Set `PRODUCT_OPS_PROVIDER`:
+
+| `PRODUCT_OPS_PROVIDER` | Key variable | Python package | Model |
+| --- | --- | --- | --- |
+| `anthropic` (default) | `ANTHROPIC_API_KEY` | `anthropic` | defaults to `claude-opus-4-8` |
+| `openai` | `OPENAI_API_KEY` | `openai` | set `PRODUCT_OPS_MODEL` (for example `gpt-5`) |
+| `openrouter` | `OPENROUTER_API_KEY` | `openai` | set `PRODUCT_OPS_MODEL` (for example `anthropic/claude-opus-4-8`) |
+
+OpenAI and OpenRouter share the `openai` package: OpenRouter is OpenAI-API compatible, so the script
+just points it at OpenRouter's base URL. Install only the package for the provider you use; the
+script imports just that one.
+
+### Anthropic (default)
+
+```bash
+pip install anthropic
+export ANTHROPIC_API_KEY=your-anthropic-key    # your own key; never commit it
+python scripts/ai_real.py                      # run every workflow
+python scripts/ai_real.py classify_feedback    # or run a single workflow
+```
+
+Windows PowerShell:
+
+```powershell
+pip install anthropic
+$env:ANTHROPIC_API_KEY = "your-anthropic-key"
+python scripts/ai_real.py
+```
+
+To use a different Anthropic model, set `PRODUCT_OPS_MODEL` (for example `claude-sonnet-4-6`).
+
+### OpenAI
+
+Set your `OPENAI_API_KEY` first (see "Where The Key Would Live" above), then:
+
+```bash
+pip install openai
+PRODUCT_OPS_PROVIDER=openai PRODUCT_OPS_MODEL=gpt-5 python scripts/ai_real.py
+```
+
+### OpenRouter
+
+Set your `OPENROUTER_API_KEY` first (same as above), then:
+
+```bash
+pip install openai
+PRODUCT_OPS_PROVIDER=openrouter PRODUCT_OPS_MODEL=anthropic/claude-opus-4-8 python scripts/ai_real.py
+```
+
+OpenAI and OpenRouter have no built-in default model, so `PRODUCT_OPS_MODEL` is required for them.
+Check your provider's current model names; the examples above may change over time.
+
+### Notes
+
+If no key is set, the script does not crash. It prints how to set a key and reminds you the agent and
+mock lanes need none. Run the deterministic scripts first (see `START_HERE.md`, Step 6) if `outputs/`
+is empty, because the review and weekly workflows read files those scripts produce.
+
+Available workflow names: `classify_feedback`, `synthesize_research`, `detect_opportunities`,
+`align_okrs`, `plan_release_measurement`, `review_product_planning`, `weekly_product_insights`.
+
+## Where More Private API Code Would Go
+
+`scripts/ai_real.py` is intentionally small and safe to publish: it holds no key, makes no network
+call until you set one, and keeps the Product Ops logic in the shared prompts and schemas. For
+heavier or company-specific automation, keep that code private. Use one of these patterns:
 
 | Pattern | Use When |
 | --- | --- |

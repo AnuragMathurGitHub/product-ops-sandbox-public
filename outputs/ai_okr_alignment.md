@@ -1,6 +1,6 @@
 # OKR Alignment
 
-This is the human readable companion to `ai_okr_alignment.json`. It is a fictional mock AI output for review.
+An easy-to-read companion to `ai_okr_alignment.json`. It is a fictional sample output for the Product Ops Sandbox.
 
 ## Strongest Alignment
 

@@ -6,7 +6,7 @@ This folder contains generated or example results from the sandbox workflows.
 
 | Format | Best For | Example |
 | --- | --- | --- |
-| Markdown | Human readable summaries and team updates | Weekly readouts, metric summaries |
+| Markdown | Easy-to-read summaries and team updates | Weekly readouts, metric summaries |
 | JSON | Structured drafts that can be reviewed, validated, or reused | Feedback classification |
 
 JSON is not meant to be less human. It is meant to keep fields consistent so an assistant, script, or reviewer can compare the same attributes across notes.

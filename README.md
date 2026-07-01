@@ -126,7 +126,7 @@ You do not need an API key. Pick the lane that fits you.
 | Read only | Open the finished files in `outputs/` | No | No |
 | Agent | Your AI assistant reads a prompt and your notes and writes the result | Yes | No |
 | Mock demo | `python scripts/ai_*.py` copies a prepared example so you can see the output shape | No | No |
-| API extension | A private script or service calls a model in your own environment | Yes | Yes |
+| API extension | Run `python scripts/ai_real.py` with your own key (Anthropic, OpenAI, or OpenRouter) | Yes | Yes |
 
 The **Agent** lane is the main one: real synthesis, your own assistant, no key. **Mock** is a
 deterministic demo. The repo ships an `AGENTS.md` so coding assistants have one clear workflow map.
@@ -168,9 +168,8 @@ python scripts/summarize_okrs.py
 python scripts/summarize_releases.py
 ```
 
-The `ai_*.py` scripts run in mock mode: they copy prepared examples so you can see the output shape
-with no AI and no API key. They are a deterministic demo, not the real AI workflow (that is the
-Agent lane above).
+The mock demo scripts copy prepared examples so you can see the output shape with no AI and no API
+key. They are a deterministic demo, not the real AI workflow (that is the Agent lane above).
 
 ```bash
 python scripts/ai_classify_feedback.py
@@ -183,6 +182,9 @@ python scripts/ai_generate_weekly_summary.py
 ```
 
 Each writes a `.json` draft and a readable `.md` summary into `outputs/`.
+
+The optional `scripts/ai_real.py` is different: it calls a real model with your own API key. See
+[docs/04-api-extension.md](docs/04-api-extension.md) for how to set a key and run it.
 
 The public repo does not require an API key. API keys are only for private automation, such as a
 scheduled script or internal service that calls a model directly. See [docs/04-api-extension.md](docs/04-api-extension.md).
@@ -198,6 +200,8 @@ python -m unittest discover -s tests
 ```
 
 ## Adapt It To Your Own Product
+
+For a step by step version of this section, see [docs/06-adapt-this-sandbox.md](docs/06-adapt-this-sandbox.md).
 
 Use fictional, synthetic, anonymized, or approved data in public work. In a private company
 environment, use real data only if you have permission and the data handling controls are clear.
@@ -347,6 +351,8 @@ The scripts generate readable outputs.
 | `metrics_snapshot.md` | Basic product usage metrics |
 | `okr_snapshot.md` | Current sample OKRs and linked metrics |
 | `release_readiness_snapshot.md` | Release candidates, owners, and measurement windows |
+| `okr_snapshot.md` | Current sample OKRs and linked metrics |
+| `release_readiness_snapshot.md` | Release candidates, owners, and measurement windows |
 | `ai_feedback_classification.json` | Structured AI assisted feedback classification |
 | `ai_research_synthesis.json` | Structured AI assisted research synthesis |
 | `ai_opportunity_map.json` | Product opportunities from qualitative signals |
@@ -383,13 +389,15 @@ product-ops-sandbox-public/
 |-- SECURITY.md
 |-- LICENSE
 |-- requirements.txt
+|-- requirements-ai.txt         (optional, for scripts/ai_real.py only)
 |-- docs/
 |   |-- 00-product-ops-system-map.md
 |   |-- 01-product-context.md
 |   |-- 02-success-metrics.md
 |   |-- 03-how-to-run-the-workflows.md
 |   |-- 04-api-extension.md
-|   `-- 05-planning-loop.md
+|   |-- 05-planning-loop.md
+|   `-- 06-adapt-this-sandbox.md
 |-- input-notes/
 |   |-- README.md
 |   |-- support-ticket-batch.md
@@ -407,7 +415,8 @@ product-ops-sandbox-public/
 |   |-- summarize_metrics.py
 |   |-- summarize_okrs.py
 |   |-- summarize_releases.py
-|   `-- ai_*.py
+|   |-- ai_*.py                 (mock demo scripts, no key needed)
+|   `-- ai_real.py              (optional real-AI pipeline, key required)
 |-- tests/
 |   `-- test_scripts.py
 |-- outputs/

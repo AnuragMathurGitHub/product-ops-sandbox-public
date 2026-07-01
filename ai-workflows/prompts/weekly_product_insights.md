@@ -30,7 +30,7 @@ Include these sections:
 
 ## Output
 
-This workflow produces a human readable Markdown file (no JSON, because the readout is meant for
+This workflow produces an easy-to-read Markdown file (no JSON, because the readout is meant for
 people, not for another script). Write it to:
 
 ```text

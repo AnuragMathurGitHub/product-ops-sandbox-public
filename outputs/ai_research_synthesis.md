@@ -1,7 +1,6 @@
 # Research Synthesis (readable summary)
 
-This is the human readable companion to `ai_research_synthesis.json`. It is a fictional mock AI
-output for the Product Ops Sandbox.
+An easy-to-read companion to `ai_research_synthesis.json`. It is a fictional sample output for the Product Ops Sandbox.
 
 ## Themes
 

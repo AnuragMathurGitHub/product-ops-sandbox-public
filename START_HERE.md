@@ -156,7 +156,7 @@ product planning review are Markdown only because they are meant for people to r
 
 ```text
 JSON = the structured draft (fields like theme, severity, linked_metric) for review and reuse.
-Markdown = the human readable summary you can scan or paste into a team update.
+Markdown = the easy-to-read summary you can scan or paste into a team update.
 ```
 
 Open the `.md` file if you just want to read the result. Open the `.json` file if an assistant,
@@ -181,6 +181,17 @@ than that:
   reviewed, compared, and reused, not just read once and lost in a chat.
 - **Keep reviewable drafts.** Outputs land in `outputs/` so a human can check them before any
   decision.
+
+### Two lanes: code and AI
+
+This repo has two lanes, and this step is the AI lane:
+
+- **Deterministic scripts** (Step 6) handle anything that should be calculated the same way every
+  time, such as counts, scores, and metric snapshots.
+- **AI assisted synthesis** (this step) handles qualitative language, such as notes, tickets, and
+  interviews.
+
+We start with the AI lane because it is the headline. The deterministic scripts come next in Step 6.
 
 ### The workflow is folder based
 
@@ -216,8 +227,10 @@ The two agent ways are the real workflow: your own assistant does the synthesis,
 Mock is a deterministic demo of what the output looks like.
 
 There is also an API extension path for teams that want private automation later. You do not need it
-for this walkthrough. Read `docs/04-api-extension.md` only when you want a private script or service
-to call a model directly.
+for this walkthrough. If you want a hands-off, one-command run with your own API key, the repo ships
+an optional `scripts/ai_real.py` pipeline that works with Anthropic, OpenAI, or OpenRouter. Read
+`docs/04-api-extension.md` for how to set a key and run it. It defaults to Anthropic
+`claude-opus-4-8`; the public repo still works with no key at all.
 
 ### Try the simplest one (feedback classification)
 
@@ -236,7 +249,7 @@ Example request for an IDE assistant or coding agent:
 ```text
 Read ai-workflows/prompts/classify_feedback.md and the notes in input-notes/.
 Classify the notes into product area, theme, severity, linked metric, evidence summary, and possible opportunity.
-Write the draft output to outputs/ai_feedback_classification.json.
+Write the JSON draft to outputs/ai_feedback_classification.json and a short readable summary to outputs/ai_feedback_classification.md.
 Do not invent facts.
 ```
 
@@ -380,6 +393,7 @@ Help me adapt this sandbox for my product. Ask me the minimum questions needed b
 | Understand the full system | `docs/00-product-ops-system-map.md` |
 | Understand how a workflow runs end to end | `docs/03-how-to-run-the-workflows.md` |
 | Understand planning, OKRs, release, and measurement | `docs/05-planning-loop.md` |
+| Adapt the sandbox to your own product | `docs/06-adapt-this-sandbox.md` |
 | Understand the optional API key path | `docs/04-api-extension.md` |
 | Understand the fictional product | `docs/01-product-context.md` |
 | Understand metrics | `docs/02-success-metrics.md` |

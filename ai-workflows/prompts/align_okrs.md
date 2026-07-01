@@ -55,7 +55,7 @@ Write it to:
 outputs/ai_okr_alignment.json
 ```
 
-Then also write a short human readable summary next to it:
+Then also write a short easy-to-read summary next to it:
 
 ```text
 outputs/ai_okr_alignment.md

@@ -1,7 +1,6 @@
 # Feedback Classification (readable summary)
 
-This is the human readable companion to `ai_feedback_classification.json`. It is a fictional mock AI
-output for the Product Ops Sandbox.
+An easy-to-read companion to `ai_feedback_classification.json`. It is a fictional sample output for the Product Ops Sandbox.
 
 ## Classified Notes
 
@@ -33,4 +32,4 @@ output for the Product Ops Sandbox.
 2. Where in the booking flow do users lose confidence that a class is confirmed?
 3. Are low activation and first week usage drops concentrated by employer, location, or launch communication pattern?
 
-> Structured companion: `ai_feedback_classification.json` (the same result as machine readable fields for review and reuse).
+> Structured companion: `ai_feedback_classification.json` (the same result as structured fields for review and reuse).

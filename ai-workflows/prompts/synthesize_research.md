@@ -41,7 +41,7 @@ When working inside the repo, write the draft to:
 outputs/ai_research_synthesis.json
 ```
 
-Then also write a short human readable summary next to it:
+Then also write a short easy-to-read summary next to it:
 
 ```text
 outputs/ai_research_synthesis.md
