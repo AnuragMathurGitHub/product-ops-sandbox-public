@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Ops OKR Alignment"
+  short_description: "Connect roadmap candidates to product OKRs"
+  default_prompt: "Use $product-ops-okr-alignment to connect roadmap candidates, opportunities, metrics, and current OKRs into an alignment draft."
+
+policy:
+  allow_implicit_invocation: true

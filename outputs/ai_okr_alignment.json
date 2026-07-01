@@ -1,0 +1,29 @@
+{
+  "alignments": [
+    {
+      "objective": "Help employees reach reliable first value in the wellness journey",
+      "key_result": "Reduce failed check ins",
+      "linked_metric": "Check In Failed Count",
+      "supporting_evidence": "Feedback themes, metrics, and opportunity mapping all point to failed check ins as a repeated friction point.",
+      "related_opportunity": "Improve check in recovery",
+      "roadmap_candidate": "Improve check in fallback",
+      "alignment_assessment": "Strong alignment because the same issue appears in qualitative notes, product metrics, and roadmap scoring.",
+      "human_review_needed": "Confirm whether failed check ins are concentrated by partner, city, device, or employer launch."
+    },
+    {
+      "objective": "Help employees reach reliable first value in the wellness journey",
+      "key_result": "Increase membership activation rate",
+      "linked_metric": "Membership Activation Rate",
+      "supporting_evidence": "Customer success notes mention low activation after launch, and the activation reminder kit is already a roadmap candidate.",
+      "related_opportunity": "Improve first activity discovery",
+      "roadmap_candidate": "Launch activation reminder kit",
+      "alignment_assessment": "Partial alignment because the signal is relevant but needs more evidence on whether the root cause is product, communication, or eligibility.",
+      "human_review_needed": "Review activation by employer, launch timing, and employee eligibility before committing."
+    }
+  ],
+  "review_questions": [
+    "Which objective is already approved for the current planning cycle?",
+    "Which key result has a reliable baseline and target?",
+    "Which roadmap candidate can move the metric within one review window?"
+  ]
+}

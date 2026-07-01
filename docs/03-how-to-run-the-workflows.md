@@ -43,7 +43,7 @@ Copy paste start:
 Clone https://github.com/AnuragMathurGitHub/product-ops-sandbox-public.git.
 Open README.md and START_HERE.md.
 Explain the workflow, then classify the sample feedback in input-notes/support-ticket-batch.md.
-Write the result to outputs/ai_feedback_classification.json and outputs/ai_feedback_classification.md.
+Then show how the outputs connect to planning review, OKR alignment, and release measurement.
 Do not invent facts.
 ```
 
@@ -57,14 +57,40 @@ Do not invent facts.
 | ChatGPT or Claude chat | paste a prompt + notes (fallback) | no file access |
 
 Every workflow writes a structured `.json` draft and a readable `.md` summary, except the weekly
-readout, which is Markdown only.
+readout and product planning review, which are Markdown only.
+
+## Recommended Run Order
+
+Run the deterministic summaries first:
+
+```bash
+python scripts/analyze_feedback.py
+python scripts/score_roadmap.py
+python scripts/summarize_metrics.py
+python scripts/summarize_okrs.py
+python scripts/summarize_releases.py
+```
+
+Then run the mock AI outputs:
+
+```bash
+python scripts/ai_classify_feedback.py
+python scripts/ai_synthesize_research.py
+python scripts/ai_detect_opportunities.py
+python scripts/ai_review_product_planning.py
+python scripts/ai_align_okrs.py
+python scripts/ai_plan_release_measurement.py
+python scripts/ai_generate_weekly_summary.py
+```
+
+In the real Agent lane, ask your assistant to follow the prompts in the same order.
 
 ## End to End Journeys
 
 - **Product manager or operator (no code):** read the README and `START_HERE.md`, open `outputs/`
   to see finished examples (Read only), then open the repo in your assistant and say "walk me through
-  this and classify the sample notes" (Agent). Read the `.md` summary, add your own note file to
-  `input-notes/`, and run it again.
+  this and classify the sample notes" (Agent). Read the `.md` summary, then review the planning,
+  OKR, release, and measurement drafts before any decision.
 - **Technical reviewer:** clone the repo, run `python scripts/*.py` (mock demo) to see
   deterministic outputs, run the tests, then inspect the prompts and schemas. Wire the API lane in
   your own environment if you need to automate.

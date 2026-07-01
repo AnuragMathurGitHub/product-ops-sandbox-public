@@ -4,20 +4,23 @@ This guide walks you through the Product Ops Sandbox in the order a first time r
 
 You do not need to know Python to start. You can read the examples, use an AI assistant, or run the scripts later if you want.
 
-By the end, you should understand how product feedback, user research, product data, prioritization, OKRs, release communication, and AI assisted workflows connect.
+By the end, you should understand how product feedback, user research, product data, prioritization, OKR alignment, release communication, measurement, and AI assisted workflows connect.
 
 ## What You Will Learn
 
 You will learn how a Product Ops workflow can move from raw signals to product decisions:
 
 ```text
-signals
+product context
++ current metrics
++ current OKRs
++ signals
 -> insights
 -> opportunities
--> roadmap
--> OKRs
--> release communication
--> measurement
+-> roadmap candidates
+-> OKR alignment
+-> release communication and measurement
+-> learning for the next planning cycle
 ```
 
 The repo uses a fictional product called **FitPass Demo** and fictional data. It is safe to inspect, adapt, and discuss publicly.
@@ -81,10 +84,10 @@ customer feedback
 -> themes and insights
 -> product opportunities
 -> prioritization
--> roadmap
--> OKRs
--> release communication
--> measurement
+-> roadmap candidates
+-> OKR alignment
+-> release communication and measurement
+-> learning for the next planning cycle
 ```
 
 This is the core idea of the repo.
@@ -96,7 +99,7 @@ The repo separates inputs by type.
 | Input Type | Where It Goes | Example Files |
 | --- | --- | --- |
 | Unstructured product notes | `input-notes/` | Support notes, sales notes, customer success notes, interview transcripts |
-| Structured data | `sample-data/` | CSV files for events, feedback records, roadmap items, OKRs |
+| Structured data | `sample-data/` | CSV files for events, feedback records, roadmap items, OKRs, release candidates |
 | AI workflow instructions | `ai-workflows/` | Prompts, schemas, and sample AI outputs |
 
 Use this rule:
@@ -134,16 +137,22 @@ The outputs show what the workflow produces.
 | `metrics_snapshot.md` | What is happening in the product? | Yes |
 | `feedback_theme_summary.md` | What feedback themes repeat? | Yes |
 | `roadmap_priority_scores.md` | Which roadmap items look strongest? | Yes |
+| `okr_snapshot.md` | Which outcomes and key results are in the sample plan? | Yes |
+| `release_readiness_snapshot.md` | Which releases need communication and measurement planning? | Yes |
 | `ai_feedback_classification.json` | How can qualitative feedback become structured themes? | JSON draft + `.md` summary |
 | `ai_research_synthesis.json` | What did the research reveal? | JSON draft + `.md` summary |
 | `ai_opportunity_map.json` | Which product opportunities emerge from the signals? | JSON draft + `.md` summary |
+| `ai_product_planning_review.md` | How do signals connect to planning decisions? | Yes |
+| `ai_okr_alignment.json` | Which OKRs may the roadmap candidates support? | JSON draft + `.md` summary |
+| `ai_release_measurement_plan.json` | How should release communication and measurement work? | JSON draft + `.md` summary |
 | `ai_weekly_product_insights.md` | What would a weekly Product Ops readout look like? | Yes |
 
 ### You get both JSON and a readable Markdown summary
 
-You do not have to read raw JSON. Each AI workflow writes **two** files: a structured JSON draft and
-a plain English Markdown summary next to it (for example, `ai_feedback_classification.json` and
-`ai_feedback_classification.md`).
+You do not have to read raw JSON. Most structured AI workflows write **two** files: a structured JSON
+draft and a plain English Markdown summary next to it (for example,
+`ai_feedback_classification.json` and `ai_feedback_classification.md`). The weekly readout and
+product planning review are Markdown only because they are meant for people to read directly.
 
 ```text
 JSON = the structured draft (fields like theme, severity, linked_metric) for review and reuse.
@@ -190,6 +199,9 @@ Pick the prompt that matches what you have. Each prompt already knows to read fr
 | Support / sales / success notes | `ai-workflows/prompts/classify_feedback.md` | `outputs/ai_feedback_classification.json` (+ `.md` summary) |
 | An interview or research transcript | `ai-workflows/prompts/synthesize_research.md` | `outputs/ai_research_synthesis.json` (+ `.md` summary) |
 | A mix of signals to turn into ideas | `ai-workflows/prompts/detect_opportunities.md` | `outputs/ai_opportunity_map.json` (+ `.md` summary) |
+| Planning outputs to review | `ai-workflows/prompts/review_product_planning.md` | `outputs/ai_product_planning_review.md` |
+| Current OKRs plus roadmap candidates | `ai-workflows/prompts/align_okrs.md` | `outputs/ai_okr_alignment.json` (+ `.md` summary) |
+| Release candidates plus metrics | `ai-workflows/prompts/plan_release_measurement.md` | `outputs/ai_release_measurement_plan.json` (+ `.md` summary) |
 | Metrics plus themes for a readout | `ai-workflows/prompts/weekly_product_insights.md` | `outputs/ai_weekly_product_insights.md` |
 
 ### Three ways to run a workflow
@@ -240,6 +252,8 @@ This step is optional, but it shows the deterministic workflow.
 | `scripts/analyze_feedback.py` | `sample-data/customer_feedback.csv` | `outputs/feedback_theme_summary.md` | See repeated feedback themes and severity counts |
 | `scripts/score_roadmap.py` | `sample-data/roadmap_items.csv` | `outputs/roadmap_priority_scores.md` | Compare roadmap candidates with a transparent formula |
 | `scripts/summarize_metrics.py` | `sample-data/product_events.csv` | `outputs/metrics_snapshot.md` | Create a basic product metrics snapshot |
+| `scripts/summarize_okrs.py` | `sample-data/okrs.csv` | `outputs/okr_snapshot.md` | Show current objectives, key results, metrics, and status |
+| `scripts/summarize_releases.py` | `sample-data/releases.csv` | `outputs/release_readiness_snapshot.md` | Show release candidates, owners, and measurement windows |
 
 Run:
 
@@ -247,6 +261,8 @@ Run:
 python scripts/analyze_feedback.py
 python scripts/score_roadmap.py
 python scripts/summarize_metrics.py
+python scripts/summarize_okrs.py
+python scripts/summarize_releases.py
 ```
 
 These scripts are deterministic. If the input files do not change, the outputs should not change.
@@ -271,6 +287,9 @@ looks like, or when you do not have an assistant handy.
 | `scripts/ai_classify_feedback.py` | Notes from `input-notes/` | `ai_feedback_classification.json` + `.md` | Shows how qualitative notes can become structured feedback themes |
 | `scripts/ai_synthesize_research.py` | Interview notes | `ai_research_synthesis.json` + `.md` | Shows how research can become themes, insights, and implications |
 | `scripts/ai_detect_opportunities.py` | Combined signals | `ai_opportunity_map.json` + `.md` | Shows how signals can become opportunity statements |
+| `scripts/ai_review_product_planning.py` | Generated planning outputs | `ai_product_planning_review.md` | Shows how evidence connects to planning decisions |
+| `scripts/ai_align_okrs.py` | OKRs plus planning outputs | `ai_okr_alignment.json` + `.md` | Shows how roadmap candidates may support outcomes |
+| `scripts/ai_plan_release_measurement.py` | Release candidates plus metrics | `ai_release_measurement_plan.json` + `.md` | Shows launch communication and measurement planning |
 | `scripts/ai_generate_weekly_summary.py` | Metrics plus themes | `ai_weekly_product_insights.md` | Shows a weekly Product Ops readout |
 
 Each script writes its result into `outputs/`. The first three write both a structured JSON draft
@@ -282,6 +301,9 @@ Run:
 python scripts/ai_classify_feedback.py
 python scripts/ai_synthesize_research.py
 python scripts/ai_detect_opportunities.py
+python scripts/ai_review_product_planning.py
+python scripts/ai_align_okrs.py
+python scripts/ai_plan_release_measurement.py
 python scripts/ai_generate_weekly_summary.py
 ```
 
@@ -306,7 +328,7 @@ Recommended order:
 | 4 | One anonymized note file | `input-notes/` |
 | 5 | One AI prompt | `ai-workflows/prompts/` |
 | 6 | One output review | `outputs/` |
-| 7 | Taxonomy or roadmap assumptions | `docs/` and `agent-skills/` |
+| 7 | OKR, release, or roadmap assumptions | `sample-data/`, `docs/`, and `agent-skills/` |
 
 ### Your First Change, Step By Step
 
@@ -357,6 +379,7 @@ Help me adapt this sandbox for my product. Ask me the minimum questions needed b
 | --- | --- |
 | Understand the full system | `docs/00-product-ops-system-map.md` |
 | Understand how a workflow runs end to end | `docs/03-how-to-run-the-workflows.md` |
+| Understand planning, OKRs, release, and measurement | `docs/05-planning-loop.md` |
 | Understand the optional API key path | `docs/04-api-extension.md` |
 | Understand the fictional product | `docs/01-product-context.md` |
 | Understand metrics | `docs/02-success-metrics.md` |
@@ -375,3 +398,20 @@ Qualitative notes go through AI assisted synthesis.
 Humans review the output.
 Teams decide what to do.
 ```
+
+## Planning Mental Model
+
+Use this model when the repo reaches OKRs, release communication, and measurement:
+
+```text
+Signals explain what is happening.
+Insights explain why it may matter.
+Opportunities define what could improve.
+Prioritization compares what deserves attention.
+Roadmap candidates show what the team may build.
+OKR alignment connects work to measurable outcomes.
+Release planning prepares teams for launch.
+Measurement checks whether the change worked.
+```
+
+OKRs should not be created only from feedback. They usually come from strategy, company priorities, and product outcomes. This repo shows how product signals can support, challenge, or refine OKR alignment.

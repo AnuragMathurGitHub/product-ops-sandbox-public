@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OKRAlignment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["alignments", "review_questions"],
+  "properties": {
+    "alignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "objective",
+          "key_result",
+          "linked_metric",
+          "supporting_evidence",
+          "related_opportunity",
+          "roadmap_candidate",
+          "alignment_assessment",
+          "human_review_needed"
+        ],
+        "properties": {
+          "objective": { "type": "string" },
+          "key_result": { "type": "string" },
+          "linked_metric": { "type": "string" },
+          "supporting_evidence": { "type": "string" },
+          "related_opportunity": { "type": "string" },
+          "roadmap_candidate": { "type": "string" },
+          "alignment_assessment": { "type": "string" },
+          "human_review_needed": { "type": "string" }
+        }
+      }
+    },
+    "review_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

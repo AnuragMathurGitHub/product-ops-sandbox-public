@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReleaseMeasurementPlan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["plans", "review_questions"],
+  "properties": {
+    "plans": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "initiative",
+          "audience",
+          "launch_message",
+          "internal_readiness",
+          "linked_metric",
+          "baseline",
+          "target_signal",
+          "measurement_window",
+          "owner",
+          "risk_to_watch",
+          "decision_after_measurement"
+        ],
+        "properties": {
+          "initiative": { "type": "string" },
+          "audience": { "type": "string" },
+          "launch_message": { "type": "string" },
+          "internal_readiness": { "type": "string" },
+          "linked_metric": { "type": "string" },
+          "baseline": { "type": "string" },
+          "target_signal": { "type": "string" },
+          "measurement_window": { "type": "string" },
+          "owner": { "type": "string" },
+          "risk_to_watch": { "type": "string" },
+          "decision_after_measurement": { "type": "string" }
+        }
+      }
+    },
+    "review_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

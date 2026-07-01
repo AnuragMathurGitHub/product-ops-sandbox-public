@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Ops Release Measurement"
+  short_description: "Draft launch communication and measurement plans"
+  default_prompt: "Use $product-ops-release-measurement to draft release communication and measurement plans from release candidates, OKR alignment, roadmap scores, and metrics."
+
+policy:
+  allow_implicit_invocation: true

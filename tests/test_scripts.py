@@ -12,6 +12,8 @@ from analyze_feedback import build_summary as build_feedback_summary
 from score_roadmap import priority_score
 from summarize_metrics import build_summary as build_metrics_summary
 from summarize_metrics import count_events
+from summarize_okrs import build_summary as build_okr_summary
+from summarize_releases import build_summary as build_release_summary
 
 
 class StructuredScriptTests(unittest.TestCase):
@@ -62,6 +64,41 @@ class StructuredScriptTests(unittest.TestCase):
         self.assertIn("| Total users | 0 |", summary)
         self.assertIn("| Activation rate | 0.0% |", summary)
 
+    def test_okr_summary_groups_objectives(self):
+        records = [
+            {
+                "objective": "Improve first value",
+                "key_result": "Reduce failed check ins",
+                "linked_metric": "Check In Failed Count",
+                "baseline": "2",
+                "current": "2",
+                "target": "1",
+                "status": "Needs focus",
+            }
+        ]
+
+        summary = build_okr_summary(records)
+
+        self.assertIn("Improve first value", summary)
+        self.assertIn("Reduce failed check ins", summary)
+
+    def test_release_summary_lists_measurement_window(self):
+        records = [
+            {
+                "release_id": "REL-001",
+                "initiative": "Improve check in fallback",
+                "launch_stage": "Discovery",
+                "linked_metric": "Check In Failed Count",
+                "communication_owner": "Product Ops",
+                "measurement_window": "Two weeks after release",
+            }
+        ]
+
+        summary = build_release_summary(records)
+
+        self.assertIn("Improve check in fallback", summary)
+        self.assertIn("Two weeks after release", summary)
+
 
 class MockWorkflowTests(unittest.TestCase):
     def test_copy_mock_output_copies_example(self):
@@ -90,11 +127,15 @@ class SampleOutputSchemaTests(unittest.TestCase):
         ("feedback_classification.schema.json", "feedback_classification_example.json"),
         ("research_synthesis.schema.json", "research_synthesis_example.json"),
         ("opportunity_map.schema.json", "opportunity_map_example.json"),
+        ("okr_alignment.schema.json", "okr_alignment_example.json"),
+        ("release_measurement_plan.schema.json", "release_measurement_plan_example.json"),
     ]
     OUTPUT_CASES = [
         ("feedback_classification.schema.json", "ai_feedback_classification.json"),
         ("research_synthesis.schema.json", "ai_research_synthesis.json"),
         ("opportunity_map.schema.json", "ai_opportunity_map.json"),
+        ("okr_alignment.schema.json", "ai_okr_alignment.json"),
+        ("release_measurement_plan.schema.json", "ai_release_measurement_plan.json"),
     ]
 
     def validate_schema(self, schema, value, path="$"):

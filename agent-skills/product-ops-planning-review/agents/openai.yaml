@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Ops Planning Review"
+  short_description: "Review the signal to planning chain"
+  default_prompt: "Use $product-ops-planning-review to review how signals, insights, opportunities, roadmap candidates, OKRs, release planning, and measurement connect."
+
+policy:
+  allow_implicit_invocation: true

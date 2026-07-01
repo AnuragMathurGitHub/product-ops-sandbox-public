@@ -15,8 +15,9 @@ Inputs are files. You read them and write results. **No API key is required**; y
 
 1. Qualitative notes live in `input-notes/`. Structured data lives in `sample-data/`.
 2. Each workflow is one prompt in `ai-workflows/prompts/`. Read the matching prompt and follow it.
-3. Write the result to `outputs/`: a `.json` draft that matches the schema in
-   `ai-workflows/schemas/`, plus a short, readable `.md` summary next to it.
+3. Write the result to the output path named by the prompt. Structured workflows write a `.json`
+   draft that matches the schema in `ai-workflows/schemas/`, plus a short, readable `.md` summary.
+   Markdown only workflows write one `.md` file.
 4. Use only the evidence in the notes. Do not invent facts, numbers, quotes, or company names.
 
 ### Workflow map
@@ -26,12 +27,16 @@ Inputs are files. You read them and write results. **No API key is required**; y
 | Classify feedback notes | `ai-workflows/prompts/classify_feedback.md` | `outputs/ai_feedback_classification.json` + `.md` |
 | Synthesize research/interviews | `ai-workflows/prompts/synthesize_research.md` | `outputs/ai_research_synthesis.json` + `.md` |
 | Detect product opportunities | `ai-workflows/prompts/detect_opportunities.md` | `outputs/ai_opportunity_map.json` + `.md` |
+| Review product planning | `ai-workflows/prompts/review_product_planning.md` | `outputs/ai_product_planning_review.md` |
+| Align OKRs | `ai-workflows/prompts/align_okrs.md` | `outputs/ai_okr_alignment.json` + `.md` |
+| Plan release measurement | `ai-workflows/prompts/plan_release_measurement.md` | `outputs/ai_release_measurement_plan.json` + `.md` |
 | Draft a weekly readout | `ai-workflows/prompts/weekly_product_insights.md` | `outputs/ai_weekly_product_insights.md` |
 
 ## Deterministic scripts (optional)
 
-`python scripts/analyze_feedback.py`, `scripts/score_roadmap.py`, and `scripts/summarize_metrics.py`
-read `sample-data/` and write Markdown to `outputs/`. They are deterministic.
+`python scripts/analyze_feedback.py`, `scripts/score_roadmap.py`, `scripts/summarize_metrics.py`,
+`scripts/summarize_okrs.py`, and `scripts/summarize_releases.py` read `sample-data/` and write
+Markdown to `outputs/`. They are deterministic.
 
 The `scripts/ai_*.py` scripts are **mock demos**: they copy prepared example results into
 `outputs/` so the workflow runs with no model and no API key. They do not call AI. The real AI path

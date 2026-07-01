@@ -10,11 +10,11 @@ This repo turns scattered product signals into product decisions for a fictional
 
 To run a workflow:
 
-1. Read the matching prompt in `ai-workflows/prompts/` (classify_feedback, synthesize_research,
-   detect_opportunities, or weekly_product_insights).
-2. Read the notes in `input-notes/`.
+1. Read the matching prompt in `ai-workflows/prompts/`.
+2. Read the required notes, sample data, and generated outputs named by that prompt.
 3. Write the result to `outputs/`: a `.json` draft that matches the schema in
-   `ai-workflows/schemas/`, plus a readable `.md` summary. (The weekly readout is Markdown only.)
+   `ai-workflows/schemas/`, plus a readable `.md` summary. The weekly readout and planning review
+   are Markdown only.
 
 Use only the evidence in the notes. Do not invent facts, numbers, or company names. Keep all data
 fictional, anonymized, or approved. AI drafts; humans review; teams decide.

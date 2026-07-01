@@ -25,5 +25,5 @@ def note_mock_mode(prompt_relpath):
     print(
         "Mock mode: copied a prepared example. No AI model was called.\n"
         "To run this for real (real AI, no API key), open this repo in your AI assistant\n"
-        f"and ask it to follow {prompt_relpath} on the notes in input-notes/."
+        f"and ask it to follow {prompt_relpath} with the repo inputs named in the prompt."
     )

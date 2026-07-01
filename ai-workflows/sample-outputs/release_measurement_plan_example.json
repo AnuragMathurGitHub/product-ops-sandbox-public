@@ -1,0 +1,35 @@
+{
+  "plans": [
+    {
+      "initiative": "Improve check in fallback",
+      "audience": "Employees, support, customer success, and partner support",
+      "launch_message": "Users and support teams will have clearer guidance when a gym check in does not work on the first attempt.",
+      "internal_readiness": "Support needs the fallback steps, customer success needs the employer message, and partner support needs the partner handling note.",
+      "linked_metric": "Check In Failed Count",
+      "baseline": "2 failed check ins in the sample event data",
+      "target_signal": "Failed check ins should decrease and support contacts related to gym visits should not increase.",
+      "measurement_window": "Two weeks after release",
+      "owner": "Product Ops",
+      "risk_to_watch": "The issue may be caused by partner operations rather than app guidance alone.",
+      "decision_after_measurement": "Decide whether to keep the fallback flow, expand partner guidance, or investigate partner specific failures."
+    },
+    {
+      "initiative": "Launch activation reminder kit",
+      "audience": "Employees, customer success, and employer administrators",
+      "launch_message": "Eligible employees will receive clearer reminders that explain how to activate and find a useful first activity.",
+      "internal_readiness": "Customer success needs employer messaging and support needs the expected activation questions.",
+      "linked_metric": "Membership Activation Rate",
+      "baseline": "60 percent in the sample OKR data",
+      "target_signal": "Activation should move toward 75 percent without increasing support contacts.",
+      "measurement_window": "Four weeks after release",
+      "owner": "Customer Success",
+      "risk_to_watch": "Activation may be blocked by eligibility data or employer communication rather than reminder content.",
+      "decision_after_measurement": "Decide whether to continue the reminder kit, adjust messaging, or inspect eligibility data."
+    }
+  ],
+  "review_questions": [
+    "Which release candidate has enough evidence to move forward?",
+    "Which internal teams need enablement before launch?",
+    "Which metric will prove whether the release helped?"
+  ]
+}

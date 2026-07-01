@@ -1,0 +1,5 @@
+release_id,initiative,product_area,linked_metric,target_users,launch_stage,communication_owner,measurement_window
+REL-001,Improve check in fallback,Check In,Check In Failed Count,Employees and partner support,Discovery,Product Ops,Two weeks after release
+REL-002,Clarify booking confirmation,Booking,Class Booking Completion Rate,Employees and support,Ready for shaping,Product Manager,Two weeks after release
+REL-003,Improve location based search ranking,Search,Search Result Click Rate,Employees,Discovery,Product Manager,Four weeks after release
+REL-004,Launch activation reminder kit,Activation,Membership Activation Rate,Employees and customer success,Ready for delivery,Customer Success,Four weeks after release

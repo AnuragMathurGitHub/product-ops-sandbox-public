@@ -5,14 +5,15 @@ A practical Product Operations sandbox for turning scattered product signals int
 This repo uses a fictional product, fictional data, simple Python scripts, and AI assisted workflows to show how a modern Product Ops loop can work:
 
 ```text
-feedback + research + product data
+product context + current metrics + current OKRs
++ feedback + research + product data
 -> insights
 -> opportunities
 -> prioritization
--> roadmap
--> OKRs
--> release communication
--> measurement
+-> roadmap candidates
+-> OKR alignment
+-> release communication and measurement
+-> learning for the next planning cycle
 ```
 
 The point is not to build a production platform. The point is to make the workflow easy to understand, run, and adapt.
@@ -22,7 +23,7 @@ The point is not to build a production platform. The point is to make the workfl
 | Goal | What To Do |
 | --- | --- |
 | Understand Product Ops | Read the README, system map, and generated outputs |
-| Explain the workflow to a team | Walk through the fictional product, metrics, roadmap, OKRs, and AI workflow |
+| Explain the workflow to a team | Walk through the fictional product, metrics, roadmap candidates, OKR alignment, release measurement, and AI workflow |
 | Run the sample workflow | Clone or download the repo and run the Python scripts |
 | Use an AI assistant | Open the repo in your IDE or agent tool, then ask the assistant to explain, adapt, or run parts of the repo |
 | Adapt it to your own product | Replace the fictional data with approved, anonymized product signals |
@@ -34,7 +35,7 @@ The repo separates inputs by type.
 | Input Type | Folder | Use It For |
 | --- | --- | --- |
 | Unstructured product notes | `input-notes/` | Support tickets, sales notes, customer success notes, interview transcripts, meeting summaries |
-| Structured data | `sample-data/` | CSV files for product events, feedback records, roadmap items, and OKRs |
+| Structured data | `sample-data/` | CSV files for product events, feedback records, roadmap items, OKRs, and release candidates |
 | Generated results | `outputs/` | Markdown and JSON summaries created by scripts or AI assisted workflows |
 | AI instructions | `ai-workflows/` | Prompts, schemas, and examples for qualitative synthesis |
 | Reusable agent workflows | `agent-skills/` | Skill packages that AI coding assistants can reuse |
@@ -163,6 +164,8 @@ cd product-ops-sandbox-public
 python scripts/analyze_feedback.py
 python scripts/score_roadmap.py
 python scripts/summarize_metrics.py
+python scripts/summarize_okrs.py
+python scripts/summarize_releases.py
 ```
 
 The `ai_*.py` scripts run in mock mode: they copy prepared examples so you can see the output shape
@@ -173,6 +176,9 @@ Agent lane above).
 python scripts/ai_classify_feedback.py
 python scripts/ai_synthesize_research.py
 python scripts/ai_detect_opportunities.py
+python scripts/ai_review_product_planning.py
+python scripts/ai_align_okrs.py
+python scripts/ai_plan_release_measurement.py
 python scripts/ai_generate_weekly_summary.py
 ```
 
@@ -214,6 +220,8 @@ Most teams will need to adjust:
 | Metrics | Activation, engagement, retention, support, and business metrics |
 | Feedback taxonomy | Product areas, themes, severity, linked metrics |
 | Roadmap scoring | Reach, impact, confidence, effort, strategic fit |
+| OKR alignment | Objectives, key results, linked metrics, and evidence |
+| Release planning | Release candidates, audiences, owners, and measurement windows |
 | AI prompts | Product specific language and guardrails |
 | Agent skills | Taxonomy, output format, review rules |
 
@@ -275,8 +283,8 @@ That creates practical Product Ops questions:
 | What are users and customers saying? | Feedback system and AI classification |
 | What explains the behavior? | User research synthesis |
 | What should the roadmap consider? | Opportunity mapping and prioritization |
-| Which outcomes should improve? | Success metrics and OKRs |
-| How should teams launch changes? | Release communication workflow |
+| Which outcomes should improve? | Success metrics and OKR alignment |
+| How should teams launch changes? | Release measurement planning |
 | How do we learn after release? | Measurement loop |
 
 ## What This Repo Demonstrates
@@ -289,7 +297,7 @@ That creates practical Product Ops questions:
 | Customer feedback | How feedback can be tagged, grouped, and linked to metrics |
 | User research | How qualitative notes become themes and insights |
 | Prioritization | How roadmap candidates can be compared without replacing judgment |
-| OKRs | How product work connects to measurable outcomes |
+| OKRs | How product work aligns to measurable outcomes |
 | Release communication | How teams prepare for launch and learning after release |
 | AI assisted workflows | How AI can help synthesize qualitative notes with human review |
 | Agent skills | How repeatable AI workflows can be packaged for reuse |
@@ -311,6 +319,23 @@ AI drafts.
 Humans decide.
 ```
 
+## How The Planning Loop Works
+
+The later planning steps are connected, but the repo does not decide them by itself.
+
+```text
+Signals explain what is happening.
+Insights explain why it may matter.
+Opportunities define what could improve.
+Prioritization compares what deserves attention.
+Roadmap candidates show what the team may build.
+OKR alignment connects work to measurable outcomes.
+Release planning prepares teams for launch.
+Measurement checks whether the change worked.
+```
+
+OKRs are especially important to frame correctly. Product teams should not create OKRs only from raw feedback. OKRs usually come from strategy, company priorities, and product outcomes. Feedback, research, analytics, and roadmap candidates help test whether the work supports those outcomes.
+
 ## What You Should See
 
 The scripts generate readable outputs.
@@ -320,9 +345,14 @@ The scripts generate readable outputs.
 | `feedback_theme_summary.md` | Repeated feedback themes and severity counts |
 | `roadmap_priority_scores.md` | Roadmap candidates scored with a transparent formula |
 | `metrics_snapshot.md` | Basic product usage metrics |
+| `okr_snapshot.md` | Current sample OKRs and linked metrics |
+| `release_readiness_snapshot.md` | Release candidates, owners, and measurement windows |
 | `ai_feedback_classification.json` | Structured AI assisted feedback classification |
 | `ai_research_synthesis.json` | Structured AI assisted research synthesis |
 | `ai_opportunity_map.json` | Product opportunities from qualitative signals |
+| `ai_product_planning_review.md` | Signal to planning review |
+| `ai_okr_alignment.json` | Draft alignment between evidence, roadmap candidates, and OKRs |
+| `ai_release_measurement_plan.json` | Draft release communication and measurement plan |
 | `ai_weekly_product_insights.md` | Weekly Product Ops summary |
 
 ## Why JSON Appears In The AI Examples
@@ -358,7 +388,8 @@ product-ops-sandbox-public/
 |   |-- 01-product-context.md
 |   |-- 02-success-metrics.md
 |   |-- 03-how-to-run-the-workflows.md
-|   `-- 04-api-extension.md
+|   |-- 04-api-extension.md
+|   `-- 05-planning-loop.md
 |-- input-notes/
 |   |-- README.md
 |   |-- support-ticket-batch.md
@@ -367,11 +398,15 @@ product-ops-sandbox-public/
 |-- sample-data/
 |   |-- customer_feedback.csv
 |   |-- product_events.csv
-|   `-- roadmap_items.csv
+|   |-- roadmap_items.csv
+|   |-- okrs.csv
+|   `-- releases.csv
 |-- scripts/
 |   |-- analyze_feedback.py
 |   |-- score_roadmap.py
 |   |-- summarize_metrics.py
+|   |-- summarize_okrs.py
+|   |-- summarize_releases.py
 |   `-- ai_*.py
 |-- tests/
 |   `-- test_scripts.py
@@ -391,6 +426,9 @@ product-ops-sandbox-public/
 |   |-- product-ops-signal-triage/
 |   |-- product-ops-research-synthesis/
 |   |-- product-ops-opportunity-mapping/
+|   |-- product-ops-planning-review/
+|   |-- product-ops-okr-alignment/
+|   |-- product-ops-release-measurement/
 |   `-- product-ops-weekly-review/
 |-- .claude/
 |   |-- commands/
@@ -420,7 +458,7 @@ It models the workflows those tool categories often support:
 - research synthesis
 - roadmap prioritization
 - OKR alignment
-- release communication
+- release communication and measurement
 - AI assisted synthesis
 
 ## License

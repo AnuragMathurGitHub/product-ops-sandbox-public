@@ -38,3 +38,16 @@ A useful Product Ops readout should connect:
 | Qualitative signal | Support notes mention scanner failures |
 | Product opportunity | Improve check in fallback and partner handling |
 | Review question | Is the issue concentrated by partner, city, or device? |
+
+## How Metrics Connect To OKRs And Releases
+
+Metrics play different roles in the loop:
+
+| Use | Question |
+| --- | --- |
+| Product health | What is happening in the product? |
+| OKR alignment | Which outcome should improve? |
+| Roadmap review | Which candidate may move the metric? |
+| Release measurement | Did the change help after launch? |
+
+The same metric can appear in several places. For example, `Check In Failed Count` can describe a current problem, support an OKR, guide a roadmap candidate, and become the release measurement target.

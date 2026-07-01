@@ -22,6 +22,9 @@ can load it when your request matches the description, or you can call it by nam
 | `product-ops-signal-triage` | Classify support, sales, success, and review notes | `ai-workflows/prompts/classify_feedback.md` | `outputs/ai_feedback_classification.json` + `.md` |
 | `product-ops-research-synthesis` | Turn interviews and research into themes and insights | `ai-workflows/prompts/synthesize_research.md` | `outputs/ai_research_synthesis.json` + `.md` |
 | `product-ops-opportunity-mapping` | Turn combined signals into product opportunities | `ai-workflows/prompts/detect_opportunities.md` | `outputs/ai_opportunity_map.json` + `.md` |
+| `product-ops-planning-review` | Review the signal to planning chain | `ai-workflows/prompts/review_product_planning.md` | `outputs/ai_product_planning_review.md` |
+| `product-ops-okr-alignment` | Connect roadmap candidates to OKRs | `ai-workflows/prompts/align_okrs.md` | `outputs/ai_okr_alignment.json` + `.md` |
+| `product-ops-release-measurement` | Draft release communication and measurement plans | `ai-workflows/prompts/plan_release_measurement.md` | `outputs/ai_release_measurement_plan.json` + `.md` |
 | `product-ops-weekly-review` | Draft a weekly Product Ops readout | `ai-workflows/prompts/weekly_product_insights.md` | `outputs/ai_weekly_product_insights.md` |
 
 ## How To Use These Skills
