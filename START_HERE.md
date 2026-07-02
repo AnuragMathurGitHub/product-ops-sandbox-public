@@ -229,8 +229,8 @@ Mock is a deterministic demo of what the output looks like.
 There is also an API extension path for teams that want private automation later. You do not need it
 for this walkthrough. If you want a hands-off, one-command run with your own API key, the repo ships
 an optional `scripts/ai_real.py` pipeline that works with Anthropic, OpenAI, or OpenRouter. Read
-`docs/04-api-extension.md` for how to set a key and run it. It defaults to Anthropic
-`claude-opus-4-8`; the public repo still works with no key at all.
+`docs/04-api-extension.md` for how to set a key, choose a provider, choose a current model, and run
+it. The public repo still works with no key at all.
 
 ### Try the simplest one (feedback classification)
 

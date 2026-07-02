@@ -95,9 +95,9 @@ The script is provider neutral, like the agent lane. Set `PRODUCT_OPS_PROVIDER`:
 
 | `PRODUCT_OPS_PROVIDER` | Key variable | Python package | Model |
 | --- | --- | --- | --- |
-| `anthropic` (default) | `ANTHROPIC_API_KEY` | `anthropic` | defaults to `claude-opus-4-8` |
-| `openai` | `OPENAI_API_KEY` | `openai` | set `PRODUCT_OPS_MODEL` (for example `gpt-5`) |
-| `openrouter` | `OPENROUTER_API_KEY` | `openai` | set `PRODUCT_OPS_MODEL` (for example `anthropic/claude-opus-4-8`) |
+| `anthropic` (default) | `ANTHROPIC_API_KEY` | `anthropic` | set `PRODUCT_OPS_MODEL` to a current Anthropic model |
+| `openai` | `OPENAI_API_KEY` | `openai` | set `PRODUCT_OPS_MODEL` to a current OpenAI model |
+| `openrouter` | `OPENROUTER_API_KEY` | `openai` | set `PRODUCT_OPS_MODEL` to a current OpenRouter model ID |
 
 OpenAI and OpenRouter share the `openai` package: OpenRouter is OpenAI-API compatible, so the script
 just points it at OpenRouter's base URL. Install only the package for the provider you use; the
@@ -108,6 +108,7 @@ script imports just that one.
 ```bash
 pip install anthropic
 export ANTHROPIC_API_KEY=your-anthropic-key    # your own key; never commit it
+export PRODUCT_OPS_MODEL=your-current-model-id
 python scripts/ai_real.py                      # run every workflow
 python scripts/ai_real.py classify_feedback    # or run a single workflow
 ```
@@ -117,10 +118,11 @@ Windows PowerShell:
 ```powershell
 pip install anthropic
 $env:ANTHROPIC_API_KEY = "your-anthropic-key"
+$env:PRODUCT_OPS_MODEL = "your-current-model-id"
 python scripts/ai_real.py
 ```
 
-To use a different Anthropic model, set `PRODUCT_OPS_MODEL` (for example `claude-sonnet-4-6`).
+Use a current model ID from your provider account.
 
 ### OpenAI
 
@@ -128,7 +130,7 @@ Set your `OPENAI_API_KEY` first (see "Where The Key Would Live" above), then:
 
 ```bash
 pip install openai
-PRODUCT_OPS_PROVIDER=openai PRODUCT_OPS_MODEL=gpt-5 python scripts/ai_real.py
+PRODUCT_OPS_PROVIDER=openai PRODUCT_OPS_MODEL=your-current-model-id python scripts/ai_real.py
 ```
 
 ### OpenRouter
@@ -137,11 +139,11 @@ Set your `OPENROUTER_API_KEY` first (same as above), then:
 
 ```bash
 pip install openai
-PRODUCT_OPS_PROVIDER=openrouter PRODUCT_OPS_MODEL=anthropic/claude-opus-4-8 python scripts/ai_real.py
+PRODUCT_OPS_PROVIDER=openrouter PRODUCT_OPS_MODEL=your-current-model-id python scripts/ai_real.py
 ```
 
-OpenAI and OpenRouter have no built-in default model, so `PRODUCT_OPS_MODEL` is required for them.
-Check your provider's current model names; the examples above may change over time.
+`PRODUCT_OPS_MODEL` is required for every provider. Check your provider's current model names before
+running the script.
 
 ### Notes
 

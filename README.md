@@ -351,8 +351,6 @@ The scripts generate readable outputs.
 | `metrics_snapshot.md` | Basic product usage metrics |
 | `okr_snapshot.md` | Current sample OKRs and linked metrics |
 | `release_readiness_snapshot.md` | Release candidates, owners, and measurement windows |
-| `okr_snapshot.md` | Current sample OKRs and linked metrics |
-| `release_readiness_snapshot.md` | Release candidates, owners, and measurement windows |
 | `ai_feedback_classification.json` | Structured AI assisted feedback classification |
 | `ai_research_synthesis.json` | Structured AI assisted research synthesis |
 | `ai_opportunity_map.json` | Product opportunities from qualitative signals |
@@ -424,6 +422,8 @@ product-ops-sandbox-public/
 |   |-- feedback_theme_summary.md
 |   |-- roadmap_priority_scores.md
 |   |-- metrics_snapshot.md
+|   |-- okr_snapshot.md
+|   |-- release_readiness_snapshot.md
 |   `-- ai_* (.json drafts + .md summaries)
 |-- ai-workflows/
 |   |-- README.md

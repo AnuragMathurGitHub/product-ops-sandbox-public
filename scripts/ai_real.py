@@ -23,12 +23,11 @@ Quick start:
     python scripts/ai_real.py classify_feedback # run one workflow
 
 Model:
-    Anthropic defaults to claude-opus-4-8. OpenAI and OpenRouter have no built-in
-    default, so set PRODUCT_OPS_MODEL for them. PRODUCT_OPS_MODEL overrides the
-    model for any provider, for example:
+    Set PRODUCT_OPS_MODEL to the current model ID from your provider. Model names
+    change, so the repo does not hard code a default model. For example:
 
-    PRODUCT_OPS_PROVIDER=openai   PRODUCT_OPS_MODEL=gpt-5             python scripts/ai_real.py
-    PRODUCT_OPS_PROVIDER=openrouter PRODUCT_OPS_MODEL=anthropic/claude-opus-4-8 python scripts/ai_real.py
+    PRODUCT_OPS_PROVIDER=openai PRODUCT_OPS_MODEL=<model-id> python scripts/ai_real.py
+    PRODUCT_OPS_PROVIDER=openrouter PRODUCT_OPS_MODEL=<model-id> python scripts/ai_real.py
 
 Notes:
     - The review and weekly workflows read files that the deterministic scripts
@@ -54,7 +53,7 @@ PROVIDERS = {
     "anthropic": {
         "key_var": "ANTHROPIC_API_KEY",
         "package": "anthropic",
-        "default_model": "claude-opus-4-8",
+        "default_model": None,
         "base_url": None,
     },
     "openai": {
