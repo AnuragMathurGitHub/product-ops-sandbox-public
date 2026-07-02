@@ -26,6 +26,7 @@ The point is not to build a production platform. The point is to make the workfl
 | Explain the workflow to a team | Walk through the fictional product, metrics, roadmap candidates, OKR alignment, release measurement, and AI workflow |
 | Run the sample workflow | Clone or download the repo and run the Python scripts |
 | Use an AI assistant | Open the repo in your IDE or agent tool, then ask the assistant to explain, adapt, or run parts of the repo |
+| Run it fast with ready-made skills | Use the packaged skills for Claude Code, Cursor, or GitHub Copilot in `agent-skills/` and `.claude/skills/`, so your assistant runs each workflow with almost no typing |
 | Adapt it to your own product | Replace the fictional data with approved, anonymized product signals |
 
 ## Where Your Inputs Go
