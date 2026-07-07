@@ -23,6 +23,7 @@ The point is not to build a production platform. The point is to make the workfl
 | Goal | What To Do |
 | --- | --- |
 | Understand Product Ops | Read the README, system map, and generated outputs |
+| Onboard a first-time user | Follow `START_HERE.md` and `docs/07-customer-onboarding-user-flow.md` |
 | Explain the workflow to a team | Walk through the fictional product, metrics, roadmap candidates, OKR alignment, release measurement, and AI workflow |
 | Run the sample workflow | Clone or download the repo and run the Python scripts |
 | Use an AI assistant | Open the repo in your IDE or agent tool, then ask the assistant to explain, adapt, or run parts of the repo |
@@ -50,6 +51,7 @@ Start with one input at a time. For example, add one anonymized support ticket b
 | A product manager or operator | `START_HERE.md` and `outputs/` | Python knowledge |
 | A reader reviewing the workflow | This README and the sample outputs | Local setup |
 | A learner | `docs/00-product-ops-system-map.md` | Prior Product Ops experience |
+| A first-time team adopter | `docs/07-customer-onboarding-user-flow.md` | API keys |
 | A technical reviewer | `scripts/`, `tests/`, and `sample-data/` | AI API access |
 | An AI workflow builder | `ai-workflows/` and `agent-skills/` | Real customer data |
 
@@ -131,6 +133,8 @@ You do not need an API key. Pick the lane that fits you.
 
 The **Agent** lane is the main one: real synthesis, your own assistant, no key. **Mock** is a
 deterministic demo. The repo ships an `AGENTS.md` so coding assistants have one clear workflow map.
+For the onboarding journey, persona paths, and tool choice map, see
+[docs/07-customer-onboarding-user-flow.md](docs/07-customer-onboarding-user-flow.md).
 For the full user flow and per tool invocation, see [docs/03-how-to-run-the-workflows.md](docs/03-how-to-run-the-workflows.md).
 For what an API key would mean and where it would be used, see [docs/04-api-extension.md](docs/04-api-extension.md).
 
@@ -396,7 +400,8 @@ product-ops-sandbox-public/
 |   |-- 03-how-to-run-the-workflows.md
 |   |-- 04-api-extension.md
 |   |-- 05-planning-loop.md
-|   `-- 06-adapt-this-sandbox.md
+|   |-- 06-adapt-this-sandbox.md
+|   `-- 07-customer-onboarding-user-flow.md
 |-- input-notes/
 |   |-- README.md
 |   |-- support-ticket-batch.md

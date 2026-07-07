@@ -15,6 +15,31 @@ feedback + research + product data
 -> learning for the next planning cycle
 ```
 
+For the first-time onboarding and user-flow diagrams, see
+`docs/07-customer-onboarding-user-flow.md`.
+
+## Visual System Map
+
+```mermaid
+flowchart TD
+    A["Product context"] --> B["Success metrics"]
+    B --> C["Structured data<br/>sample-data/*.csv"]
+    B --> D["Qualitative notes<br/>input-notes/*.md"]
+    C --> E["Deterministic scripts"]
+    D --> F["AI assisted workflows"]
+    F --> G["Insights and themes"]
+    E --> H["Metric, feedback, roadmap, OKR, and release summaries"]
+    G --> I["Opportunities"]
+    H --> I
+    I --> J["Prioritization and roadmap candidates"]
+    J --> K["OKR alignment"]
+    K --> L["Release communication and measurement"]
+    L --> M["Learning for next planning cycle"]
+    M --> B
+    K --> N["Human review"]
+    L --> N
+```
+
 ## Why The Loop Matters
 
 Product teams often have useful signals in different places:

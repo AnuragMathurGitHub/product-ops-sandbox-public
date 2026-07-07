@@ -39,6 +39,33 @@ If you are not sure, start with **Read only**.
 
 If you do not have the files yet, go back to the README and follow **How To Get The Files**.
 
+## First-Time User Flow
+
+Use this map to choose the right first action. The public sandbox is designed so you can learn it
+without credentials, then decide whether to read, use an assistant, run scripts, or adapt it.
+
+```mermaid
+flowchart TD
+    A["Open README.md"] --> B["Open START_HERE.md"]
+    B --> C{"What do you want first?"}
+    C -->|Understand the system| D["Read docs/00-product-ops-system-map.md"]
+    C -->|See finished examples| E["Open outputs/*.md"]
+    C -->|Use real AI with no key| F["Ask an assistant to follow AGENTS.md"]
+    C -->|Run repeatable summaries| G["Run the Python scripts"]
+    C -->|Adapt to your product| H["Read docs/06-adapt-this-sandbox.md"]
+
+    D --> I["Pick one workflow"]
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    I --> J["Review one output"]
+    J --> K["Choose the next small step"]
+```
+
+For the deeper onboarding map, persona paths, and tool choices, see
+`docs/07-customer-onboarding-user-flow.md`.
+
 Fastest AI assistant start:
 
 ```text
@@ -390,6 +417,7 @@ Help me adapt this sandbox for my product. Ask me the minimum questions needed b
 
 | If You Want To... | Open |
 | --- | --- |
+| Understand the customer onboarding flow | `docs/07-customer-onboarding-user-flow.md` |
 | Understand the full system | `docs/00-product-ops-system-map.md` |
 | Understand how a workflow runs end to end | `docs/03-how-to-run-the-workflows.md` |
 | Understand planning, OKRs, release, and measurement | `docs/05-planning-loop.md` |

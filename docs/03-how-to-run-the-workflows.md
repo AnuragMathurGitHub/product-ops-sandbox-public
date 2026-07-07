@@ -3,6 +3,9 @@
 This is the map of how you go from raw notes to a reviewed product decision, and how to run the AI
 part without writing everything by hand.
 
+For the customer-facing onboarding journey, persona routing, and tool choice map, start with
+`docs/07-customer-onboarding-user-flow.md`. This doc focuses on how the workflows execute.
+
 ## The whole system in one line
 
 ```text
@@ -13,6 +16,33 @@ sample-data/*.csv      ai-workflows/schemas/     + AGENTS.md / skills     output
 
 The prompt and its schema are the single source of truth. Every tool entry point (`AGENTS.md`,
 `.claude/`, `.cursor/`, `.github/`) is just a thin way to invoke that same prompt.
+
+## Visual User Flow
+
+```mermaid
+flowchart TD
+    A["Start with a goal"] --> B{"Input type?"}
+    B -->|Qualitative notes| C["input-notes/*.md"]
+    B -->|Structured CSV data| D["sample-data/*.csv"]
+    B -->|Generated planning outputs| E["outputs/*.md and outputs/*.json"]
+
+    C --> F["Choose matching prompt in ai-workflows/prompts/"]
+    F --> G{"Execution lane?"}
+    G -->|Agent| H["Assistant follows AGENTS.md"]
+    G -->|Mock demo| I["python scripts/ai_*.py"]
+    G -->|API extension| J["python scripts/ai_real.py or private service"]
+
+    D --> K["Run deterministic script"]
+    E --> F
+
+    H --> L["Write JSON draft and Markdown summary"]
+    I --> L
+    J --> L
+    K --> M["Write Markdown summary"]
+    L --> N["Human review"]
+    M --> N
+    N --> O["Planning, OKR, release, or adaptation decision"]
+```
 
 ## The four lanes
 
