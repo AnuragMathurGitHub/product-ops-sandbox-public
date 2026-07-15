@@ -1,0 +1,50 @@
+# Project metadata and tool configuration. This file configures dev tooling only:
+# running the sandbox needs nothing beyond the Python standard library.
+
+[project]
+name = "product-ops-sandbox"
+version = "1.0.0"
+description = "A Product Operations sandbox that turns scattered product signals into reviewed planning drafts."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Anurag Mathur" }]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # import sorting
+    "UP",  # pyupgrade
+    "B",   # bugbear
+    "SIM", # simplify
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests must extend sys.path before importing the scripts they test.
+"tests/*" = ["E402"]
+# These scripts embed finished Markdown prose in string lists; rewrapping those
+# strings would change the committed outputs in outputs/.
+"scripts/score_roadmap.py" = ["E501"]
+"scripts/summarize_metrics.py" = ["E501"]
+"scripts/summarize_okrs.py" = ["E501"]
+"scripts/summarize_releases.py" = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+mypy_path = "scripts"
+files = ["scripts", "tests"]
+disallow_untyped_defs = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = ["test_harness", "test_scripts", "test_tasks", "test_outputs_deterministic"]
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = ["anthropic", "openai"]
+ignore_missing_imports = true

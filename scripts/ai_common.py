@@ -1,6 +1,5 @@
-from pathlib import Path
 import shutil
-
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SAMPLE_OUTPUTS = PROJECT_ROOT / "ai-workflows" / "sample-outputs"
