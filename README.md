@@ -4,16 +4,17 @@ A practical Product Operations sandbox for turning scattered product signals int
 
 This repo uses a fictional product, fictional data, simple Python scripts, and AI assisted workflows to show how a modern Product Ops loop can work:
 
-```text
-product context + current metrics + current OKRs
-+ feedback + research + product data
--> insights
--> opportunities
--> prioritization
--> roadmap candidates
--> OKR alignment
--> release communication and measurement
--> learning for the next planning cycle
+```mermaid
+flowchart TD
+    A["Product context + current metrics + current OKRs"] --> B["Signals: feedback, research, product data"]
+    B --> C["Insights"]
+    C --> D["Opportunities"]
+    D --> E["Prioritization"]
+    E --> F["Roadmap candidates"]
+    F --> G["OKR alignment"]
+    G --> H["Release communication and measurement"]
+    H --> I["Learning for the next planning cycle"]
+    I --> A
 ```
 
 The point is not to build a production platform. The point is to make the workflow easy to understand, run, and adapt.

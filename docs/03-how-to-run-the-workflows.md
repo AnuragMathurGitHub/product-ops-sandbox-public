@@ -89,6 +89,31 @@ Do not invent facts.
 Every workflow writes a structured `.json` draft and a readable `.md` summary, except the weekly
 readout and product planning review, which are Markdown only.
 
+## What The First Agent Run Looks Like
+
+This is the whole first run for the simplest workflow, feedback classification. Every other
+workflow has the same shape: map, prompt, inputs, schema, outputs, gate, review.
+
+```mermaid
+sequenceDiagram
+    actor Visitor
+    participant Assistant as AI assistant
+    participant Repo as Repo files
+
+    Visitor->>Assistant: Classify the sample feedback notes
+    Assistant->>Repo: Read AGENTS.md for the workflow map
+    Assistant->>Repo: Read ai-workflows/prompts/classify_feedback.md
+    Assistant->>Repo: Read input-notes/support-ticket-batch.md
+    Assistant->>Repo: Read ai-workflows/schemas/feedback_classification.schema.json
+    Assistant->>Repo: Write outputs/ai_feedback_classification.json and .md
+    Assistant->>Repo: Run python scripts/harness.py on the draft
+    Assistant-->>Visitor: Draft ready, schema gate passed
+    Visitor->>Visitor: Review the draft before any product decision
+```
+
+The run overwrites the committed example outputs, and that is expected: the files in `outputs/`
+are worked examples, and the repo history keeps the originals.
+
 ## Recommended Run Order
 
 Run the deterministic summaries first:
