@@ -15,6 +15,7 @@ additionalProperties, enum), the same subset the repo's schemas use.
 """
 
 import json
+import sys
 
 
 class HarnessError(Exception):
@@ -98,3 +99,47 @@ def run_step(call_model, prompt, schema, max_retries=3):
             return data
         last = f"attempt {attempt}: {len(violations)} contract violation(s): {violations[:3]}"
     raise HarnessError(f"output never satisfied the contract. Last: {last}")
+
+
+def main(argv):
+    """Check one output file against one schema file from the command line.
+
+    Usage: python scripts/harness.py <output-file.json> <schema-file.json>
+
+    Prints OK when the output satisfies the schema, otherwise one line per
+    contract violation. Exit codes: 0 valid, 1 invalid, 2 usage or file problem.
+    Any lane can use this: after an assistant writes a JSON draft, this command
+    is the deterministic check that the draft has the agreed structure.
+    """
+    if len(argv) != 2:
+        print("Usage: python scripts/harness.py <output-file.json> <schema-file.json>")
+        print("Example:")
+        print(
+            "    python scripts/harness.py outputs/ai_feedback_classification.json"
+            " ai-workflows/schemas/feedback_classification.schema.json"
+        )
+        return 2
+    output_path, schema_path = argv
+    try:
+        with open(output_path, encoding="utf-8") as handle:
+            data = json.load(handle)
+        with open(schema_path, encoding="utf-8") as handle:
+            schema = json.load(handle)
+    except OSError as error:
+        print(f"Could not read a file: {error}")
+        return 2
+    except json.JSONDecodeError as error:
+        print(f"Could not parse JSON: {error}")
+        return 2
+    violations = validate(schema, data)
+    if violations:
+        print(f"{output_path} does not satisfy {schema_path}:")
+        for violation in violations:
+            print(f"  {violation}")
+        return 1
+    print(f"OK: {output_path} satisfies {schema_path}.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

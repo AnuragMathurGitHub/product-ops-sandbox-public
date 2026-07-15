@@ -145,6 +145,22 @@ PRODUCT_OPS_PROVIDER=openrouter PRODUCT_OPS_MODEL=your-current-model-id python s
 `PRODUCT_OPS_MODEL` is required for every provider. Check your provider's current model names before
 running the script.
 
+### The Schema Gate
+
+The model is probabilistic, so `scripts/ai_real.py` makes the workflow deterministic at the
+boundary instead: every reply passes through the gate in `scripts/harness.py` before anything is
+written. The reply must parse as JSON and satisfy the workflow's schema. On a bad reply the script
+retries up to three times, then fails with a clear error instead of writing a bad draft.
+
+The same gate works from the command line for any lane, including drafts an assistant wrote in the
+agent lane:
+
+```bash
+python scripts/harness.py outputs/ai_feedback_classification.json ai-workflows/schemas/feedback_classification.schema.json
+```
+
+It prints any contract violations and exits 0 when the draft matches the schema.
+
 ### Notes
 
 If no key is set, the script does not crash. It prints how to set a key and reminds you the agent and
@@ -192,7 +208,9 @@ A live script should follow the same repo contract:
 2. Read the matching prompt, for example `ai-workflows/prompts/classify_feedback.md`.
 3. Read the schema, for example `ai-workflows/schemas/feedback_classification.schema.json`.
 4. Call the model through the provider API.
-5. Validate the JSON output against the schema.
+5. Validate the JSON output against the schema. `scripts/harness.py` is a working example: it
+   parses the reply, checks it against the schema, retries a fixed number of times, and fails
+   closed.
 6. Write a JSON draft and a readable Markdown summary into `outputs/`.
 7. Require human review before product decisions.
 

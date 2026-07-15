@@ -33,6 +33,10 @@ Notes:
     - The review and weekly workflows read files that the deterministic scripts
       and earlier steps produce, so run the deterministic scripts first if your
       outputs/ folder is empty (see START_HERE.md, Step 6).
+    - Every model reply passes through the schema gate in scripts/harness.py:
+      the reply must parse as JSON and satisfy the workflow's schema, with up to
+      three attempts, or the workflow fails with a clear error instead of
+      writing a bad draft.
     - Outputs are drafts for a human to review, exactly like the other lanes.
 """
 
@@ -41,10 +45,13 @@ import json
 import os
 import sys
 
+from harness import HarnessError, run_step
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 OUTPUTS = PROJECT_ROOT / "outputs"
 
 MAX_TOKENS = 16000
+MAX_ATTEMPTS = 3
 
 # Provider settings. default_model is None where the provider's model names change
 # often and we would rather require an explicit PRODUCT_OPS_MODEL than ship a
@@ -178,19 +185,26 @@ def build_user_content(cfg):
     return "".join(parts)
 
 
-def parse_json_object(text):
-    """Parse a JSON object from model text, tolerating code fences or prose."""
-    cleaned = text.strip()
-    if cleaned.startswith("```"):
-        # Drop the opening fence line and the closing fence.
-        cleaned = cleaned.split("\n", 1)[1] if "\n" in cleaned else cleaned
-        if cleaned.endswith("```"):
-            cleaned = cleaned[: cleaned.rfind("```")]
-    start = cleaned.find("{")
-    end = cleaned.rfind("}")
-    if start == -1 or end == -1:
-        raise ValueError("No JSON object found in the model response.")
-    return json.loads(cleaned[start : end + 1])
+def envelope_schema(cfg):
+    """The contract for one model reply, enforced by the harness gate.
+
+    JSON workflows must reply with {"output": <matches the workflow schema>,
+    "markdown": <string>}. Markdown-only workflows must reply with
+    {"markdown": <string>}. This is the same contract SYSTEM_JSON and
+    SYSTEM_MARKDOWN describe to the model.
+    """
+    properties = {"markdown": {"type": "string"}}
+    required = ["markdown"]
+    if cfg["schema"]:
+        workflow_schema = json.loads(read_text(f"ai-workflows/schemas/{cfg['schema']}"))
+        properties["output"] = workflow_schema
+        required = ["output", "markdown"]
+    return {
+        "type": "object",
+        "additionalProperties": False,
+        "required": required,
+        "properties": properties,
+    }
 
 
 def call_model(client, provider, model, system, user):
@@ -217,30 +231,35 @@ def call_model(client, provider, model, system, user):
 
 
 def run_workflow(client, provider, model, name, cfg):
-    """Run one workflow and write its outputs. Return True on success."""
+    """Run one workflow through the schema gate and write its outputs.
+
+    Return True on success. The harness calls the model, checks the reply
+    against the envelope contract, and retries up to MAX_ATTEMPTS times before
+    failing, so a reply that never satisfies the schema writes nothing.
+    """
     is_json = cfg["json_out"] is not None
     system = SYSTEM_JSON if is_json else SYSTEM_MARKDOWN
     user = build_user_content(cfg)
+    contract = envelope_schema(cfg)
     print(f"Running {name} on {provider}:{model} ...")
-    text = call_model(client, provider, model, system, user)
+
+    def call(prompt):
+        return call_model(client, provider, model, system, prompt)
+
     try:
-        obj = parse_json_object(text)
-    except ValueError as error:
-        print(f"  Could not parse a JSON object from the response: {error}")
+        obj = run_step(call, user, contract, max_retries=MAX_ATTEMPTS)
+    except HarnessError as error:
+        print(f"  Gate failed: {error}")
         return False
+    gate_name = cfg["schema"] if cfg["schema"] else "markdown envelope"
+    print(f"  Draft passed the schema gate ({gate_name}).")
 
     OUTPUTS.mkdir(parents=True, exist_ok=True)
     if is_json:
-        if "output" not in obj or "markdown" not in obj:
-            print("  Response was missing the 'output' or 'markdown' key.")
-            return False
         json_path = OUTPUTS / cfg["json_out"]
         json_path.write_text(json.dumps(obj["output"], indent=2) + "\n", encoding="utf-8")
         print(f"  Wrote {json_path}")
 
-    if "markdown" not in obj:
-        print("  Response was missing the 'markdown' key.")
-        return False
     md_path = OUTPUTS / cfg["md_out"]
     md_path.write_text(obj["markdown"].rstrip() + "\n", encoding="utf-8")
     print(f"  Wrote {md_path}")

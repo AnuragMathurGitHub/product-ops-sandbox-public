@@ -188,8 +188,10 @@ python scripts/ai_generate_weekly_summary.py
 
 Each writes a `.json` draft and a readable `.md` summary into `outputs/`.
 
-The optional `scripts/ai_real.py` is different: it calls a real model with your own API key. See
-[docs/04-api-extension.md](docs/04-api-extension.md) for how to set a key and run it.
+The optional `scripts/ai_real.py` is different: it calls a real model with your own API key, and it
+gates every reply through `scripts/harness.py`, so a draft that does not match its schema is retried
+and then rejected instead of written. See [docs/04-api-extension.md](docs/04-api-extension.md) for
+how to set a key and run it.
 
 The public repo does not require an API key. API keys are only for private automation, such as a
 scheduled script or internal service that calls a model directly. See [docs/04-api-extension.md](docs/04-api-extension.md).
@@ -197,7 +199,8 @@ scheduled script or internal service that calls a model directly. See [docs/04-a
 ## Run The Tests
 
 The tests use the Python standard library only. They cover the scoring formula, event counting, the
-feedback summary, empty metrics handling, the mock copy step, and that the sample outputs match their
+feedback summary, empty metrics handling, the mock copy step, the schema gate in
+`scripts/harness.py` (parse, validate, retry, fail closed), and that the sample outputs match their
 schemas.
 
 ```bash
@@ -420,8 +423,10 @@ product-ops-sandbox-public/
 |   |-- summarize_okrs.py
 |   |-- summarize_releases.py
 |   |-- ai_*.py                 (mock demo scripts, no key needed)
-|   `-- ai_real.py              (optional real-AI pipeline, key required)
+|   |-- ai_real.py              (optional real-AI pipeline, key required)
+|   `-- harness.py              (schema gate: validate AI drafts, retry, fail closed)
 |-- tests/
+|   |-- test_harness.py
 |   `-- test_scripts.py
 |-- outputs/
 |   |-- README.md
