@@ -19,6 +19,13 @@ Inputs are files. You read them and write results. **No API key is required**; y
    draft that matches the schema in `ai-workflows/schemas/`, plus a short, readable `.md` summary.
    Markdown only workflows write one `.md` file.
 4. Use only the evidence in the notes. Do not invent facts, numbers, quotes, or company names.
+5. Gate a structured draft before you hand it over. Run
+   `python scripts/harness.py <output.json> <schema.json>`, for example
+   `python scripts/harness.py outputs/ai_feedback_classification.json ai-workflows/schemas/feedback_classification.schema.json`.
+   It prints any contract violations and exits 0 when the draft matches the schema.
+
+The committed files in `outputs/` are worked examples. Running a workflow overwrites them, and that
+is expected; the repo history keeps the originals.
 
 ### Workflow map
 

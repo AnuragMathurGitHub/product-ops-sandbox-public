@@ -39,6 +39,33 @@ If you are not sure, start with **Read only**.
 
 If you do not have the files yet, go back to the README and follow **How To Get The Files**.
 
+## First-Time User Flow
+
+Use this map to choose the right first action. The public sandbox is designed so you can learn it
+without credentials, then decide whether to read, use an assistant, run scripts, or adapt it.
+
+```mermaid
+flowchart TD
+    A["Open README.md"] --> B["Open START_HERE.md"]
+    B --> C{"What do you want first?"}
+    C -->|Understand the system| D["Read docs/00-product-ops-system-map.md"]
+    C -->|See finished examples| E["Open outputs/*.md"]
+    C -->|Use real AI with no key| F["Ask an assistant to follow AGENTS.md"]
+    C -->|Run repeatable summaries| G["Run the Python scripts"]
+    C -->|Adapt to your product| H["Read docs/06-adapt-this-sandbox.md"]
+
+    D --> I["Pick one workflow"]
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    I --> J["Review one output"]
+    J --> K["Choose the next small step"]
+```
+
+For the deeper onboarding map, persona paths, and tool choices, see
+`docs/07-customer-onboarding-user-flow.md`.
+
 Fastest AI assistant start:
 
 ```text
@@ -130,7 +157,9 @@ use real notes only with the right permission and do not commit sensitive files 
 
 Open `outputs/`.
 
-The outputs show what the workflow produces.
+The outputs show what the workflow produces. They are committed worked examples: when you run a
+workflow or script later, it overwrites them with your fresh result. That is expected, and the
+originals stay in the repo history on GitHub.
 
 | Output | What It Helps Answer | Easy To Read? |
 | --- | --- | --- |
@@ -253,6 +282,11 @@ Write the JSON draft to outputs/ai_feedback_classification.json and a short read
 Do not invent facts.
 ```
 
+Optional check: ask the assistant to run
+`python scripts/harness.py outputs/ai_feedback_classification.json ai-workflows/schemas/feedback_classification.schema.json`.
+It prints any schema violations, so you know the draft has the agreed structure before you review
+the content.
+
 If you are using a chat only assistant that cannot access files, copy the prompt and the anonymized
 note content into the chat manually. That is the fallback, not the main path.
 
@@ -303,7 +337,7 @@ looks like, or when you do not have an assistant handy.
 | `scripts/ai_review_product_planning.py` | Generated planning outputs | `ai_product_planning_review.md` | Shows how evidence connects to planning decisions |
 | `scripts/ai_align_okrs.py` | OKRs plus planning outputs | `ai_okr_alignment.json` + `.md` | Shows how roadmap candidates may support outcomes |
 | `scripts/ai_plan_release_measurement.py` | Release candidates plus metrics | `ai_release_measurement_plan.json` + `.md` | Shows launch communication and measurement planning |
-| `scripts/ai_generate_weekly_summary.py` | Metrics plus themes | `ai_weekly_product_insights.md` | Shows a weekly Product Ops readout |
+| `scripts/ai_weekly_product_insights.py` | Metrics plus themes | `ai_weekly_product_insights.md` | Shows a weekly Product Ops readout |
 
 Each script writes its result into `outputs/`. The first three write both a structured JSON draft
 and a matching `.md` summary so you can read the result without opening JSON.
@@ -317,7 +351,7 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_review_product_planning.py
 python scripts/ai_align_okrs.py
 python scripts/ai_plan_release_measurement.py
-python scripts/ai_generate_weekly_summary.py
+python scripts/ai_weekly_product_insights.py
 ```
 
 Why "mock"? These scripts do not call a live AI model. They copy prepared example results into
@@ -390,6 +424,7 @@ Help me adapt this sandbox for my product. Ask me the minimum questions needed b
 
 | If You Want To... | Open |
 | --- | --- |
+| Understand the customer onboarding flow | `docs/07-customer-onboarding-user-flow.md` |
 | Understand the full system | `docs/00-product-ops-system-map.md` |
 | Understand how a workflow runs end to end | `docs/03-how-to-run-the-workflows.md` |
 | Understand planning, OKRs, release, and measurement | `docs/05-planning-loop.md` |

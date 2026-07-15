@@ -4,16 +4,17 @@ A practical Product Operations sandbox for turning scattered product signals int
 
 This repo uses a fictional product, fictional data, simple Python scripts, and AI assisted workflows to show how a modern Product Ops loop can work:
 
-```text
-product context + current metrics + current OKRs
-+ feedback + research + product data
--> insights
--> opportunities
--> prioritization
--> roadmap candidates
--> OKR alignment
--> release communication and measurement
--> learning for the next planning cycle
+```mermaid
+flowchart TD
+    A["Product context + current metrics + current OKRs"] --> B["Signals: feedback, research, product data"]
+    B --> C["Insights"]
+    C --> D["Opportunities"]
+    D --> E["Prioritization"]
+    E --> F["Roadmap candidates"]
+    F --> G["OKR alignment"]
+    G --> H["Release communication and measurement"]
+    H --> I["Learning for the next planning cycle"]
+    I --> A
 ```
 
 The point is not to build a production platform. The point is to make the workflow easy to understand, run, and adapt.
@@ -23,6 +24,7 @@ The point is not to build a production platform. The point is to make the workfl
 | Goal | What To Do |
 | --- | --- |
 | Understand Product Ops | Read the README, system map, and generated outputs |
+| Onboard a first-time user | Follow `START_HERE.md` and `docs/07-customer-onboarding-user-flow.md` |
 | Explain the workflow to a team | Walk through the fictional product, metrics, roadmap candidates, OKR alignment, release measurement, and AI workflow |
 | Run the sample workflow | Clone or download the repo and run the Python scripts |
 | Use an AI assistant | Open the repo in your IDE or agent tool, then ask the assistant to explain, adapt, or run parts of the repo |
@@ -50,6 +52,7 @@ Start with one input at a time. For example, add one anonymized support ticket b
 | A product manager or operator | `START_HERE.md` and `outputs/` | Python knowledge |
 | A reader reviewing the workflow | This README and the sample outputs | Local setup |
 | A learner | `docs/00-product-ops-system-map.md` | Prior Product Ops experience |
+| A first-time team adopter | `docs/07-customer-onboarding-user-flow.md` | API keys |
 | A technical reviewer | `scripts/`, `tests/`, and `sample-data/` | AI API access |
 | An AI workflow builder | `ai-workflows/` and `agent-skills/` | Real customer data |
 
@@ -131,6 +134,8 @@ You do not need an API key. Pick the lane that fits you.
 
 The **Agent** lane is the main one: real synthesis, your own assistant, no key. **Mock** is a
 deterministic demo. The repo ships an `AGENTS.md` so coding assistants have one clear workflow map.
+For the onboarding journey, persona paths, and tool choice map, see
+[docs/07-customer-onboarding-user-flow.md](docs/07-customer-onboarding-user-flow.md).
 For the full user flow and per tool invocation, see [docs/03-how-to-run-the-workflows.md](docs/03-how-to-run-the-workflows.md).
 For what an API key would mean and where it would be used, see [docs/04-api-extension.md](docs/04-api-extension.md).
 
@@ -179,13 +184,15 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_review_product_planning.py
 python scripts/ai_align_okrs.py
 python scripts/ai_plan_release_measurement.py
-python scripts/ai_generate_weekly_summary.py
+python scripts/ai_weekly_product_insights.py
 ```
 
 Each writes a `.json` draft and a readable `.md` summary into `outputs/`.
 
-The optional `scripts/ai_real.py` is different: it calls a real model with your own API key. See
-[docs/04-api-extension.md](docs/04-api-extension.md) for how to set a key and run it.
+The optional `scripts/ai_real.py` is different: it calls a real model with your own API key, and it
+gates every reply through `scripts/harness.py`, so a draft that does not match its schema is retried
+and then rejected instead of written. See [docs/04-api-extension.md](docs/04-api-extension.md) for
+how to set a key and run it.
 
 The public repo does not require an API key. API keys are only for private automation, such as a
 scheduled script or internal service that calls a model directly. See [docs/04-api-extension.md](docs/04-api-extension.md).
@@ -193,7 +200,8 @@ scheduled script or internal service that calls a model directly. See [docs/04-a
 ## Run The Tests
 
 The tests use the Python standard library only. They cover the scoring formula, event counting, the
-feedback summary, empty metrics handling, the mock copy step, and that the sample outputs match their
+feedback summary, empty metrics handling, the mock copy step, the schema gate in
+`scripts/harness.py` (parse, validate, retry, fail closed), and that the sample outputs match their
 schemas.
 
 ```bash
@@ -396,7 +404,8 @@ product-ops-sandbox-public/
 |   |-- 03-how-to-run-the-workflows.md
 |   |-- 04-api-extension.md
 |   |-- 05-planning-loop.md
-|   `-- 06-adapt-this-sandbox.md
+|   |-- 06-adapt-this-sandbox.md
+|   `-- 07-customer-onboarding-user-flow.md
 |-- input-notes/
 |   |-- README.md
 |   |-- support-ticket-batch.md
@@ -415,8 +424,10 @@ product-ops-sandbox-public/
 |   |-- summarize_okrs.py
 |   |-- summarize_releases.py
 |   |-- ai_*.py                 (mock demo scripts, no key needed)
-|   `-- ai_real.py              (optional real-AI pipeline, key required)
+|   |-- ai_real.py              (optional real-AI pipeline, key required)
+|   `-- harness.py              (schema gate: validate AI drafts, retry, fail closed)
 |-- tests/
+|   |-- test_harness.py
 |   `-- test_scripts.py
 |-- outputs/
 |   |-- README.md

@@ -3,6 +3,9 @@
 This is the map of how you go from raw notes to a reviewed product decision, and how to run the AI
 part without writing everything by hand.
 
+For the customer-facing onboarding journey, persona routing, and tool choice map, start with
+`docs/07-customer-onboarding-user-flow.md`. This doc focuses on how the workflows execute.
+
 ## The whole system in one line
 
 ```text
@@ -13,6 +16,33 @@ sample-data/*.csv      ai-workflows/schemas/     + AGENTS.md / skills     output
 
 The prompt and its schema are the single source of truth. Every tool entry point (`AGENTS.md`,
 `.claude/`, `.cursor/`, `.github/`) is just a thin way to invoke that same prompt.
+
+## Visual User Flow
+
+```mermaid
+flowchart TD
+    A["Start with a goal"] --> B{"Input type?"}
+    B -->|Qualitative notes| C["input-notes/*.md"]
+    B -->|Structured CSV data| D["sample-data/*.csv"]
+    B -->|Generated planning outputs| E["outputs/*.md and outputs/*.json"]
+
+    C --> F["Choose matching prompt in ai-workflows/prompts/"]
+    F --> G{"Execution lane?"}
+    G -->|Agent| H["Assistant follows AGENTS.md"]
+    G -->|Mock demo| I["python scripts/ai_*.py"]
+    G -->|API extension| J["python scripts/ai_real.py or private service"]
+
+    D --> K["Run deterministic script"]
+    E --> F
+
+    H --> L["Write JSON draft and Markdown summary"]
+    I --> L
+    J --> L
+    K --> M["Write Markdown summary"]
+    L --> N["Human review"]
+    M --> N
+    N --> O["Planning, OKR, release, or adaptation decision"]
+```
 
 ## The four lanes
 
@@ -59,6 +89,31 @@ Do not invent facts.
 Every workflow writes a structured `.json` draft and a readable `.md` summary, except the weekly
 readout and product planning review, which are Markdown only.
 
+## What The First Agent Run Looks Like
+
+This is the whole first run for the simplest workflow, feedback classification. Every other
+workflow has the same shape: map, prompt, inputs, schema, outputs, gate, review.
+
+```mermaid
+sequenceDiagram
+    actor Visitor
+    participant Assistant as AI assistant
+    participant Repo as Repo files
+
+    Visitor->>Assistant: Classify the sample feedback notes
+    Assistant->>Repo: Read AGENTS.md for the workflow map
+    Assistant->>Repo: Read ai-workflows/prompts/classify_feedback.md
+    Assistant->>Repo: Read input-notes/support-ticket-batch.md
+    Assistant->>Repo: Read ai-workflows/schemas/feedback_classification.schema.json
+    Assistant->>Repo: Write outputs/ai_feedback_classification.json and .md
+    Assistant->>Repo: Run python scripts/harness.py on the draft
+    Assistant-->>Visitor: Draft ready, schema gate passed
+    Visitor->>Visitor: Review the draft before any product decision
+```
+
+The run overwrites the committed example outputs, and that is expected: the files in `outputs/`
+are worked examples, and the repo history keeps the originals.
+
 ## Recommended Run Order
 
 Run the deterministic summaries first:
@@ -80,7 +135,7 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_review_product_planning.py
 python scripts/ai_align_okrs.py
 python scripts/ai_plan_release_measurement.py
-python scripts/ai_generate_weekly_summary.py
+python scripts/ai_weekly_product_insights.py
 ```
 
 In the real Agent lane, ask your assistant to follow the prompts in the same order.

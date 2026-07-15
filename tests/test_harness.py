@@ -1,3 +1,5 @@
+import contextlib
+import io
 import json
 import sys
 import unittest
@@ -7,6 +9,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
+import harness
 from harness import HarnessError, extract_json, run_step, validate
 
 
@@ -74,6 +77,42 @@ class RealSchemaTests(unittest.TestCase):
             )
         )
         self.assertEqual(validate(schema, sample), [])
+
+
+def run_cli(argv):
+    """Run the harness command line quietly and return its exit code."""
+    with contextlib.redirect_stdout(io.StringIO()):
+        return harness.main(argv)
+
+
+class CliTests(unittest.TestCase):
+    SCHEMAS = PROJECT_ROOT / "ai-workflows" / "schemas"
+    SAMPLES = PROJECT_ROOT / "ai-workflows" / "sample-outputs"
+
+    def test_cli_accepts_a_matching_output(self):
+        code = run_cli(
+            [
+                str(self.SAMPLES / "feedback_classification_example.json"),
+                str(self.SCHEMAS / "feedback_classification.schema.json"),
+            ]
+        )
+        self.assertEqual(code, 0)
+
+    def test_cli_rejects_an_output_that_misses_the_contract(self):
+        code = run_cli(
+            [
+                str(self.SAMPLES / "okr_alignment_example.json"),
+                str(self.SCHEMAS / "feedback_classification.schema.json"),
+            ]
+        )
+        self.assertEqual(code, 1)
+
+    def test_cli_reports_usage_and_file_problems(self):
+        self.assertEqual(run_cli([]), 2)
+        self.assertEqual(
+            run_cli(["does_not_exist.json", str(self.SCHEMAS / "feedback_classification.schema.json")]),
+            2,
+        )
 
 
 if __name__ == "__main__":
