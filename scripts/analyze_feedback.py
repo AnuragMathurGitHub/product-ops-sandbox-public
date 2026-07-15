@@ -1,20 +1,21 @@
 import csv
 from collections import Counter, defaultdict
 from pathlib import Path
+from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = PROJECT_ROOT / "sample-data" / "customer_feedback.csv"
 OUTPUT_FILE = PROJECT_ROOT / "outputs" / "feedback_theme_summary.md"
 
 
-def read_feedback():
+def read_feedback() -> list[dict[str, Any]]:
     with INPUT_FILE.open(newline="", encoding="utf-8") as file:
         return list(csv.DictReader(file))
 
 
-def build_summary(records):
-    by_theme = defaultdict(list)
-    severity_counts = Counter()
+def build_summary(records: list[dict[str, Any]]) -> str:
+    by_theme: defaultdict[str, list[dict[str, Any]]] = defaultdict(list)
+    severity_counts: Counter[str] = Counter()
 
     for record in records:
         theme = record["theme"]
@@ -85,7 +86,7 @@ def build_summary(records):
     return "\n".join(lines)
 
 
-def main():
+def main() -> None:
     records = read_feedback()
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(build_summary(records), encoding="utf-8")

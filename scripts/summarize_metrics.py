@@ -1,17 +1,18 @@
 import csv
 from pathlib import Path
+from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = PROJECT_ROOT / "sample-data" / "product_events.csv"
 OUTPUT_FILE = PROJECT_ROOT / "outputs" / "metrics_snapshot.md"
 
 
-def read_events():
+def read_events() -> list[dict[str, Any]]:
     with INPUT_FILE.open(newline="", encoding="utf-8") as file:
         return list(csv.DictReader(file))
 
 
-def count_events(events, event_name, success=None):
+def count_events(events: list[dict[str, Any]], event_name: str, success: bool | None = None) -> int:
     matching = [event for event in events if event["event_name"] == event_name]
     if success is None:
         return len(matching)
@@ -19,7 +20,7 @@ def count_events(events, event_name, success=None):
     return sum(1 for event in matching if event["success"].lower() == expected)
 
 
-def build_summary(events):
+def build_summary(events: list[dict[str, Any]]) -> str:
     total_users = len({event["user_id"] for event in events})
     activated_users = {
         event["user_id"]
@@ -67,7 +68,7 @@ def build_summary(events):
     return "\n".join(lines)
 
 
-def main():
+def main() -> None:
     events = read_events()
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(build_summary(events), encoding="utf-8")

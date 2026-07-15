@@ -1,16 +1,17 @@
 import csv
 from pathlib import Path
+from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = PROJECT_ROOT / "sample-data" / "roadmap_items.csv"
 OUTPUT_FILE = PROJECT_ROOT / "outputs" / "roadmap_priority_scores.md"
 
 
-def to_float(value):
+def to_float(value: str) -> float:
     return float(value)
 
 
-def priority_score(item):
+def priority_score(item: dict[str, Any]) -> float:
     reach = to_float(item["reach"])
     impact = to_float(item["impact"])
     confidence = to_float(item["confidence"])
@@ -19,9 +20,9 @@ def priority_score(item):
     return (reach * impact * confidence * strategic_fit) / effort
 
 
-def read_items():
+def read_items() -> list[dict[str, Any]]:
     with INPUT_FILE.open(newline="", encoding="utf-8") as file:
-        items = list(csv.DictReader(file))
+        items: list[dict[str, Any]] = list(csv.DictReader(file))
 
     for item in items:
         item["score"] = priority_score(item)
@@ -29,7 +30,7 @@ def read_items():
     return sorted(items, key=lambda item: item["score"], reverse=True)
 
 
-def build_summary(items):
+def build_summary(items: list[dict[str, Any]]) -> str:
     lines = [
         "# Roadmap Priority Scores",
         "",
@@ -92,7 +93,7 @@ def build_summary(items):
     return "\n".join(lines)
 
 
-def main():
+def main() -> None:
     items = read_items()
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(build_summary(items), encoding="utf-8")

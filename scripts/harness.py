@@ -16,13 +16,15 @@ additionalProperties, enum), the same subset the repo's schemas use.
 
 import json
 import sys
+from collections.abc import Callable
+from typing import Any
 
 
 class HarnessError(Exception):
     """Raised when the model never produced output that satisfies the contract."""
 
 
-def extract_json(text):
+def extract_json(text: str) -> Any:
     """Pull the first JSON object out of model text, tolerating code fences."""
     cleaned = text.strip()
     if cleaned.startswith("```"):
@@ -36,7 +38,7 @@ def extract_json(text):
     return json.loads(cleaned[start : end + 1])
 
 
-def validate(schema, value, path="$"):
+def validate(schema: dict[str, Any], value: object, path: str = "$") -> list[str]:
     """Return a list of contract violations. An empty list means the value is valid."""
     errors = []
     if "enum" in schema and value not in schema["enum"]:
@@ -78,7 +80,12 @@ def validate(schema, value, path="$"):
     return errors
 
 
-def run_step(call_model, prompt, schema, max_retries=3):
+def run_step(
+    call_model: Callable[[str], str],
+    prompt: str,
+    schema: dict[str, Any],
+    max_retries: int = 3,
+) -> dict[str, Any]:
     """Call the model, gate its output on the schema, and retry deterministically.
 
     call_model: a function that takes the prompt string and returns model text. It
@@ -101,7 +108,7 @@ def run_step(call_model, prompt, schema, max_retries=3):
     raise HarnessError(f"output never satisfied the contract. Last: {last}")
 
 
-def main(argv):
+def main(argv: list[str]) -> int:
     """Check one output file against one schema file from the command line.
 
     Usage: python scripts/harness.py <output-file.json> <schema-file.json>

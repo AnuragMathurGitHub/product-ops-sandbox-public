@@ -6,7 +6,7 @@ SAMPLE_OUTPUTS = PROJECT_ROOT / "ai-workflows" / "sample-outputs"
 OUTPUTS = PROJECT_ROOT / "outputs"
 
 
-def copy_mock_output(example_name, output_name, announce=True):
+def copy_mock_output(example_name: str, output_name: str, announce: bool = True) -> None:
     source = SAMPLE_OUTPUTS / example_name
     destination = OUTPUTS / output_name
 
@@ -19,7 +19,7 @@ def copy_mock_output(example_name, output_name, announce=True):
         print(f"Wrote {destination}")
 
 
-def note_mock_mode(prompt_relpath):
+def note_mock_mode(prompt_relpath: str) -> None:
     """Explain that this run was a deterministic demo, and point to the real agent path."""
     print(
         "Mock mode: copied a prepared example. No AI model was called.\n"

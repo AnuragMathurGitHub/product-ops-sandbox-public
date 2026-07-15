@@ -1,7 +1,7 @@
 from ai_common import copy_mock_output, note_mock_mode
 
 
-def main():
+def main() -> None:
     copy_mock_output(
         "research_synthesis_example.json",
         "ai_research_synthesis.json",

@@ -1,7 +1,7 @@
 from ai_common import copy_mock_output, note_mock_mode
 
 
-def main():
+def main() -> None:
     copy_mock_output(
         "product_planning_review_example.md",
         "ai_product_planning_review.md",

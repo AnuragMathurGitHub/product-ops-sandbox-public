@@ -1,7 +1,7 @@
 from ai_common import copy_mock_output, note_mock_mode
 
 
-def main():
+def main() -> None:
     copy_mock_output(
         "okr_alignment_example.json",
         "ai_okr_alignment.json",
