@@ -157,7 +157,9 @@ use real notes only with the right permission and do not commit sensitive files 
 
 Open `outputs/`.
 
-The outputs show what the workflow produces.
+The outputs show what the workflow produces. They are committed worked examples: when you run a
+workflow or script later, it overwrites them with your fresh result. That is expected, and the
+originals stay in the repo history on GitHub.
 
 | Output | What It Helps Answer | Easy To Read? |
 | --- | --- | --- |
@@ -279,6 +281,11 @@ Classify the notes into product area, theme, severity, linked metric, evidence s
 Write the JSON draft to outputs/ai_feedback_classification.json and a short readable summary to outputs/ai_feedback_classification.md.
 Do not invent facts.
 ```
+
+Optional check: ask the assistant to run
+`python scripts/harness.py outputs/ai_feedback_classification.json ai-workflows/schemas/feedback_classification.schema.json`.
+It prints any schema violations, so you know the draft has the agreed structure before you review
+the content.
 
 If you are using a chat only assistant that cannot access files, copy the prompt and the anonymized
 note content into the chat manually. That is the fallback, not the main path.

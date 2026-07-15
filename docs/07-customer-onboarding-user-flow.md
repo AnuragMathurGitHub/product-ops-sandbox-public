@@ -255,7 +255,7 @@ This guide uses a few documentation choices intentionally:
 | Mermaid diagrams | GitHub renders Mermaid in Markdown, and Mermaid supports flowcharts and user journey diagrams |
 | Persona paths | Users arrive with different goals, so the first step should route them before giving commands |
 | First value focus | New users should see a meaningful result before learning every folder |
-| Diataxis-style separation | `START_HERE.md` is the guided tutorial, `docs/03` and `docs/06` are how-to guides, and `docs/01`, `docs/02`, `docs/04`, and `AGENTS.md` act more like explanation or reference |
+| Diataxis-style separation | `START_HERE.md` is the guided tutorial, `docs/03-how-to-run-the-workflows.md` and `docs/06-adapt-this-sandbox.md` are how-to guides, and `docs/01-product-context.md`, `docs/02-success-metrics.md`, `docs/04-api-extension.md`, and `AGENTS.md` act more like explanation or reference |
 
 References:
 

@@ -24,6 +24,9 @@ Inputs are files. You read them and write results. **No API key is required**; y
    `python scripts/harness.py outputs/ai_feedback_classification.json ai-workflows/schemas/feedback_classification.schema.json`.
    It prints any contract violations and exits 0 when the draft matches the schema.
 
+The committed files in `outputs/` are worked examples. Running a workflow overwrites them, and that
+is expected; the repo history keeps the originals.
+
 ### Workflow map
 
 | If the user asks to... | Follow this prompt | Write these outputs |
