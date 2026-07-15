@@ -135,7 +135,7 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_review_product_planning.py
 python scripts/ai_align_okrs.py
 python scripts/ai_plan_release_measurement.py
-python scripts/ai_generate_weekly_summary.py
+python scripts/ai_weekly_product_insights.py
 ```
 
 In the real Agent lane, ask your assistant to follow the prompts in the same order.

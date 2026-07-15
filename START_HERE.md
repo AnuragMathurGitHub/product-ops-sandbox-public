@@ -337,7 +337,7 @@ looks like, or when you do not have an assistant handy.
 | `scripts/ai_review_product_planning.py` | Generated planning outputs | `ai_product_planning_review.md` | Shows how evidence connects to planning decisions |
 | `scripts/ai_align_okrs.py` | OKRs plus planning outputs | `ai_okr_alignment.json` + `.md` | Shows how roadmap candidates may support outcomes |
 | `scripts/ai_plan_release_measurement.py` | Release candidates plus metrics | `ai_release_measurement_plan.json` + `.md` | Shows launch communication and measurement planning |
-| `scripts/ai_generate_weekly_summary.py` | Metrics plus themes | `ai_weekly_product_insights.md` | Shows a weekly Product Ops readout |
+| `scripts/ai_weekly_product_insights.py` | Metrics plus themes | `ai_weekly_product_insights.md` | Shows a weekly Product Ops readout |
 
 Each script writes its result into `outputs/`. The first three write both a structured JSON draft
 and a matching `.md` summary so you can read the result without opening JSON.
@@ -351,7 +351,7 @@ python scripts/ai_detect_opportunities.py
 python scripts/ai_review_product_planning.py
 python scripts/ai_align_okrs.py
 python scripts/ai_plan_release_measurement.py
-python scripts/ai_generate_weekly_summary.py
+python scripts/ai_weekly_product_insights.py
 ```
 
 Why "mock"? These scripts do not call a live AI model. They copy prepared example results into
