@@ -1,7 +1,6 @@
+import csv
 from collections import Counter, defaultdict
 from pathlib import Path
-import csv
-
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = PROJECT_ROOT / "sample-data" / "customer_feedback.csv"

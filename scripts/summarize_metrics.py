@@ -1,6 +1,5 @@
-from pathlib import Path
 import csv
-
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = PROJECT_ROOT / "sample-data" / "product_events.csv"
@@ -25,8 +24,7 @@ def build_summary(events):
     activated_users = {
         event["user_id"]
         for event in events
-        if event["event_name"] == "Membership Activated"
-        and event["success"].lower() == "true"
+        if event["event_name"] == "Membership Activated" and event["success"].lower() == "true"
     }
     activation_count = len(activated_users)
     activation_rate = activation_count / total_users if total_users else 0

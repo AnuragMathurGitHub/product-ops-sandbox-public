@@ -40,10 +40,10 @@ Notes:
     - Outputs are drafts for a human to review, exactly like the other lanes.
 """
 
-from pathlib import Path
 import json
 import os
 import sys
+from pathlib import Path
 
 from harness import HarnessError, run_step
 

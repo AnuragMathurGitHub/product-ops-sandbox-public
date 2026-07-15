@@ -1,6 +1,5 @@
-from pathlib import Path
 import csv
-
+from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = PROJECT_ROOT / "sample-data" / "releases.csv"
