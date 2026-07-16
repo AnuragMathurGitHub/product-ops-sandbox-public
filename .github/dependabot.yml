@@ -1,14 +1,23 @@
-# Weekly dependency updates. The runtime has no dependencies; this covers the
-# GitHub Actions used in CI and the optional dev and API-lane requirements files.
+# Monthly, grouped dependency updates: at most one actions PR and one pip PR per
+# cycle. The runtime has no dependencies; this covers the GitHub Actions used in
+# CI and the optional dev and API-lane requirements files.
 
 version: 2
 updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: weekly
+      interval: monthly
+    groups:
+      actions:
+        patterns:
+          - "*"
 
   - package-ecosystem: pip
     directory: "/"
     schedule:
-      interval: weekly
+      interval: monthly
+    groups:
+      python-packages:
+        patterns:
+          - "*"
