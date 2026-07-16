@@ -263,4 +263,3 @@ References:
 - Mermaid flowcharts: https://mermaid.ai/open-source/syntax/flowchart.html
 - Mermaid user journey diagrams: https://mermaid.ai/open-source/syntax/userJourney.html
 - Diataxis documentation framework: https://diataxis.fr/
-
