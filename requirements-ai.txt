@@ -3,4 +3,4 @@
 # just that SDK. The agent lane and the mock demo need nothing from here.
 
 anthropic>=0.40   # provider: anthropic  (default)
-openai>=1.40      # provider: openai OR openrouter (OpenRouter is OpenAI-compatible)
+openai>=2.45.0      # provider: openai OR openrouter (OpenRouter is OpenAI-compatible)
