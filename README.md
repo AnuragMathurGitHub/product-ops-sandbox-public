@@ -1,5 +1,11 @@
 # Product Ops Sandbox
 
+[![tests](https://github.com/AnuragMathurGitHub/product-ops-sandbox-public/actions/workflows/tests.yml/badge.svg)](https://github.com/AnuragMathurGitHub/product-ops-sandbox-public/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
+[![Runtime dependencies](https://img.shields.io/badge/runtime%20dependencies-zero-brightgreen.svg)](requirements.txt)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 A practical Product Operations sandbox for turning scattered product signals into clearer product decisions.
 
 This repo uses a fictional product, fictional data, simple Python scripts, and AI assisted workflows to show how a modern Product Ops loop can work:
@@ -201,12 +207,29 @@ scheduled script or internal service that calls a model directly. See [docs/04-a
 
 The tests use the Python standard library only. They cover the scoring formula, event counting, the
 feedback summary, empty metrics handling, the mock copy step, the schema gate in
-`scripts/harness.py` (parse, validate, retry, fail closed), and that the sample outputs match their
-schemas.
+`scripts/harness.py` (parse, validate, retry, fail closed), the repo hygiene scan, that the sample
+outputs match their schemas, and that the deterministic scripts reproduce the committed outputs
+byte for byte.
 
 ```bash
 python -m unittest discover -s tests
 ```
+
+## Development
+
+Contributing uses a small set of dev tools. None of this is needed to run the sandbox.
+
+```bash
+pip install -r requirements-dev.txt
+pre-commit install
+python tasks.py check
+```
+
+`tasks.py` holds every development command (`test`, `run`, `demo`, `lint`, `format`, `typecheck`,
+`scan`, `check`) with the Python standard library only. CI runs the same gates on every pull
+request, across Python 3.10 to 3.13, plus a determinism job that reruns every script and fails if
+the committed outputs change. See [CONTRIBUTING.md](CONTRIBUTING.md) for the ground rules and
+[CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## Adapt It To Your Own Product
 
@@ -395,8 +418,14 @@ product-ops-sandbox-public/
 |-- AGENTS.md                 (how any AI agent runs the workflows)
 |-- SECURITY.md
 |-- LICENSE
+|-- CONTRIBUTING.md
+|-- CODE_OF_CONDUCT.md
+|-- CHANGELOG.md
+|-- pyproject.toml              (project metadata + lint and type config)
+|-- tasks.py                    (dev commands: test, run, lint, scan, check)
 |-- requirements.txt
 |-- requirements-ai.txt         (optional, for scripts/ai_real.py only)
+|-- requirements-dev.txt        (dev tools: ruff, mypy, pre-commit)
 |-- docs/
 |   |-- 00-product-ops-system-map.md
 |   |-- 01-product-context.md
@@ -428,7 +457,9 @@ product-ops-sandbox-public/
 |   `-- harness.py              (schema gate: validate AI drafts, retry, fail closed)
 |-- tests/
 |   |-- test_harness.py
-|   `-- test_scripts.py
+|   |-- test_outputs_deterministic.py
+|   |-- test_scripts.py
+|   `-- test_tasks.py
 |-- outputs/
 |   |-- README.md
 |   |-- feedback_theme_summary.md
@@ -458,7 +489,13 @@ product-ops-sandbox-public/
 |   `-- rules/
 |-- .github/
 |   |-- copilot-instructions.md
-|   `-- prompts/
+|   |-- prompts/
+|   |-- ISSUE_TEMPLATE/
+|   |-- workflows/              (CI: tests, lint, types, scan, determinism)
+|   |-- dependabot.yml
+|   `-- pull_request_template.md
+|-- .editorconfig
+|-- .pre-commit-config.yaml
 `-- .gitignore
 ```
 
