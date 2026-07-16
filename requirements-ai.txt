@@ -2,5 +2,5 @@
 # Install only the one that matches your PRODUCT_OPS_PROVIDER; the script imports
 # just that SDK. The agent lane and the mock demo need nothing from here.
 
-anthropic>=0.116.0   # provider: anthropic  (default)
-openai>=1.40      # provider: openai OR openrouter (OpenRouter is OpenAI-compatible)
+anthropic>=0.40   # provider: anthropic  (default)
+openai>=2.45.0      # provider: openai OR openrouter (OpenRouter is OpenAI-compatible)
