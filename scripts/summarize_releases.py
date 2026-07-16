@@ -1,18 +1,18 @@
-from pathlib import Path
 import csv
-
+from pathlib import Path
+from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = PROJECT_ROOT / "sample-data" / "releases.csv"
 OUTPUT_FILE = PROJECT_ROOT / "outputs" / "release_readiness_snapshot.md"
 
 
-def read_releases():
+def read_releases() -> list[dict[str, Any]]:
     with INPUT_FILE.open(newline="", encoding="utf-8") as file:
         return list(csv.DictReader(file))
 
 
-def build_summary(records):
+def build_summary(records: list[dict[str, Any]]) -> str:
     lines = [
         "# Release Readiness Snapshot",
         "",
@@ -50,7 +50,7 @@ def build_summary(records):
     return "\n".join(lines)
 
 
-def main():
+def main() -> None:
     records = read_releases()
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(build_summary(records), encoding="utf-8")

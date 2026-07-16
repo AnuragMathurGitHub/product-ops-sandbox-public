@@ -40,10 +40,11 @@ Notes:
     - Outputs are drafts for a human to review, exactly like the other lanes.
 """
 
-from pathlib import Path
 import json
 import os
 import sys
+from pathlib import Path
+from typing import Any
 
 from harness import HarnessError, run_step
 
@@ -56,7 +57,7 @@ MAX_ATTEMPTS = 3
 # Provider settings. default_model is None where the provider's model names change
 # often and we would rather require an explicit PRODUCT_OPS_MODEL than ship a
 # guess. base_url is only needed for OpenAI-compatible gateways like OpenRouter.
-PROVIDERS = {
+PROVIDERS: dict[str, dict[str, Any]] = {
     "anthropic": {
         "key_var": "ANTHROPIC_API_KEY",
         "package": "anthropic",
@@ -80,7 +81,7 @@ PROVIDERS = {
 # Each workflow declares its prompt, the inputs to send, an optional schema, and
 # where the result is written. json_out is None for Markdown-only workflows.
 # The order matters: review and weekly read files earlier steps produce.
-WORKFLOWS = {
+WORKFLOWS: dict[str, dict[str, Any]] = {
     "classify_feedback": {
         "prompt": "classify_feedback.md",
         "inputs": ["input-notes/support-ticket-batch.md"],
@@ -164,7 +165,7 @@ SYSTEM_MARKDOWN = (
 )
 
 
-def read_text(relpath):
+def read_text(relpath: str) -> str:
     """Read a repo file. Return a visible placeholder if it is missing."""
     path = PROJECT_ROOT / relpath
     if not path.exists():
@@ -172,7 +173,7 @@ def read_text(relpath):
     return path.read_text(encoding="utf-8")
 
 
-def build_user_content(cfg):
+def build_user_content(cfg: dict[str, Any]) -> str:
     """Assemble the prompt, inputs, and optional schema into one user message."""
     parts = ["# Workflow instructions\n", read_text(f"ai-workflows/prompts/{cfg['prompt']}")]
     if cfg["schema"]:
@@ -185,7 +186,7 @@ def build_user_content(cfg):
     return "".join(parts)
 
 
-def envelope_schema(cfg):
+def envelope_schema(cfg: dict[str, Any]) -> dict[str, Any]:
     """The contract for one model reply, enforced by the harness gate.
 
     JSON workflows must reply with {"output": <matches the workflow schema>,
@@ -193,7 +194,7 @@ def envelope_schema(cfg):
     {"markdown": <string>}. This is the same contract SYSTEM_JSON and
     SYSTEM_MARKDOWN describe to the model.
     """
-    properties = {"markdown": {"type": "string"}}
+    properties: dict[str, Any] = {"markdown": {"type": "string"}}
     required = ["markdown"]
     if cfg["schema"]:
         workflow_schema = json.loads(read_text(f"ai-workflows/schemas/{cfg['schema']}"))
@@ -207,7 +208,7 @@ def envelope_schema(cfg):
     }
 
 
-def call_model(client, provider, model, system, user):
+def call_model(client: Any, provider: str, model: str, system: str, user: str) -> str:
     """Send one request through the selected provider and return the text."""
     if provider == "anthropic":
         response = client.messages.create(
@@ -230,7 +231,7 @@ def call_model(client, provider, model, system, user):
     return response.choices[0].message.content or ""
 
 
-def run_workflow(client, provider, model, name, cfg):
+def run_workflow(client: Any, provider: str, model: str, name: str, cfg: dict[str, Any]) -> bool:
     """Run one workflow through the schema gate and write its outputs.
 
     Return True on success. The harness calls the model, checks the reply
@@ -243,7 +244,7 @@ def run_workflow(client, provider, model, name, cfg):
     contract = envelope_schema(cfg)
     print(f"Running {name} on {provider}:{model} ...")
 
-    def call(prompt):
+    def call(prompt: str) -> str:
         return call_model(client, provider, model, system, prompt)
 
     try:
@@ -266,7 +267,7 @@ def run_workflow(client, provider, model, name, cfg):
     return True
 
 
-def make_client(provider, cfg):
+def make_client(provider: str, cfg: dict[str, Any]) -> Any:
     """Import the provider SDK lazily and build a client."""
     if provider == "anthropic":
         import anthropic
@@ -275,13 +276,13 @@ def make_client(provider, cfg):
 
     import openai
 
-    kwargs = {"api_key": os.environ[cfg["key_var"]]}
+    kwargs: dict[str, Any] = {"api_key": os.environ[cfg["key_var"]]}
     if cfg["base_url"]:
         kwargs["base_url"] = cfg["base_url"]
     return openai.OpenAI(**kwargs)
 
 
-def main(argv):
+def main(argv: list[str]) -> int:
     provider = os.environ.get("PRODUCT_OPS_PROVIDER", "anthropic").lower()
     if provider not in PROVIDERS:
         print(f"Unknown PRODUCT_OPS_PROVIDER '{provider}'. Use one of: {', '.join(PROVIDERS)}.")

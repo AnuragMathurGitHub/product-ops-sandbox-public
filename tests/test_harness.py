@@ -5,13 +5,11 @@ import sys
 import unittest
 from pathlib import Path
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
 import harness
 from harness import HarnessError, extract_json, run_step, validate
-
 
 SCHEMA = {
     "type": "object",
@@ -58,7 +56,9 @@ class HarnessTests(unittest.TestCase):
         self.assertEqual(validate(SCHEMA, {"theme": "x", "severity": "High"}), [])
         self.assertTrue(validate(SCHEMA, {"theme": "x"}))  # missing severity
         self.assertTrue(validate(SCHEMA, {"theme": "x", "severity": "Nope"}))  # bad enum
-        self.assertTrue(validate(SCHEMA, {"theme": "x", "severity": "High", "extra": 1}))  # extra key
+        self.assertTrue(
+            validate(SCHEMA, {"theme": "x", "severity": "High", "extra": 1})
+        )  # extra key
 
     def test_extract_json_tolerates_code_fences(self):
         self.assertEqual(extract_json('```json\n{"a": 1}\n```'), {"a": 1})
@@ -67,14 +67,17 @@ class HarnessTests(unittest.TestCase):
 class RealSchemaTests(unittest.TestCase):
     def test_harness_validates_a_real_sample_output(self):
         schema = json.loads(
-            (PROJECT_ROOT / "ai-workflows" / "schemas" / "feedback_classification.schema.json").read_text(
-                encoding="utf-8"
-            )
+            (
+                PROJECT_ROOT / "ai-workflows" / "schemas" / "feedback_classification.schema.json"
+            ).read_text(encoding="utf-8")
         )
         sample = json.loads(
-            (PROJECT_ROOT / "ai-workflows" / "sample-outputs" / "feedback_classification_example.json").read_text(
-                encoding="utf-8"
-            )
+            (
+                PROJECT_ROOT
+                / "ai-workflows"
+                / "sample-outputs"
+                / "feedback_classification_example.json"
+            ).read_text(encoding="utf-8")
         )
         self.assertEqual(validate(schema, sample), [])
 
@@ -110,7 +113,9 @@ class CliTests(unittest.TestCase):
     def test_cli_reports_usage_and_file_problems(self):
         self.assertEqual(run_cli([]), 2)
         self.assertEqual(
-            run_cli(["does_not_exist.json", str(self.SCHEMAS / "feedback_classification.schema.json")]),
+            run_cli(
+                ["does_not_exist.json", str(self.SCHEMAS / "feedback_classification.schema.json")]
+            ),
             2,
         )
 

@@ -1,0 +1,6 @@
+# Dev tools for contributors. None of this is needed to run the sandbox; the
+# runtime path is Python standard library only. See CONTRIBUTING.md.
+
+ruff==0.15.21
+mypy==2.3.0
+pre-commit==4.6.0

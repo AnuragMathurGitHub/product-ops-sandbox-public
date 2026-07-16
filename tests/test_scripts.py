@@ -3,11 +3,10 @@ import sys
 import unittest
 from pathlib import Path
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
-from ai_common import copy_mock_output, OUTPUTS
+from ai_common import OUTPUTS, copy_mock_output
 from analyze_feedback import build_summary as build_feedback_summary
 from score_roadmap import priority_score
 from summarize_metrics import build_summary as build_metrics_summary

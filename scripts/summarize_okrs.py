@@ -1,20 +1,20 @@
+import csv
 from collections import defaultdict
 from pathlib import Path
-import csv
-
+from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 INPUT_FILE = PROJECT_ROOT / "sample-data" / "okrs.csv"
 OUTPUT_FILE = PROJECT_ROOT / "outputs" / "okr_snapshot.md"
 
 
-def read_okrs():
+def read_okrs() -> list[dict[str, Any]]:
     with INPUT_FILE.open(newline="", encoding="utf-8") as file:
         return list(csv.DictReader(file))
 
 
-def build_summary(records):
-    by_objective = defaultdict(list)
+def build_summary(records: list[dict[str, Any]]) -> str:
+    by_objective: defaultdict[str, list[dict[str, Any]]] = defaultdict(list)
 
     for record in records:
         by_objective[record["objective"]].append(record)
@@ -65,7 +65,7 @@ def build_summary(records):
     return "\n".join(lines)
 
 
-def main():
+def main() -> None:
     records = read_okrs()
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(build_summary(records), encoding="utf-8")
