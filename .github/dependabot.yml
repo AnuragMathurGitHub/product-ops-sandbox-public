@@ -1,0 +1,14 @@
+# Weekly dependency updates. The runtime has no dependencies; this covers the
+# GitHub Actions used in CI and the optional dev and API-lane requirements files.
+
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
