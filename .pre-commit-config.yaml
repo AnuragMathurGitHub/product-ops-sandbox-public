@@ -1,0 +1,35 @@
+# Dev-only quality gates. Set up once with:
+#     pip install -r requirements-dev.txt
+#     pre-commit install
+# Running the sandbox never needs this; see START_HERE.md.
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^(outputs/|ai-workflows/sample-outputs/)
+      - id: end-of-file-fixer
+        exclude: ^(outputs/|ai-workflows/sample-outputs/)
+      - id: check-yaml
+      - id: check-json
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.21
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy static type check
+        entry: python -m mypy
+        language: system
+        pass_filenames: false
+      - id: repo-scan
+        name: repo hygiene scan (ASCII, wording, secret patterns)
+        entry: python tasks.py scan
+        language: system
+        pass_filenames: false
